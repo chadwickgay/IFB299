@@ -14,8 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf.urls import include
 from django.contrib import admin
+from IFB299app import views
 
 urlpatterns = [
+    url(r'^$', views.index, name='index'),
+    url(r'^IFB299app/', include('IFB299app.urls')), 
+  ## above maps any URLs starting with IFB299apps/ 
+  ## to be handed by the IFB299apps application. 
     url(r'^admin/', admin.site.urls),
 ]
