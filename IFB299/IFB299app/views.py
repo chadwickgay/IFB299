@@ -10,4 +10,10 @@ def index(request):
 def createaccount(request):
 	return render(request, 'IFB299app/createaccount.html')
 
+def login(request):
+	return render(request, 'IFB299app/login.html')
+
+def register(request):
+	return render(request, 'IFB299app/register.html')
+
 
