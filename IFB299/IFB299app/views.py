@@ -16,4 +16,6 @@ def login(request):
 def register(request):
 	return render(request, 'IFB299app/register.html')
 
+def dashboard(request):
+	return render(request, 'IFB299app/dashboard.html')
 
