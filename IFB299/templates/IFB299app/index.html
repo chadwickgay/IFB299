@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Index</title>
+    <title>You Are Here</title>
 
     <!-- Bootstrap Core CSS -->
     <link href=" {% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
@@ -23,7 +23,7 @@
 
     <!-- Custom CSS -->
     <link href=" {% static "css/stylish-portfolio.css" %}" rel="stylesheet">
-    <link href=" {% static "css/index.css" %}" rel="stylesheet">
+    <link href=" {% static "css/stylish-portfolio.css" %}" rel="stylesheet">
 
   </head>
 
@@ -31,85 +31,29 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar navbar-default navbar-inverse" role="navigation">
+    <nav class="navbar sticky-top navbar-default navbar-inverse" role="navigation">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Login dropdown</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+				<a class="navbar-brand" href="IFB299app">
+					 <img src=" {% static "img/Globe-512-2.png" %}" width="35" height="35" alt="You are here">
+				</a>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text">Already have an account?</p></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-      <ul id="login-dp" class="dropdown-menu">
-        <li>
-           <div class="row">
-              <div class="col-md-12">
-                Login via
-                <div class="social-buttons">
-                  <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                  <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                </div>
-                                or
-                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                    <div class="form-group">
-                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                    </div>
-                    <div class="form-group">
-                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
-                    </div>
-                    <div class="form-group">
-                       <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                    </div>
-                    <div class="checkbox">
-                       <label>
-                       <input type="checkbox"> keep me logged-in
-                       </label>
-                    </div>
-                 </form>
-              </div>
-              <div class="bottom text-center">
-                New here ? <a href="#"><b>Join Us</b></a>
-              </div>
-           </div>
-        </li>
-      </ul>
-        </li>
-      </ul>
+			<ul  class="nav navbar-nav navbar-right">
+			<form class = "form-inline"> 
+				<a href="/IFB299app/register" class="btn btn-lg btn-light">Create an Account</a>
+        <a href="/IFB299app/login" class="btn btn-lg btn-light">Log-in</a>
+<!--			     <button id ="buttons1" class="btn btn-sm align-right  btn-outline-secondary" type="button">Login</button>
+						<button id ="buttons2" class="btn btn-sm align-right align-middle btn-outline-secondary" type="button">Create an Account</button>-->
+			</form>
+			</ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -127,9 +71,8 @@
     <!-- About -->
     <section id="about" class="about">
       <div class="container text-center">
-        <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-        <p class="lead"> (This is going to be about the website and the possible history). This theme features some wonderful photography courtesy of
-          <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+        <h2>Are you new to town? Looking for a place to eat or shop or visit? </h2>
+        <p class="lead"> Our Website can help you. We have a first-class recommendation system that can provide you with recommendations based on the interests you have provided.</p>
       </div>
       <!-- /.container -->
     </section>
@@ -146,52 +89,134 @@
                 <div class="service-item">
                   <span class="fa-stack fa-4x">
                     <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                    <i class="fa fa-graduation-cap fa-stack-1x text-primary"></i>
                   </span>
                   <h4>
-                    <strong>Service Name</strong>
+                    <strong>College Campuses</strong>
                   </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
+                  <p>Find all the univeristy campuses in Brisbane as well as specific campus information.</p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
                 <div class="service-item">
                   <span class="fa-stack fa-4x">
                     <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                    <i class="fa fa-bed fa-stack-1x text-primary"></i>
                   </span>
                   <h4>
-                    <strong>Service Name</strong>
+                    <strong>Hotels</strong>
                   </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
+                  <p>Its has never been easier to find somewhere nice to stay. Use our recommendation to have fun as the same time. </p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
                 <div class="service-item">
                   <span class="fa-stack fa-4x">
                     <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                    <i class="fa fa-cutlery fa-stack-1x text-primary"></i>
                   </span>
                   <h4>
-                    <strong>Service Name</strong>
+                    <strong>Restaurants</strong>
                   </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
+                  <p>Never spend hours search for places to eat. You are here is here to help.</p>
+                  <!--<a href="#" class="btn btn-light">Learn More</a>-->
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
                 <div class="service-item">
                   <span class="fa-stack fa-4x">
                     <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                    <i class="fa fa-industry fa-stack-1x text-primary"></i>
                   </span>
                   <h4>
-                    <strong>Service Name</strong>
+                    <strong>Industries</strong>
                   </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
+                  <p>Plan your work trip before you come. It has never been easier to locate and find the Industries within a city before. </p>
+                  <!--<a href="#" class="btn btn-light">Learn More</a>-->
+                </div>
+              </div>
+							<div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-leaf fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Parks</strong>
+                  </h4>
+                  <p>Looking for somewhere to relax and read a book. Kids want an awesome park to play in. You are Here is here to help! Use our fun recommendation engine and find your city oasis. </p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
+                </div>
+              </div>
+							<div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linux fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Zoos</strong>
+                  </h4>
+                  <p>             
+									 
+									             </p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
+                </div>
+              </div>
+							<div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-university fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Museums</strong>
+                  </h4>
+                  <p>Looking for an activity thats a little more sophisticated. Never fear 'You are Here' can provide recommendations about the Museums and exhibits in a city. </p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
+                </div>
+              </div>
+							<div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-shopping-cart fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Malls</strong>
+                  </h4>
+                  <p>Its not a holiday without a little bit of retail therapy. Our recommendation engine can recommend all the little gems and big diamonds within Brisbane.  </p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
+                </div>
+              </div>
+							<div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-book fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Library</strong>
+                  </h4>
+                  <p>                         
+									                
+									             </p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
+                </div>
+              </div>
+							<div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-thumbs-o-up fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Plus many more exciting locations to come</strong>
+                  </h4>
+                  <p>Over the next year we will be adding more locations to our recommendation engine including; doctors services, public transport information, government offices and so on..  </p>
+<!--                  <a href="#" class="btn btn-light">Learn More</a>-->
                 </div>
               </div>
             </div>
@@ -207,74 +232,21 @@
     <!-- Callout -->
     <aside class="callout">
       <div class="text-vertical-center">
-        <h1>Vertically Centered Text</h1>
+        <h1>What are you waiting for</h1>
       </div>
     </aside>
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-10 mx-auto text-center">
-            <h2>Our Work</h2>
-            <hr class="small">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src=" {% static "img/portfolio-1.jpg" %}">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src=" {% static "img/portfolio-2.jpg" %}">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src=" {% static "img/portfolio-3.jpg" %}">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src=" {% static "img/portfolio-4.jpg" %}">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- /.row (nested) -->
-            <a href="#" class="btn btn-dark">View More Items</a>
-          </div>
-          <!-- /.col-lg-10 -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container -->
-    </section>
+
 
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary text-white">
       <div class="container text-center">
-        <h3>The buttons below are impossible to resist.</h3>
-        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+        <h3> Create an account now!! </h3>
+        <a href="/IFB299app/register" class="btn btn-lg btn-light">Create an Account</a>
+        <a href="/IFB299app/login" class="btn btn-lg btn-light">Log-in</a>
+				<h4>If you already have an account, Log in now!</h4>
       </div>
     </aside>
-
-    <!-- Map -->
-    <section id="contact" class="map">
-      <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-      <br/>
-      <small>
-        <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-      </small>
-    </section>
 
     <!-- Footer -->
     <footer>
@@ -284,15 +256,15 @@
             <h4>
               <strong>You Are Here</strong>
             </h4>
-            <p>3481 Melrose Place
-              <br>Beverly Hills, CA 90210</p>
+            <p>742 Evergreen Terrace
+              <br>Springfield, 90210</p>
             <ul class="list-unstyled">
               <li>
                 <i class="fa fa-phone fa-fw"></i>
-                (123) 456-7890</li>
+                (123) 444-4444</li>
               <li>
                 <i class="fa fa-envelope-o fa-fw"></i>
-                <a href="mailto:name@example.com">name@example.com</a>
+                <a href="mailto:name@example.com">youarehere@gmail.com</a>
               </li>
             </ul>
             <br>
@@ -314,7 +286,7 @@
               </li>
             </ul>
             <hr class="small">
-            <p class="text-muted">Copyright &copy; Your Website 2017</p>
+            <p class="text-muted">Copyright &copy; You Are HERE</p>
           </div>
         </div>
       </div>
