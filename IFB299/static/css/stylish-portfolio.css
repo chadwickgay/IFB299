@@ -67,6 +67,12 @@ body {
     background-color: rgba(255, 255, 255, .8);
 }
 
+/* Custom button CSS */
+
+.btn-toolbar .btn {
+    margin-right: 10px; 
+}
+
 
 /* Custom Horizontal Rule */
 
