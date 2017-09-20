@@ -12,8 +12,8 @@
     <title>You Are Here</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href=" {% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href=" {% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href=" {% static "vendor/bootstrap4/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href=" {% static "vendor/bootstrap4/css/bootstrap.min.css" %}" rel="stylesheet">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -31,32 +31,32 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar sticky-top navbar-default navbar-inverse" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-				<a class="navbar-brand" href="IFB299app">
-					 <img src=" {% static "img/Globe-512-2.png" %}" width="35" height="35" alt="You are here">
-				</a>
-      </ul>
-			<ul  class="nav navbar-nav navbar-right">
-			<form class = "form-inline"> 
-				<a href="/IFB299app/register" class="btn btn-lg btn-light">Create an Account</a>
-        <a href="/IFB299app/login" class="btn btn-lg btn-light">Log-in</a>
-<!--			     <button id ="buttons1" class="btn btn-sm align-right  btn-outline-secondary" type="button">Login</button>
-						<button id ="buttons2" class="btn btn-sm align-right align-middle btn-outline-secondary" type="button">Create an Account</button>-->
-			</form>
-			</ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 </nav>
+
+<!-- END Navigation -->
 
     <!-- Header -->
     <header class="header" id="top">
@@ -298,7 +298,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src=" {% static "vendor/jquery/jquery.min.js" %}"></script>
     <script src=" {% static "vendor/popper/popper.min.js" %}"></script>
-    <script src=" {% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src=" {% static "vendor/bootstrap4/js/bootstrap.min.js" %}"></script>
 
     <!-- Plugin JavaScript -->
     <script src=" {% static "vendor/jquery-easing/jquery.easing.min.js" %}"></script>
