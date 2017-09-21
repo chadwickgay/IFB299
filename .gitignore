@@ -99,3 +99,15 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+IFB299/static/\.DS_Store
+
+IFB299/static/css/\.DS_Store
+
+master-template/\.DS_Store
+
+master-template/production/\.DS_Store
+
+*.exe
+
+IFB299/static/vendor/\.DS_Store
