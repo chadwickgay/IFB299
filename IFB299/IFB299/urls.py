@@ -26,6 +26,7 @@ urlpatterns = [
   ## above maps any URLs starting with IFB299apps/ 
   ## to be handed by the IFB299apps application. 
     url(r'^admin/', admin.site.urls),
+    #url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 ## added media 
