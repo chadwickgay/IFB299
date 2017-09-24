@@ -1,60 +1,26 @@
-<!DOCTYPE html>
-{% load staticfiles %} <!-- New line -->
-<html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% extends 'IFB299app/base.html' %}
 
-    <title>Register</title>
+    <title>{% block title %}Register{% endblock %}</title>
 
-    <!-- Bootstrap -->
-    <link href=" {% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="{% static "vendor/nprogress/nprogress.css" %}" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="{% static "vendor/animate.css/animate.min.css" %}" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="{% static "css/template.min.css" %}" rel="stylesheet">
-  </head>
-
-  <body class="login">
+    {% block content %}
     <div>
 
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form>
+            <form method="post">
               <h1>Register</h1>
+              {% csrf_token %}
+              {{ form.as_p }}
               <div>
-                <input type="text" class="form-control" placeholder="First Name" required="" />
-              </div>
-              <div>
-                <input type="text" class="form-control" placeholder="Last Name" required="" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Confirm Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <button class="btn btn-default submit" type="submit">Register</button>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
                 <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
+                  <a href="/IFB299app/login/" class="to_register"> Log in </a>
                 </p>
 
                 <div class="clearfix"></div>
@@ -70,5 +36,5 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
+    {% endblock %}
+
