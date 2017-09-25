@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
@@ -88,5 +89,21 @@ class Location(models.Model):
         """
         return self.name   
 
+class Event(models.Model):
+    """
+    Model representing a event
+    """
+    name = models.CharField(max_length=255)
+    description = models.TextField(max_length=1000, help_text="Enter a brief description of the event")
+    start_date = models.DateTimeField(default=datetime.now, blank=True)
+    end_date = models.DateTimeField(default=datetime.now, blank=True)
+    ##FK
+    location_id = models.ForeignKey(Location, on_delete=models.CASCADE)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.name   
 
 
