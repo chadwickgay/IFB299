@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import City, Region, Country, Category, Location, Event
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .models import City, Region, Country, Category, Location, Event, User, Profile
 
 class CityAdmin(admin.ModelAdmin):
     list_display = ('name', 'region_id', 'country_id', 'latitude', 'longitude')
@@ -19,6 +20,16 @@ class LocationAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'location_id')
 
+# Define an inline admin descriptor for User model
+# which acts a bit like a singleton
+class UserInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
+
+# Define a new User admin
+class UserAdmin(BaseUserAdmin):
+    inlines = (UserInline, )
+
 # Register your models here.
 
 admin.site.register(City, CityAdmin)
@@ -27,3 +38,6 @@ admin.site.register(Country, CountryAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Event, EventAdmin)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
