@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from forms import RegisterForm
+from .forms import RegisterForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
