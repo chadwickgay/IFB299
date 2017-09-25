@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+{% load staticfiles %} <!-- New line -->
+
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Narrow Jumbotron Template for Bootstrap 3.0.3 Documentation - BootstrapDocs</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "vendor/bootstrap/css/bootstrap.css"%}" rel="stylesheet">
+        <!-- Font Awesome -->
+    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static "vendor/nprogress/nprogress.css" %}" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="{% static "vendor/animate.css/animate.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/template.min.css"%}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <nav class="navbar navbar-inverse">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Recs</a></li>
+                      <li><a href="#">Events</a></li>
+
+          <li><a href="#">Sign Out</a></li>
+
+        </ul>
+        <h3 class="text-muted">You Are Here</h3>
+      </div>
+      </nav>
+
+
+        <div class="jumbotron feature">
+		<div class="container">
+
+		<div id="feature-carousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+			  <li data-target="#feature-carousel" data-slide-to="0" class=""></li>
+			  <li data-target="#feature-carousel" data-slide-to="1" class=""></li>
+			  <li data-target="#feature-carousel" data-slide-to="2" class=""></li>
+			  <li data-target="#feature-carousel" data-slide-to="3" class=""></li>
+			  <li data-target="#feature-carousel" data-slide-to="4" class=""></li>
+			  <li data-target="#feature-carousel" data-slide-to="5" class=""></li>
+			  <li data-target="#feature-carousel" data-slide-to="6" class=""></li>
+			  <li data-target="#feature-carousel" data-slide-to="7" class="active"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<div class="item">
+					<a href="#">
+                    	<img class="img-responsive" src="https://commons.wikimedia.org/wiki/File:Ferris_Wheeel_of_Odaiba.jpg" alt="Image 1 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%201" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+				<div class="item">
+					<a href="#">
+                    	<img class="img-responsive" src="https://normamartiriphotography.files.wordpress.com/2013/04/eye-of-brisbane.jpg" alt="Image 2 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%202" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+				<div class="item">
+					<a href="#">
+                    	<img class="img-responsive" src="http://www.visitbrisbane.com.au/~/media/brisbane-marketing/products/atdw/2016/07/13/12/06/the-wheel-of-brisbane--south-bank-57736d891e9bbd4c5ee4054c.ashx?bc=black&h=405&w=720" alt="Image 3 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%202" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+				<div class="item">
+					<a href="#">
+                    	<img class="img-responsive" src="http://www.abc.net.au/news/image/6470184-3x2-940x627.jpg" alt="Image 4 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%202" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+				<div class="item">
+					<a href="#">
+                    	<img class="img-responsive" src="http://southbankguide.weebly.com/uploads/4/6/4/7/46476409/723803_orig.jpg" alt="Image 5 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%202" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+				<div class="item">
+					<a href="#">
+                    	<img class="img-responsive" src="http://southbankguide.weebly.com/uploads/4/6/4/7/46476409/9504529_orig.jpg" alt="Image 6 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%202" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+				<div class="item">
+					<a href="#">
+                    	<img class="img-responsive" src="http://bb901.com/wp-content/uploads/2015/08/1-Wheel-Of-Brisbane.jpg" alt="Image 7 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%202" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+				<div class="item active">
+					<a href="#">
+                    	<img class="img-responsive" src="http://www.showticksecure.com/WheelOfBrisbane/VenueNet/_uploads/gallery_images/4/8_lrg_20171801113217_img.jpg" alt="Image 8 [1140x400]" data-src="holder.js/1140x400?bg=9ACD32&amp;text=Image%203" style="width: 1140px; height: 400px;" data-holder-rendered="true">
+                	</a>
+				</div>
+			</div>
+			<a class="left carousel-control" href="#feature-carousel" role="button" data-slide="prev">
+			  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#feature-carousel" role="button" data-slide="next">
+			  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			  <span class="sr-only">Next</span>
+			</a>
+		  </div>
+
+		</div>
+	</div>
+<div><div class="wsite-multicol"><div class="wsite-multicol-table-wrap" style="margin:0 -15px;">
+	<table class="wsite-multicol-table">
+		<tbody class="wsite-multicol-tbody">
+			<tr class="wsite-multicol-tr">
+				<td class="wsite-multicol-col" style="width:49.999999999999%; padding:0 15px;">
+                    <h1>EYE OF BRISBANE </h1>
+                    <div class="paragraph" style="text-align:left;">The Wheel of Brisbane is known as one of the most spectacular ways to view the city skyline and also the outstanding views along the Brisbane River. This popular attraction is great for young or old tourists and local's to capture amazing pictures and to see Brisbane and South Bank from up high. The Gondolas are enclosed and fully air-conditioned for comfort and seat up to 6 adults and 2 children. There are also VIP Gondolas which last up to 25 minutes, more comfortable seats, tinted windows and also your choice of personally selected music.<br>The wheel provides 360 degree view from the heart of Brisbane, allowing you to also see the South Bank Parklands 60 metres from the air. The experience will be like no other that you could imagine in Brisbane, it will make you want to come back and enjoy it again.&nbsp;</span><br><strong><font size="3">Opening Times</font></strong><br><font size="2">Monday to Thursday &nbsp; &nbsp; &nbsp; 11am to 9:30pm&nbsp;</font><br><font size="2">Friday &amp; Saturday &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;10am to 11pm</font><br><font size="2">Sunday &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;10am to 10pm&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font><br><br><font size="2">The wheel is located in the Parklands at South Bank&nbsp;in front of the QPAC Centre</font><br><strong style="font-size: small;">To book or find out more&nbsp;information pleat visit&nbsp;<a href="https://www.thewheelofbrisbane.com.au" target="_blank" title="" style="">The Wheel of Brisbane</a>.</strong><span style=""><br></div>
+                </td>
+                <td class="wsite-multicol-col" style="width:49.999999999999%; padding:0 15px;">
+                    <div class="wsite-map"><iframe allowtransparency="true" scrolling="no" style="width: 100%; height: 350px; margin-top: 10px; margin-bottom: 10px;" src="//www.weebly.com/weebly/apps/generateMap.php?map=google&amp;elementid=721475419188219578&amp;ineditor=0&amp;control=3&amp;width=auto&amp;height=350px&amp;overviewmap=0&amp;scalecontrol=0&amp;typecontrol=0&amp;zoom=15&amp;long=153.02085&amp;lat=-27.475055&amp;domain=www&amp;point=1&amp;align=1&amp;reseller=false" frameborder="0"></iframe></div>
+                    <div class="paragraph" style="text-align:left;"><span style=""><font size="1">170 Main Street, Kangaroo Point QLD 4169</font></span></div>
+                </td>
+            </tr>
+		</tbody>
+	</table>
+</div></div></div>
+
+
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Reviews</div>
+            <div class="panel-body">
+                   <div class="container">
+                        <div class="row">
+        <div class="col-xs-12 col-md-6 pull-right">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 text-center">
+                        <h1 class="rating-num">
+                            4.0</h1>
+                        <div class="rating">
+                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                            </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                            </span><span class="glyphicon glyphicon-star-empty"></span>
+                        </div>
+                        <div>
+                            <span class="glyphicon glyphicon-user"></span>1,050,008 total
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="row rating-desc">
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>5
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end 5 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>4
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end 4 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>3
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end 3 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>2
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end 2 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>1
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                        <span class="sr-only">15%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end 1 -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+                                                    <div jstcache="409" class="section-review-snippet-line" jsan="7.section-review-snippet-line"> <span jstcache="410" jsinstance="0" class="section-review-snippet-text" jsan="7.section-review-snippet-text">"Friendly </span><span jstcache="410" jsinstance="1" class="section-review-snippet-text" style="font-weight:bold" jsan="7.section-review-snippet-text,5.font-weight">staff</span><span jstcache="410" jsinstance="*2" class="section-review-snippet-text" jsan="7.section-review-snippet-text"> that offer quick service."</span> <span jstcache="411" class="section-review-snippet-attribution" style="display:none"> <span jstcache="412"></span> &nbsp;reviewers </span> </div>
+                       <div jstcache="409" class="section-review-snippet-line" jsan="7.section-review-snippet-line"> <span jstcache="410" jsinstance="0" class="section-review-snippet-text" jsan="7.section-review-snippet-text">"Good for </span><span jstcache="410" jsinstance="1" class="section-review-snippet-text" style="font-weight:bold" jsan="7.section-review-snippet-text,5.font-weight">walk</span><span jstcache="410" jsinstance="2" class="section-review-snippet-text" jsan="7.section-review-snippet-text"> with </span><span jstcache="410" jsinstance="3" class="section-review-snippet-text" style="font-weight:bold" jsan="7.section-review-snippet-text,5.font-weight">family</span><span jstcache="410" jsinstance="4" class="section-review-snippet-text" jsan="7.section-review-snippet-text">, friends or </span><span jstcache="410" jsinstance="5" class="section-review-snippet-text" style="font-weight:bold" jsan="7.section-review-snippet-text,5.font-weight">lovers</span><span jstcache="410" jsinstance="*6" class="section-review-snippet-text" jsan="7.section-review-snippet-text">."</span> <span jstcache="411" class="section-review-snippet-attribution" style="display:none"> <span jstcache="412"></span> &nbsp;reviewers </span> </div>
+                       <div jstcache="474" class="section-review-snippet"> <div jstcache="406" class="section-review-snippet-icon section-review-snippet-content"> <a data-redirect="1,AFQjCNGczn78LMmtteswC76JQB867feBuw,,0ahUKEwjnh-PCg8HWAhWIWbwKHcCHAqkQ_WMIFygJMAA,," jstrack="G1PJWZz4BYiz8QXAj4rICg:44" ved="1i:1,t:25793,e:0,p:G1PJWZz4BYiz8QXAj4rICg:44" aria-label="Reviewer" target="_blank" vet="25793" jstcache="407" href="https://www.google.com/maps/contrib/114131721949398267291/reviews?hl=en-AU" jsaction="log.outbound;clickmod:log.outbound;contextmenu:log.outbound_contextmenu" class="section-review-snippet-link" style="background-image:url(//lh5.googleusercontent.com/-Rbuhkgswezc/AAAAAAAAAAI/AAAAAAAAAAA/MEv7cPWJruI/w72-h72-p-k-mo/photo.jpg)" jsan="7.section-review-snippet-link,0.data-redirect,8.href,0.jstrack,5.background-image,0.ved,0.aria-label,0.target,0.vet,22.jsaction"> </a> <span aria-label="Reviewer" role="img" jstcache="408" class="section-review-snippet-link" style="display:none" jsan="7.section-review-snippet-link,0.aria-label,0.role"> </span> </div> <div jstcache="409" class="section-review-snippet-line" jsan="7.section-review-snippet-line"> <span jstcache="410" jsinstance="0" class="section-review-snippet-text" jsan="7.section-review-snippet-text">"If you want a discount ticket, check out </span><span jstcache="410" jsinstance="1" class="section-review-snippet-text" style="font-weight:bold" jsan="7.section-review-snippet-text,5.font-weight">Groupon</span><span jstcache="410" jsinstance="*2" class="section-review-snippet-text" jsan="7.section-review-snippet-text">."</span> <span jstcache="411" class="section-review-snippet-attribution" style="display:none"> <span jstcache="412"></span> &nbsp;reviewers </span> </div> </div>
+
+    </div>    </div>
+    </div>
+
+
+
+        <div class="panel-footer">
+            <div class="row">
+                 <div class="col-lg-12">
+                    <div class="star-rating">
+                        <span class="fa fa-star-o" data-rating="1"></span>
+                        <span class="fa fa-star-o" data-rating="2"></span>
+                        <span class="fa fa-star-o" data-rating="3"></span>
+                        <span class="fa fa-star-o" data-rating="4"></span>
+                        <span class="fa fa-star-o" data-rating="5"></span>
+                        <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                             <input type="text" class="form-control" placeholder="Write a review">
+                            </div>
+                             <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h2 class="panel-title">Questions</h2>
+  </div>
+  <div class="panel-body">
+    <div class="container">
+    <div class="row">
+            <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt=""></div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <a href="#">
+                                       Cost </a>
+                                    <div class="mic-info">
+                                        By: <a href="#">Taylor Swift</a> on 12 Jun 2017
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    what are the prices for a family of 2 adults and 2 children?
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+
+            </div>
+            <div class="col">
+
+
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                                <div class="form-group">
+    <textarea class="form-control" rows="3" placeholder="Write in your wall" autofocus=""></textarea>
+
+
+                                </div>
+
+
+                        <button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">Post reply</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                        </div>
+
+                </div>
+</div>
+        </div>
+  </div>
+      <div class="panel-footer">
+          <div class="row">
+
+            <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                             <input type="text" class="form-control" placeholder="Post a question">
+                            </div>
+                             <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+          </div>
+      </div>
+</div>
+
+
+    </div> <!-- /container -->
+
+
+
+
+
+      <div class="footer">
+        <p>© Company 2013</p>
+      </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+</body></html>
