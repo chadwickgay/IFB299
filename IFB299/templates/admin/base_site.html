@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'You Are Here!' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'You Are Here!' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
