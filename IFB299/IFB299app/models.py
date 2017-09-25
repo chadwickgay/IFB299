@@ -3,6 +3,44 @@ from datetime import datetime
 
 # Create your models here.
 
+USER_TYPES = (
+    ('Tourist', 'Tourist'),
+    ('Student', 'Student'),
+    ('Businessman', 'Businessman'),
+)
+
+USER_INTERESTS = (
+    ('Colleges', 'Colleges'),
+    ('Libraries', 'Libraries'),
+    ('Industries', 'Industries'),
+    ('Hotels', 'Hotels'),
+    ('Parks', 'Parks'),
+    ('Zoos', 'Zoos'),
+    ('Museums', 'Museums'),
+    ('Restaurants', 'Restaurants'),
+    ('Malls', 'Malls'),
+)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    bio = models.TextField(max_length=500, blank=True)
+    # add in photo
+    user_type = models.CharField(max_length=50, choices=USER_TYPES)
+    user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+
+
 class Category(models.Model):
     """
     Model representing a location category (e.g. Colleges, Parks, Mueseums etc.).
