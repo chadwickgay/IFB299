@@ -16,6 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'address', 'latitude', 'longitude', 'city_id')
+    prepopulated_fields = {'slug':('name',)}
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'location_id')

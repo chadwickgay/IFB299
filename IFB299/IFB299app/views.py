@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from forms import RegisterForm
+from forms import RegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
@@ -23,8 +23,16 @@ def location(request):
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
+        profile_form = ProfileForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
+            new_user = form.save()
+            profile = profile_form.save(commit=False)
+            
+            if profile.user_id is None:
+                profile.user_id = new_user.id
+
+            profile_form.save()
+
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -32,5 +40,9 @@ def register(request):
             return redirect('/IFB299app/dashboard/')
     else:
         form = RegisterForm()
-    return render(request, 'IFB299app/register.html', {'form': form})
+        profile_form = ProfileForm()
+    return render(request, 'IFB299app/register.html', {
+        'form': form,
+        'profile_form': profile_form
+        })
 

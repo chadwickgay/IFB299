@@ -15,7 +15,7 @@ urlpatterns = [
 
 	## Users
 	url(r'^login/$', auth_views.login, {'template_name': 'IFB299app/login.html', 'authentication_form': LoginForm}, name='login'),
-	#url(r'^logout/$', views.logout, name='logout'),
+	url(r'^logout/$', auth_views.logout, {'next_page': '/IFB299app/'}, name='logout'),
 	url(r'^register/$', views.register, name='register'),
 	
 
@@ -30,6 +30,10 @@ urlpatterns = [
 	## Dashboard
 	url(r'^dashboard/$', views.dashboard, name='dashboard'),
 	url(r'^location/$', views.location, name='location'),
+
+	## Location page
+	url(r'^location/(?P<category_name_slug>[\w\-]+)/$', views.location, name='location'),
+
 	## Admin
 	#url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 	url(r'^admin/', admin.site.urls),

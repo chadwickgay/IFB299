@@ -1,9 +1,10 @@
-from django.db import models
+from django.db import models 
 from datetime import datetime 
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from multiselectfield import MultiSelectField
+from datetime import datetime  
+from django.contrib.auth.models import User 
+from django.db.models.signals import post_save 
+from django.dispatch import receiver 
+from multiselectfield import MultiSelectField 
 
 # Create your models here.
 
@@ -27,11 +28,11 @@ USER_INTERESTS = (
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     bio = models.TextField(max_length=500, blank=True)
     # add in photo
-    user_type = models.CharField(max_length=1, choices=USER_TYPES)
-    user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=11)
+    user_type = models.CharField(max_length=50, choices=USER_TYPES)
+    user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
 
 
 @receiver(post_save, sender=User)
@@ -120,10 +121,16 @@ class Location(models.Model):
     ## Lat/Long
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    ## Slug
+    slug = models.SlugField()
     ## FK
     city_id = models.ForeignKey(City, on_delete=models.CASCADE)
     region_id = models.ForeignKey(Region, on_delete=models.CASCADE)
     country_id = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name) 
+        super(Location, self).save(*args, **kwargs)
     
     def __str__(self):
         """
