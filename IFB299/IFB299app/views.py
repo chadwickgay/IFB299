@@ -19,3 +19,5 @@ def register(request):
 def dashboard(request):
 	return render(request, 'IFB299app/dashboard.html')
 
+def locations(request):
+	return render(request, 'IFB299app/locations.html')
