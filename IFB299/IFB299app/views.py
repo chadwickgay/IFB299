@@ -17,7 +17,7 @@ def login_view(request):
 def dashboard(request):
 	return render(request, 'IFB299app/dashboard.html')
 
-def location(request):
+def location(request, location_name_slug):
     return render(request, 'IFB299app/location.html')
 
 def register(request):

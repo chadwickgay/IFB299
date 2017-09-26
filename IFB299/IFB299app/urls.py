@@ -32,7 +32,7 @@ urlpatterns = [
 	url(r'^location/$', views.location, name='location'),
 
 	## Location page
-	url(r'^location/(?P<category_name_slug>[\w\-]+)/$', views.location, name='location'),
+	url(r'^location/(?P<location_name_slug>[\w\-]+)/$', views.location, name='location'),
 
 	## Admin
 	#url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
