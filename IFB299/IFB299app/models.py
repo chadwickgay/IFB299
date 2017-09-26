@@ -121,10 +121,16 @@ class Location(models.Model):
     ## Lat/Long
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    ## Slug
+    slug = models.SlugField()
     ## FK
     city_id = models.ForeignKey(City, on_delete=models.CASCADE)
     region_id = models.ForeignKey(Region, on_delete=models.CASCADE)
     country_id = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name) 
+        super(Location, self).save(*args, **kwargs)
     
     def __str__(self):
         """

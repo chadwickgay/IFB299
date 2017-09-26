@@ -30,6 +30,10 @@ urlpatterns = [
 	## Dashboard
 	url(r'^dashboard/$', views.dashboard, name='dashboard'),
 	url(r'^location/$', views.location, name='location'),
+
+	## Location page
+	url(r'^location/(?P<category_name_slug>[\w\-]+)/$', views.location, name='location'),
+
 	## Admin
 	#url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 	url(r'^admin/', admin.site.urls),
