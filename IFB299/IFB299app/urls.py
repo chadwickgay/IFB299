@@ -15,7 +15,7 @@ urlpatterns = [
 
 	## Users
 	url(r'^login/$', auth_views.login, {'template_name': 'IFB299app/login.html', 'authentication_form': LoginForm}, name='login'),
-	#url(r'^logout/$', views.logout, name='logout'),
+	url(r'^logout/$', auth_views.logout, {'next_page': '/IFB299app/'}, name='logout'),
 	url(r'^register/$', views.register, name='register'),
 	
 
