@@ -1,81 +1,158 @@
-<!DOCTYPE html>
-{% load staticfiles %} <!-- New line -->
+    {% extends 'IFB299app/base.html' %}
+    {% load staticfiles %} 
 
-<html lang="en"><head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Location{% endblock %}</title>
 
-    <title>Narrow Jumbotron Template for Bootstrap 3.0.3 Documentation - BootstrapDocs</title>
+    {% block content %}
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-globe"></i> <span>You Are Here!</span></a>
+            </div>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static "vendor/bootstrap/css/bootstrap.css"%}" rel="stylesheet">
-        <!-- Font Awesome -->
-    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="{% static "vendor/nprogress/nprogress.css" %}" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="{% static "vendor/animate.css/animate.min.css" %}" rel="stylesheet">
+            <div class="clearfix"></div>
 
-    <!-- Custom styles for this template -->
-    <link href="{% static "css/template.min.css"%}" rel="stylesheet">
+            <br />
 
-  </head>
-
-  <body>
-
-    <div class="container">
-      <nav class="navbar navbar-inverse">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">recs</a></li>
-          <li><a href="#">Sign Out</a></li>
-
-        </ul>
-        <h3 class="text-muted">You Are Here</h3>
-      </div>
-      </nav>
-
-      <div class="jumbotron">
-        <img src="http://542partners.com.au/wp-content/uploads/2015/07/maps-local-search1-ss-1920.jpg" alt="" height = 50% width=90%>
-
-
-      </div>
-
-
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>EYE OF BRISBANE</h4>
-
-            <p>--> Big Ferris Wheel</p>
-            <p>--> Sometimes temporary, sometimes permanent</p>
-            <p>--> "Good" Family Experience</p>
-
+            <!-- sidebar menu -->
+            {% include "IFB299app/side-menu.html"%}
+            <!-- sidebar menu -->
+          </div>
         </div>
 
+        <!-- top navigation -->
+        {% include "IFB299app/top-menu.html"%}
+        <!-- /top navigation -->
 
+                <!-- page content -->
+        <div class="right_col" role="main"> 
 
+        <div class="">
+            
+            <div class="clearfix"></div>
 
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                    <h2>Wheel of Brisbane</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
 
-    </div> <!-- /container -->
+                    <div class="col-md-7 col-sm-7 col-xs-12">
+                      <div class="product-image">
+                        <img src="{% static "/img/prod-1.jpg" %}" alt="..." />
+                      </div>
+                      <div class="product_gallery">
+                        <a>
+                          <img src="{% static "/img/prod-2.jpg" %}" alt="..." />
+                        </a>
+                        <a>
+                          <img src="{% static "/img/prod-3.jpg" %}" alt="..." />
+                        </a>
+                        <a>
+                          <img src="{% static "/img/prod-4.jpg" %}" alt="..." />
+                        </a>
+                        <a>
+                          <img src="{% static "/img/prod-5.jpg" %}" alt="..." />
+                        </a>
+                      </div>
+                    </div>
 
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#">Review</a></li>
-        <li><a href="#">Questions</a></li>
-    </ul>
+                    <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
 
+                      <p>The Wheel of Brisbane is a Bussink R60 transportable Ferris wheel installation in Brisbane, Queensland, Australia. It is "almost" 60 metres tall.</p>
+                      <br />
 
+                    <div class="">
+                        <h2>Location Information</h2>
+                        <p><i class="fa fa-address-card-o" aria-hidden="true"></i> <b>Address:</b> Russel Street, South Brisbane QLD 4101</p>
+                        <p><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b>  (07) 3844 3464</p>
+                        <p><i class="fa fa-globe" aria-hidden="true"></i> <b>Website: </b><a href="thewheelofbrisbane.com.au">thewheelofbrisbane.com.au</a></p>
+                        <p><i class="fa fa-signal" aria-hidden="true"></i> <b>Reviews (from around the Web):</b>  4.2 / 5</p>
+                        
+                      </div>
+                      <br />
 
+                      <div class="">
+                        <button type="button" class="btn btn-danger btn-lg">Dislike</button>
+                        <button type="button" class="btn btn-success btn-lg">Like</button>
+                      </div>
 
-      <div class="footer">
-        <p>© Company 2013</p>
+                    </div>
+
+                    <!-- MAP -->
+
+                    <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g"></script>
+      
+                    <script>
+                             function loadMap() {
+                                var locationLatLng = {lat: -27.470125, lng: 153.021072};
+                                
+                                var mapOptions = {
+                                   center:locationLatLng, 
+                                   zoom:11,
+                                   
+                                };
+
+                                var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+
+                                var marker = new google.maps.Marker({
+                                  position: locationLatLng,
+                                  map: map,
+                                  title: 'Hello World!'
+                                });      
+                             }
+                    </script>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="border:0px solid #e5e5e5;">
+                        <div class="x_title">
+                    <h2>Map</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                        <div id = "map" style = "width:100%; height:300px;"></div>
+                    </div>
+
+                    <script type="text/javascript">
+                        loadMap();
+                    </script>
+
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Reviews</a>
+                          </li>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Questions</a>
+                          </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                              synth. Cosby sweater eu banh mi, qui irure terr.</p>
+                          </div>
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                              booth letterpress, commodo enim craft beer mlkshk aliquip</p>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
       </div>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    </div>
+   {% endblock %}
 
 
-</body></html>
