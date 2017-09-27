@@ -1,10 +1,9 @@
-from django.db import models 
-from datetime import datetime 
-from datetime import datetime  
-from django.contrib.auth.models import User 
-from django.db.models.signals import post_save 
-from django.dispatch import receiver 
-from multiselectfield import MultiSelectField 
+from django.db import models
+from datetime import datetime
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 
@@ -153,6 +152,4 @@ class Event(models.Model):
         """
         String for representing the Model object.
         """
-        return self.name   
-
-
+        return self.name

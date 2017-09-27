@@ -4,21 +4,45 @@ from .forms import RegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
+import requests
+
 # Create your views here.
 def index(request):
 	return render(request, 'IFB299app/index.html')
 
+
 def createaccount(request):
 	return render(request, 'IFB299app/createaccount.html')
+
 
 def login_view(request):
 	return render(request, 'IFB299app/login.html')
 
+
 def dashboard(request):
 	return render(request, 'IFB299app/dashboard.html')
 
+
 def location(request, location_name_slug):
-    return render(request, 'IFB299app/location.html')
+    context_dict = {}
+
+    url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJ70tS1ZJZkWsR9Dnb1Gm82s0&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
+    response = requests.get(url) 
+    file = response.json() 
+    
+    #print(file)
+
+    context_dict['name'] = file['result']['name'] 
+    context_dict['formatted_address']  = file['result']['formatted_address'] 
+    context_dict['formatted_phone_number']  = file['result']['formatted_phone_number'] 
+    context_dict['rating']  = file['result']['rating'] 
+    context_dict['website']  = file['result']['website'] 
+    context_dict['price_level']  = file['result']['price_level'] 
+    context_dict['opening_hours'] = file['result']['opening_hours'] 
+    #context_dict['photos'] = file['result']['photos']
+    #context_dict['review'] = file['result']['reviews']
+
+    return render(request, 'IFB299app/location.html', context_dict)
 
 def register(request):
     if request.method == 'POST':
@@ -27,7 +51,7 @@ def register(request):
         if form.is_valid() and profile_form.is_valid():
             new_user = form.save()
             profile = profile_form.save(commit=False)
-            
+
             if profile.user_id is None:
                 profile.user_id = new_user.id
 
@@ -45,4 +69,3 @@ def register(request):
         'form': form,
         'profile_form': profile_form
         })
-
