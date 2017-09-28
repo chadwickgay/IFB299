@@ -44,28 +44,25 @@
 
                     <div class="col-md-7 col-sm-7 col-xs-12">
                       <div class="product-image">
-                        <img src="{% static "/img/prod-1.jpg" %}" alt="..." />
+                        <img src={{Photo}} alt="..." />
                       </div>
                       <div class="product_gallery">
                         <a>
-                          <img src="{% static "/img/prod-2.jpg" %}" alt="..." />
+                          <img src={{Photo2}} alt="..." />
                         </a>
                         <a>
-                          <img src="{% static "/img/prod-3.jpg" %}" alt="..." />
+                          <img src= {{ Photo3}} alt="..." />
                         </a>
                         <a>
-                          <img src="{% static "/img/prod-4.jpg" %}" alt="..." />
+                          <img src={{Photo4}} alt="..." />
                         </a>
                         <a>
-                          <img src="{% static "/img/prod-5.jpg" %}" alt="..." />
+                          <img src={{Photo5}} alt="..." />
                         </a>
                       </div>
                     </div>
 
                     <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
-
-                      <p>The Wheel of Brisbane is a Bussink R60 transportable Ferris wheel installation in Brisbane, Queensland, Australia. It is "almost" 60 metres tall.</p>
-                      <br />
 
                       <div class="">
                         <h2>Location Information</h2>
@@ -77,7 +74,13 @@
                         <p><i class="fa fa-usd" aria-hidden="true"></i> <b>Price Level:</b>  {{ price_level }}</p>
                         {% endif %}
                         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Opening Hours:</b></p>
-                        
+												<p>{{ Monday }}</p>
+												<p>{{Tuesday}}</p>
+                        <p> {{Wednesday}}</p>
+                        <p> {{Thursday}}</p>
+                        <p>{{Friday}}</p>
+                        <p> {{Saturday}}</p>
+                        <p> {{Sunday}} </p>
                       </div>
                       <br />
 
@@ -136,6 +139,7 @@
                                         <div>Rating: ${review.rating} star(s)</div>`;
                                         reviewEl.appendChild(li);
                                       }
+																			
                                     }
                                   });
                                 }

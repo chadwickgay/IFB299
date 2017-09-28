@@ -38,10 +38,18 @@ def location(request, location_name_slug):
     context_dict['rating']  = file['result']['rating'] 
     context_dict['website']  = file['result']['website'] 
     context_dict['price_level']  = file['result']['price_level'] 
-    context_dict['opening_hours'] = file['result']['opening_hours'] 
-    #context_dict['photos'] = file['result']['photos']
-    #context_dict['review'] = file['result']['reviews']
-
+    context_dict['Monday'] = file['result']['opening_hours']['weekday_text'][0]
+    context_dict['Tuesday'] = file['result']['opening_hours']['weekday_text'][1]
+    context_dict['Wednesday'] = file['result']['opening_hours']['weekday_text'][2]
+    context_dict['Thursday'] = file['result']['opening_hours']['weekday_text'][3]
+    context_dict['Friday'] = file['result']['opening_hours']['weekday_text'][4]
+    context_dict['Saturday'] = file['result']['opening_hours']['weekday_text'][5]
+    context_dict['Sunday'] = file['result']['opening_hours']['weekday_text'][6]
+    context_dict['Photo']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][0]['photo_reference']
+    context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
+    context_dict['Photo3']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][2]['photo_reference']
+    context_dict['Photo4']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][3]['photo_reference']
+    context_dict['Photo5']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][4]['photo_reference']
     return render(request, 'IFB299app/location.html', context_dict)
 
 def register(request):
