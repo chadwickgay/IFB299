@@ -26,17 +26,17 @@
         {% include "IFB299app/top-menu.html"%}
         <!-- /top navigation -->
 
-                <!-- page content -->
+        <!-- page content -->
         <div class="right_col" role="main"> 
 
-        <div class="">
-            
+          <div class="">
+
             <div class="clearfix"></div>
 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title">
+                  <div class="x_title">
                     <h2>{{ name }}</h2>
                     <div class="clearfix"></div>
                   </div>
@@ -67,17 +67,16 @@
                       <p>The Wheel of Brisbane is a Bussink R60 transportable Ferris wheel installation in Brisbane, Queensland, Australia. It is "almost" 60 metres tall.</p>
                       <br />
 
-                    <div class="">
+                      <div class="">
                         <h2>Location Information</h2>
                         <p><i class="fa fa-address-card-o" aria-hidden="true"></i> <b>Address:</b> {{ formatted_address }}</p>
                         <p><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b> {{ formatted_phone_number }}</p>
-                        <p><i class="fa fa-globe" aria-hidden="true"></i> <b>Website: </b><a href="{{ website }}">{{ website }}</a></p>
+                        <p><i class="fa fa-globe" aria-hidden="true"></i> <b>Website: </b><a href="{{ place.website }}">{{ website }}</a></p>
                         <p><i class="fa fa-signal" aria-hidden="true"></i> <b>Rating (from around the Web):</b>  {{ rating }} / 5</p>
                         {% if price_level %}
-                            <p><i class="fa fa-usd" aria-hidden="true"></i> <b>Price Level:</b>  {{ price_level }}</p>
+                        <p><i class="fa fa-usd" aria-hidden="true"></i> <b>Price Level:</b>  {{ price_level }}</p>
                         {% endif %}
                         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Opening Hours:</b></p>
-
                         
                       </div>
                       <br />
@@ -89,75 +88,105 @@
 
                     </div>
 
-                    <!-- MAP -->
-
-                    <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g"></script>
-      
+                    <!-- MAP & REVIEWS -->           
                     <script>
-                             function loadMap() {
-                                var locationLatLng = {lat: -27.470125, lng: 153.021072};
-                                
-                                var mapOptions = {
-                                   center:locationLatLng, 
-                                   zoom:11
-                                   
-                                };
+                     function loadMap() {
+                      var locationLatLng = {lat: -27.470125, lng: 153.021072};
+                      var central_park = new google.maps.LatLng(-27.470125, 153.021072);
 
-                                var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+                      var mapOptions = {
+                       center:locationLatLng, 
+                       zoom:11,
 
-                                var marker = new google.maps.Marker({
-                                  position: locationLatLng,
-                                  map: map,
-                                  title: 'Hello World!'
-                                });      
-                             }
-                    </script>
+                     };
 
-                    <div class="col-md-12 col-sm-12 col-xs-12" style="border:0px solid #e5e5e5;">
-                        <div class="x_title">
-                    <h2>Map</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                        <div id = "map" style = "width:100%; height:300px;"></div>
-                    </div>
+                     var map = new google.maps.Map(document.getElementById("map"),mapOptions);
 
-                    <script type="text/javascript">
-                        loadMap();
-                    </script>
+                     var marker = new google.maps.Marker({
+                      position: locationLatLng,
+                      map: map,
+                      title: 'Hello World!'
+                    });
 
-                    </div>
+                     var request = {
+                      placeId: '{{ place_id }}'
+                    };
 
-                    <div class="col-md-12">
-                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Reviews</a>
-                          </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Questions</a>
-                          </li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content">
-                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                              synth. Cosby sweater eu banh mi, qui irure terr.</p>
+                    service = new google.maps.places.PlacesService(map);  
+                    service.getDetails(request, searchResult);    
+                  }
+
+                  function searchResult(results, status) {
+                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                  // show first result on map and request for details
+                                  var place = results[0];
+
+
+                                  service.getDetails({placeId: "{{ place_id }}"}, function(place, status) {
+                                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                      let rating = document.querySelector('#rating');
+                                      let reviewEl = document.querySelector('.review-list');
+                                      
+                                      rating.innerHTML = place.rating;
+                                      
+                                      for (let review of place.reviews){
+                                        let li = document.createElement('li');
+                                        li.innerHTML = `<div>Author: ${review.author_name}</div>
+                                        <em>${review.text}</em>
+                                        <div>Rating: ${review.rating} star(s)</div>`;
+                                        reviewEl.appendChild(li);
+                                      }
+                                    }
+                                  });
+                                }
+                              }
+                            </script>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="border:0px solid #e5e5e5;">
+                              <div class="x_title">
+                                <h2>Map</h2>
+                                <div class="clearfix"></div>
+                              </div>
+                              <div id = "map" style = "width:100%; height:300px;"></div>
+                            </div>
                           </div>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                              booth letterpress, commodo enim craft beer mlkshk aliquip</p>
+
+                          <div class="col-md-12">
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                              <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Reviews</a>
+                                </li>
+                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Questions</a>
+                                </li>
+                              </ul>
+                              <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                                  <div class="reviews"><ul class="review-list"></ul></div>
+                                  <div id="map"></div>
+                                  <hr/>
+                                  <div><strong>Overall rating:</strong> <span id="rating"></span></div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                  <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                                  booth letterpress, commodo enim craft beer mlkshk aliquip</p>
+                                </div>
+                              </div>
+                            </div>
+
                           </div>
+                          <script async defer
+                          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g&libraries=places&callback=loadMap"></script>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
               </div>
+              <!-- /page content -->
+
             </div>
           </div>
-        </div>
-        <!-- /page content -->
-
-      </div>
-    </div>
-   {% endblock %}
+          {% endblock %}
 
 

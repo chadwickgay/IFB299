@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from .forms import RegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-
 import requests
 
 # Create your views here.
@@ -33,6 +32,7 @@ def location(request, location_name_slug):
     #print(file)
 
     context_dict['name'] = file['result']['name'] 
+    context_dict['place_id'] = file['result']['place_id'] 
     context_dict['formatted_address']  = file['result']['formatted_address'] 
     context_dict['formatted_phone_number']  = file['result']['formatted_phone_number'] 
     context_dict['rating']  = file['result']['rating'] 
