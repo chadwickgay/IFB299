@@ -1,25 +1,25 @@
-    {% extends 'IFB299app/base.html' %}
-    {% load staticfiles %} 
+{% extends 'IFB299app/base.html' %}
+{% load staticfiles %} 
 
-    <title>{% block title %}Dashboard{% endblock %}</title>
+<title>{% block title %}Dashboard{% endblock %}</title>
 
-    {% block content %}
-    <div class="container body">
-      <div class="main_container">
+{% block content %}
+<div class="container body">
+    <div class="main_container">
         <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-globe"></i> <span>You Are Here!</span></a>
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title"><i class="fa fa-globe"></i> <span>You Are Here!</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <br />
+
+                <!-- sidebar menu -->
+                {% include "IFB299app/side-menu.html"%}
+                <!-- sidebar menu -->
             </div>
-
-            <div class="clearfix"></div>
-
-            <br />
-
-            <!-- sidebar menu -->
-            {% include "IFB299app/side-menu.html"%}
-            <!-- sidebar menu -->
-          </div>
         </div>
 
         <!-- top navigation -->
@@ -27,11 +27,165 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        {% include "IFB299app/content.html"%}
-        <!-- /page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Dashboard</h3>
+                    </div>
+                </div>
 
-      </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row">
+                <style>
+                    .info{
+                        text-align: center;
+                    }
+                    
+                    .x_panel{
+                        width: 50%;
+                    }
+                    
+                </style>
+                
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Reccommendations</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="container">
+                                <div class="card hovercard">
+                                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/0e/86/16/3a/wheel-of-brisbane.jpg" alt="" style="width: 100%;"/>
+                                    <div class="info">
+                                        <div class="title">
+                                            <h1>Eye of Brisbane</h1>
+                                        </div>
+                                        <div class="desc"><b>Description:</b> A great place for a date night. Look out over the whole of Brisbane...</div>
+                                        <div class="desc"><b>Location:</b> Southbank, Brisbane</div>
+                                         <div class="desc"><b>Price:</b> $25.00</div>
+                                    </div>
+                                    <div class="bottom">
+                                        <button class="btn btn-success" style="float:left">Like</button>
+                                        <button class="btn btn-danger" style="float:right">Dislike</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Profile</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="col-md-5 col-sm-5 col-xs-12 ">
+                                <div class="profile_details">
+                                    <div class="well profile_view">
+                                        <div class="col-sm-12">
+                                            <div class="left col-xs-7">
+                                                <h2><strong>Jesse St Germain</strong></h2>
+                                                <p><strong>About: </strong>
+                                                    <break>
+                                                    </break> Benevolent Dictator</p>
+                                                <p><strong>Interests:</strong>
+                                                    <break>
+                                                    </break> Zoos, Parks </p>
+                                                <ul class="list-unstyled">
+                                                    <li><strong>User Type: </strong>
+                                                        <break>
+                                                        </break>Businessman <i></i></li>
+                                                    <li><strong>Email #: </strong>jesseStGermain@hotmail.com</li>
+                                                </ul>
+                                            </div>
+                                            <div class="right col-xs-5 text-center">
+                                                <img src=url(../../../../static/img/jesse.jpg alt="" class="img-circle img-responsive">
+                                            </div>
+                                        </div>
+                                        <div class="right col-xs-12 bottom text-center">
+                                            <button type="button" class="btn btn-primary btn-xs">
+                                                <i class="fa fa-user"> </i> Edit Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Liked Locations</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+
+                            <article class="media event">
+                                <a class="pull-left date">
+                                    <p class="month">April</p>
+                                    <p class="day">23</p>
+                                </a>
+                                <div class="media-body">
+
+                                    <a class="title" href="#">Eye of Brisbane</a>
+                                    <p>Southbank, Brisbane</p>
+                                    <p>Attraction</p>
+                                </div>
+                            </article>
+                            <article class="media event">
+                                <a class="pull-left date">
+                                    <p class="month">April</p>
+                                    <p class="day">22</p>
+                                </a>
+                                <div class="media-body">
+                                    <a class="title" href="#">Ribs and Rumps</a>
+                                    <p> Fortitude Valley, Brisbane</p>
+                                    <p>Restaurant</p>
+                                </div>
+                            </article>
+                            <article class="media event">
+                                <a class="pull-left date">
+                                    <p class="month">April</p>
+                                    <p class="day">20</p>
+                                </a>
+                                <div class="media-body">
+                                    <a class="title" href="#">Sofitel</a>
+                                    <p>Brisbane City, Brisbane</p>
+                                    <p>Hotel</p>
+                                </div>
+                            </article>
+                            <div class="x_content"> </div>
+                            <div class="x_content"> </div>
+                            <div class="right  col-xs-12 text-center">
+                                <button type="button" class="btn btn-primary btn-xs">
+                                    <i class="fa fa-plus-square"> </i> View more
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
-   {% endblock %}
-
-
+    {% endblock %}
+    
