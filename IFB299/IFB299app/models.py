@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -116,7 +117,6 @@ class Location(models.Model):
     """
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255, help_text="Enter the street address (e.g. 123 Evergreen Tce)")
-    description = models.TextField(max_length=1000, help_text="Enter a brief description of the location")
     ## Lat/Long
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)

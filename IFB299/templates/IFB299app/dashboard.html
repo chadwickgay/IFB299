@@ -261,39 +261,21 @@
             <div class="x_panel fixed_height_490">
 
                 <div class="x_title">
-                    <h2>Reccommendations</h2>
+                    <h2>Location List</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 
-                    <div class="flex">
-                        Place at the top image here...
-
-                        <br><br><br><br><br><br><br><br><br>
-                    </div>
-
-                    <h3 class="name">Place Name</h3>
-
-                    <div class="flex">
-                        <ul class="list-inline count2">
-                            <li>
-                                <h3>5</h3>
-                                <span>Stars</span>
-                            </li>
-                            <li>
-                                <h3>123</h3>
-                                <span>Visits</span>
-                            </li>
-                            <li>
-                                <h3>15</h3>
-                                <span>Likes</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <p>
-                        If you've decided to go in development mode and tweak all of this a bit, there are few things you should do.
-                    </p>
-                    <button class="btn btn-primary btn-block">View More</button>
+                                        <div>Location listed below!</div>
+                                        <div>
+                                            {% if locations %}
+                                            {% for location in locations %}
+                                            <li><a href="/IFB299app/location/{{ location.slug }}/" target="_blank">{{ location.name }}</a></li>
+                                        {% endfor %} </ul>
+                                        {% else %}
+                                            <strong>There are no locations present.</strong>
+                                        {% endif %} 
+                                        </div>
                 </div>
             </div>
         </div>

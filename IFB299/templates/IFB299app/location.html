@@ -73,6 +73,7 @@
                         {% if price_level %}
                         <p><i class="fa fa-usd" aria-hidden="true"></i> <b>Price Level:</b>  {{ price_level }}</p>
                         {% endif %}
+                         {% if Monday %}
                         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Opening Hours:</b></p>
                         <div class="indent">
                           <p>{{ Monday }}</p>
@@ -83,6 +84,7 @@
                           <p> {{Saturday}}</p>
                           <p> {{Sunday}} </p>
                         </div>
+                        {% endif %}
                       </div>
                       <br />
 
@@ -97,7 +99,6 @@
                     <script>
                      function loadMap() {
                       var locationLatLng = {lat: -27.470125, lng: 153.021072};
-                      var central_park = new google.maps.LatLng(-27.470125, 153.021072);
 
                       var mapOptions = {
                        center:locationLatLng, 
@@ -110,7 +111,7 @@
                      var marker = new google.maps.Marker({
                       position: locationLatLng,
                       map: map,
-                      title: 'Hello World!'
+                      title: '{{ name }}'
                     });
 
                      var request = {
