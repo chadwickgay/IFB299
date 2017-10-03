@@ -19,7 +19,7 @@ def createaccount(request):
 def login_view(request):
 	return render(request, 'IFB299app/login.html')
 
-
+@login_required
 def dashboard(request):
     location_list = Location.objects.all
     context_dict = {'locations': location_list}
