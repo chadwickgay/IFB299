@@ -51,7 +51,7 @@
                           <img src={{Photo2}} alt="..." />
                         </a>
                         <a>
-                          <img src= {{ Photo3}} alt="..." />
+                          <img src={{Photo3}} alt="..." />
                         </a>
                         <a>
                           <img src={{Photo4}} alt="..." />
@@ -74,19 +74,21 @@
                         <p><i class="fa fa-usd" aria-hidden="true"></i> <b>Price Level:</b>  {{ price_level }}</p>
                         {% endif %}
                         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Opening Hours:</b></p>
-												<p>{{ Monday }}</p>
-												<p>{{Tuesday}}</p>
-                        <p> {{Wednesday}}</p>
-                        <p> {{Thursday}}</p>
-                        <p>{{Friday}}</p>
-                        <p> {{Saturday}}</p>
-                        <p> {{Sunday}} </p>
+                        <div class="indent">
+                          <p>{{ Monday }}</p>
+                          <p>{{Tuesday}}</p>
+                          <p> {{Wednesday}}</p>
+                          <p> {{Thursday}}</p>
+                          <p>{{Friday}}</p>
+                          <p> {{Saturday}}</p>
+                          <p> {{Sunday}} </p>
+                        </div>
                       </div>
                       <br />
 
                       <div class="">
-                        <button type="button" class="btn btn-danger btn-lg">Dislike</button>
-                        <button type="button" class="btn btn-success btn-lg">Like</button>
+                        <button type="button" class="btn btn-danger btn-lg"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Dislike</button>
+                        <button type="button" class="btn btn-success btn-lg"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</button>
                       </div>
 
                     </div>
@@ -129,17 +131,36 @@
                                     if (status == google.maps.places.PlacesServiceStatus.OK) {
                                       let rating = document.querySelector('#rating');
                                       let reviewEl = document.querySelector('.review-list');
+                                      let reviewEl2 = document.querySelector('.review-list2');
                                       
                                       rating.innerHTML = place.rating;
-                                      
+
                                       for (let review of place.reviews){
-                                        let li = document.createElement('li');
-                                        li.innerHTML = `<div>Author: ${review.author_name}</div>
-                                        <em>${review.text}</em>
-                                        <div>Rating: ${review.rating} star(s)</div>`;
-                                        reviewEl.appendChild(li);
+                                        let div = document.createElement('div');
+                                        div.innerHTML = 
+                                        `<div class="row">
+                                        <div class="review-block">
+                                        <div class="col-sm-2">
+                                          <img src="${review.profile_photo_url}" class="img-rounded">
+                                          <div class="review-block-name"><a href="${review.author_url}" target="_blank">${review.author_name}</a></div>
+                                          
+                                          <div>Rating: ${review.rating}</div>
+                                          <div class="review-block-date">${review.relative_time_description}</div>
+
+                                        </div>
+
+                                        <div class="col-sm-10">
+                                          <div class="review-block-description">
+                                            ${review.text}
+                                          </div>
+                                        </div>
+                                        <hr/>
+                                      </div>
+                                      </div>`;
+
+                                        reviewEl2.appendChild(div);
                                       }
-																			
+
                                     }
                                   });
                                 }
@@ -165,32 +186,41 @@
                               </ul>
                               <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-
-                                  <div class="reviews"><ul class="review-list"></ul></div>
-                                  <div id="map"></div>
+                                  <div class="reviews">
+                                    <div class="review-list2">
+                                      <!-- reviews2 added here by JS -->
+                                    </div>
+                                  </div>
+                                  <div id="map">
+                                    <!-- map added here by JS -->
+                                  </div>
                                   <hr/>
-                                  <div><strong>Overall rating:</strong> <span id="rating"></span></div>
+                                  <div>
+                                    <p><strong>Overall rating:</strong> <span id="rating"></span></p>
+                                    <a class="btn btn-success pull-left" href="https://search.google.com/local/writereview?placeid={{ place_id }}" id="open-review-box" target="_blank">Leave a Review</a>
+                                  </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                                  <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                                  booth letterpress, commodo enim craft beer mlkshk aliquip</p>
+                                  
+
+                                    <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                      <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                                      booth letterpress, commodo enim craft beer mlkshk aliquip</p>
+                                    </div>
                                 </div>
                               </div>
-                            </div>
 
+                              <script async defer
+                              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g&libraries=places&callback=loadMap"></script>
+                            </div>
                           </div>
-                          <script async defer
-                          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g&libraries=places&callback=loadMap"></script>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!-- /page content -->
+
                 </div>
               </div>
-              <!-- /page content -->
-
-            </div>
-          </div>
-          {% endblock %}
+              {% endblock %}
 
 
