@@ -22,6 +22,11 @@ def login_view(request):
 def dashboard(request):
 	return render(request, 'IFB299app/dashboard.html')
 
+def savedlocations(request):
+	return render(request, 'IFB299app/savedlocations.html')
+
+def editprofile(request):
+	return render(request, 'IFB299app/editprofile.html')
 
 @login_required
 def location(request, location_name_slug):
