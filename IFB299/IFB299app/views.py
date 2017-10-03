@@ -34,7 +34,6 @@ def get_place_id(location_name):
     place_id = file['results'][0]['place_id'] 
     #print(place_id)
 
-<<<<<<< HEAD
 def savedlocations(request):
 	return render(request, 'IFB299app/savedlocations.html')
 
