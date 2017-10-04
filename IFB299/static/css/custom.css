@@ -1,5 +1,20 @@
-/* Dashboard page */
+/* Location page */
 .indent { 
-    margin-left: 40px;
+	margin-left: 40px;
+}
+
+/* Dashboard page */
+
+.info{
+	text-align: center;
+}
+
+.x_panel{
+	width: 100%;
+} 
+
+.card img{
+	width: 120px;
+	height: 300px;
 }
 
