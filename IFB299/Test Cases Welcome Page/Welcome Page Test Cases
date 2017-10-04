@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8000/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>You Are Here</td>
+	<td>You Are Here</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Login</td>
+	<td>Login</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Register</td>
+	<td>Register</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>You Are Here</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=strong</td>
+	<td>College Campuses</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[2]/div/p</td>
+	<td>Its has never been easier to find somewhere nice to stay. Use our recommendation to have fun as the same time.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[3]/div/h4/strong</td>
+	<td>Restaurants</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[4]/div/h4/strong</td>
+	<td>Industries</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[5]/div/h4/strong</td>
+	<td>Parks</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[6]/div/p</td>
+	<td>Who doesn't wanna get back to nature while in town. Whether you are looking for exotic animals or just nice day with the family.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[7]/div/p</td>
+	<td>Looking for an activity thats a little more sophisticated. Never fear 'You are Here' can provide recommendations about the Museums and exhibits in a city.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[8]/div/p</td>
+	<td>Its not a holiday without a little bit of retail therapy. Our recommendation engine can recommend all the little gems and big diamonds within Brisbane.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='services']/div/div/div/div/div[9]/div/div/p</td>
+	<td>Looking for a good spot to study or just looking to borrow a book while in town. We have you covered!</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>css=div.text-vertical-center</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Create an Account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>css=aside.callout &gt; div.text-vertical-center &gt; h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>css=header</td>
+	<td>../img/brisbane.jpg</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>css=aside.callout </td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
