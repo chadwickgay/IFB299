@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8000/IFB299app/register/" />
+<title>Checking Erroring Handling</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Checking Erroring Handling</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/IFB299app/register/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>gen5964</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td>Genevieve</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td>Richards</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td>genevievecrichards@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>43k9ygy5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>43k9ygy5</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>Tourist</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li</td>
+	<td>A user with that username already exists.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>gen596</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td>Genevieve</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td>Richards</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td>genevievecrichards@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>44444444</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>444444444</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>Tourist</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li</td>
+	<td>The two password fields didn't match.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>gen596</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td>Genevieve</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td>Richards</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td>genevievecrichardsgmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>44444444</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>444444444</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>Tourist</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li</td>
+	<td>Enter a valid email address.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>gen596</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td>Genevieve</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td>Richards</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td>genevievecrichards@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>44444444</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>44444444</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>Tourist</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li</td>
+	<td>This password is entirely numeric.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>gen596</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td>Genevieve</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td>Richards</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td>genevievecrichards@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>4K444444</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>4K444444</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>Tourist</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>css=div.title_left &gt; h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>gen596</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>4K444444</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>Tourist</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>css=h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>gen596</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>4K444444</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h1</td>
+	<td>Register</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

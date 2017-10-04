@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8000/IFB299app/register/" />
+<title>Checking all Fields are there</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Checking all Fields are there</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/IFB299app/register/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=h1</td>
+	<td>Register</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=label</td>
+	<td>exact:Username:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//p[2]/label</td>
+	<td>First name:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_first_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//p[3]/label</td>
+	<td>Last name:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_last_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//p[4]/label</td>
+	<td>exact:Email:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//p[5]/label</td>
+	<td>exact:Password:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_password1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//p[6]/label</td>
+	<td>Confirm Password:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_password2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//p[7]/label</td>
+	<td>User type:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_type</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=id_user_type</td>
+	<td>--------- Tourist Student Businessman</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//p[8]/label</td>
+	<td>User interests:</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=li &gt; label</td>
+	<td>Colleges</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[2]/label</td>
+	<td>Libraries</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=id_user_interests_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[3]/label</td>
+	<td>Industries</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[4]/label</td>
+	<td>Hotels</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[5]/label</td>
+	<td>Parks</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[6]/label</td>
+	<td>Zoos</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[7]/label</td>
+	<td>Museums</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[8]/label</td>
+	<td>Restaurants</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ul[@id='id_user_interests']/li[9]/label</td>
+	<td>Malls</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=id_user_interests_8</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Log in</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
