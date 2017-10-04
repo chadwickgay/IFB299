@@ -89,8 +89,8 @@
                       <br />
 
                       <div class="">
-                        <button type="button" class="btn btn-danger btn-lg"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Dislike</button>
                         <button type="button" class="btn btn-success btn-lg"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</button>
+                        <button type="button" class="btn btn-danger btn-lg"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Dislike</button>
                       </div>
 
                     </div>
@@ -98,7 +98,7 @@
                     <!-- MAP & REVIEWS -->           
                     <script>
                      function loadMap() {
-                      var locationLatLng = {lat: -27.470125, lng: 153.021072};
+                      var locationLatLng = {lat: {{ lat }}, lng: {{ lng }}};
 
                       var mapOptions = {
                        center:locationLatLng, 
@@ -113,6 +113,24 @@
                       map: map,
                       title: '{{ name }}'
                     });
+
+                    var contentString = '<div id="content">'+
+                      '<div id="siteNotice">'+
+                      '</div>'+
+                      '<h2>{{ name }}</h2>'+
+                      '<div id="bodyContent">'+
+                      '<p>Insert the description from Foursquare.</p>'+
+                      '</div>'+
+                      '</div>';
+
+                     var infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                      });
+
+                     marker.addListener('click', function() {
+                        infowindow.open(map, marker);
+                      });
+
 
                      var request = {
                       placeId: '{{ place_id }}'
