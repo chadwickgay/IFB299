@@ -96,6 +96,12 @@ def location(request, location_name_slug):
         context_dict['Photo5']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][4]['photo_reference']
     except KeyError:
         pass
+
+    try:
+        context_dict['lat'] = file['result']['geometry']['location']['lat']
+        context_dict['lng'] = file['result']['geometry']['location']['lng']
+    except KeyError:
+        pass
     
     return render(request, 'IFB299app/location.html', context_dict)
 
