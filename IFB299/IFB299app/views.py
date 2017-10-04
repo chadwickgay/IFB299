@@ -39,9 +39,7 @@ def savedlocations(request):
 
 def editprofile(request):
 	return render(request, 'IFB299app/editprofile.html')
-=======
-    return place_id
->>>>>>> 5cd007989dfd78b37c5fbdca52facf318bc8abcd
+    
 
 @login_required
 def location(request, location_name_slug):
