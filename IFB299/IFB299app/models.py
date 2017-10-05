@@ -123,6 +123,7 @@ class Location(models.Model):
     ## Slug
     slug = models.SlugField()
     ## FK
+    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     city_id = models.ForeignKey(City, on_delete=models.CASCADE)
     region_id = models.ForeignKey(Region, on_delete=models.CASCADE)
     country_id = models.ForeignKey(Country, on_delete=models.CASCADE)
