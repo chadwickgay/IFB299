@@ -157,3 +157,18 @@ class Event(models.Model):
         String for representing the Model object.
         """
         return self.name
+    
+class Questions(models.Model):
+    post = models.ForeignKey(User)
+    user = models.CharField(max_length = 250)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add = True)
+    approved = models.BooleanField(default = False)
+    
+    def __str__(self):
+        return self.body
+    
+    def approved(self):
+        self.approved = True
+        self.save()
