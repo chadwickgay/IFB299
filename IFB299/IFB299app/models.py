@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -30,6 +31,8 @@ USER_INTERESTS = (
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     bio = models.TextField(max_length=500, blank=True)
+    # add address
+    phone_number = PhoneNumberField()
     # add in photo
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
