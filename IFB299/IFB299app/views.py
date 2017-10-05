@@ -34,7 +34,12 @@ def get_place_id(location_name):
     place_id = file['results'][0]['place_id'] 
     #print(place_id)
 
-    return place_id
+def savedlocations(request):
+	return render(request, 'IFB299app/savedlocations.html')
+
+def editprofile(request):
+	return render(request, 'IFB299app/editprofile.html')
+    
 
 @login_required
 def location(request, location_name_slug):
