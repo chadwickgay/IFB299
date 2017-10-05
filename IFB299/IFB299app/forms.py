@@ -2,7 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Questions
 
 # If you don't do this you cannot use Bootstrap CSS
 class LoginForm(AuthenticationForm):
@@ -50,5 +50,6 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('user_type', 'user_interests')
 
-
-
+class QuestionsForm(forms.Form):
+    user = forms.CharField(required=True)
+    content = forms.CharField(required=True, widget=forms.Textarea)
