@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm
+from .forms import RegisterForm, ProfileForm, QuestionsForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 import requests
 from django.contrib.auth.decorators import login_required
-from IFB299app.models import Location
+from IFB299app.models import Location, Questions
 
 # Create your views here.
 def index(request):
@@ -131,3 +131,11 @@ def register(request):
         'form': form,
         'profile_form': profile_form
         })
+
+def add_question(request):
+    
+    form = QuestionsForm(request.POST or None)
+    if form.is_valid():
+       print(request.POST)
+    
+    return render(request, 'IFB299app/location.html', {'form': form_class,})
