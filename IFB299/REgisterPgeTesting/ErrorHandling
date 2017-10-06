@@ -57,7 +57,7 @@
 	<td>Tourist</td>
 </tr>
 <tr>
-	<td>click</td>
+	<td>clickAndWait</td>
 	<td>//button[@type='submit']</td>
 	<td></td>
 </tr>
@@ -406,7 +406,6 @@
 	<td>//button[@type='submit']</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
