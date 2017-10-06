@@ -6,6 +6,10 @@ from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
 from phonenumber_field.modelfields import PhoneNumberField
+from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+
 
 # Create your models here.
 
@@ -27,13 +31,11 @@ USER_INTERESTS = (
     ('Malls', 'Malls'),
 )
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    bio = models.TextField(max_length=500, blank=True)
-    # add address
+    bio = models.TextField(max_length=500, blank=True) 
+    raw_address = models.CharField(max_length=255, help_text="Enter an address (e.g. 742 Evergreen Terrace Springfield)")
     phone_number = PhoneNumberField()
-    # add in photo
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
 
@@ -114,15 +116,12 @@ class City(models.Model):
         """
         return self.name
 
+
 class Location(models.Model):
     """
     Model representing a location
     """
     name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255, help_text="Enter the street address (e.g. 123 Evergreen Tce)")
-    ## Lat/Long
-    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     ## Slug
     slug = models.SlugField()
     ## FK
@@ -159,16 +158,30 @@ class Event(models.Model):
         return self.name
     
 class Questions(models.Model):
-    post = models.ForeignKey(User)
-    user = models.CharField(max_length = 250)
-    email = models.EmailField()
-    body = models.TextField()
-    created = models.DateTimeField(auto_now_add = True)
+    user        = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
     approved = models.BooleanField(default = False)
-    
+    content     = models.TextField()
+    timestamp   = models.DateTimeField(auto_now_add=True)
+
+
+
+    class Meta:
+        ordering = ['-timestamp']
+        verbose_name = "Questions"
+
+
     def __str__(self):
-        return self.body
-    
+        return str(self.user.username)
+
     def approved(self):
         self.approved = True
         self.save()
+
+class Thread(models.Model):
+    # ...
+    userUpVotes = models.ManyToManyField(User, blank=True, related_name='threadUpVotes')
+    userDownVotes = models.ManyToManyField(User, blank=True, related_name='threadDownVotes')
+    

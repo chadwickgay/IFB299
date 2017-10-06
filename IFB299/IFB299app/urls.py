@@ -39,4 +39,8 @@ urlpatterns = [
 	## Admin
 	#url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 	url(r'^admin/', admin.site.urls),
+    
+        ## Questions
+    url(r'^questions/$', views.add_question, name='add_question'),
+
 ]

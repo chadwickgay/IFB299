@@ -1,11 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm, QuestionsForm
+from .forms import RegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 import requests
 from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location, Questions
+from django.contrib.contenttypes.models import ContentType
+from django.views.generic import FormView 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from django.db.models import Q
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.utils import timezone
+from .forms import RegisterForm, ProfileForm, QuestionsForm
+
 
 # Create your views here.
 def index(request):
@@ -133,9 +142,85 @@ def register(request):
         })
 
 def add_question(request):
-    
-    form = QuestionsForm(request.POST or None)
-    if form.is_valid():
-       print(request.POST)
-    
-    return render(request, 'IFB299app/location.html', {'form': form_class,})
+    if not request.user.is_staff or not request.user.is_superuser:
+        form = QuestionsForm(request.POST or None)
+        if form.is_valid() and request.user.is_authenticated():
+            c_type = form.cleaned_data.get("content_type")
+            content_type = ContentType.objects.get(model=c_type)
+            obj_id = form.cleaned_data.get('object_id')
+            content_data = form.cleaned_data.get("content")
+            
+            Questions = instance.Questions
+
+    return render(request, 'IFB299app/questions.html', {'Questions_form': form})
+
+
+def location_list(request):
+	today = timezone.now().date()
+	queryset_list = Questions.objects.active() #.order_by("-timestamp")
+	if request.user.is_staff or request.user.is_superuser:
+		queryset_list = Questions.objects.all()
+	
+	query = request.GET.get("q")
+	if query:
+		queryset_list = queryset_list.filter(
+				Q(title__icontains=query)|
+				Q(content__icontains=query)|
+				Q(user__first_name__icontains=query) |
+				Q(user__last_name__icontains=query)
+				).distinct()
+	paginator = Paginator(queryset_list, 5) # Show 25 contacts per page
+	page_request_var = "page"
+	page = request.GET.get(page_request_var)
+	try:
+		queryset = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		queryset = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		queryset = paginator.page(paginator.num_pages)
+
+
+	context = {
+		"object_list": queryset, 
+		"title": "List",
+		"page_request_var": page_request_var,
+		"today": today,
+	}
+	return render(request, "IFB299app/questions.html", context)
+
+def vote(request):
+   thread_id = int(request.POST.get('id'))
+   vote_type = request.POST.get('type')
+   vote_action = request.POST.get('action')
+
+   thread = get_object_or_404(Thread, pk=thread_id)
+
+   thisUserUpVote = thread.userUpVotes.filter(id = request.user.id).count()
+   thisUserDownVote = thread.userDownVotes.filter(id = request.user.id).count()
+
+   if (vote_action == 'vote'):
+      if (thisUserUpVote == 0) and (thisUserDownVote == 0):
+         if (vote_type == 'up'):
+            thread.userUpVotes.add(request.user)
+         elif (vote_type == 'down'):
+            thread.userDownVotes.add(request.user)
+         else:
+            return HttpResponse('error-unknown vote type')
+      else:
+         return HttpResponse('error - already voted', thisUserUpVote, thisUserDownVote)
+   elif (vote_action == 'recall-vote'):
+      if (vote_type == 'up') and (thisUserUpVote == 1):
+         thread.userUpVotes.remove(request.user)
+      elif (vote_type == 'down') and (thisUserDownVote ==1):
+         thread.userDownVotes.remove(request.user)
+      else:
+         return HttpResponse('error - unknown vote type or no vote to recall')
+   else:
+      return HttpResponse('error - bad action')
+
+
+   num_votes = thread.userUpVotes.count() - thread.userDownVotes.count()
+
+   return HttpResponse(num_votes)
