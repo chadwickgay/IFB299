@@ -73,7 +73,7 @@
                         {% if price_level %}
                         <p><i class="fa fa-usd" aria-hidden="true"></i> <b>Price Level:</b>  {{ price_level }}</p>
                         {% endif %}
-                         {% if Monday %}
+                        {% if Monday %}
                         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <b>Opening Hours:</b></p>
                         <div class="indent">
                           <p>{{ Monday }}</p>
@@ -95,9 +95,54 @@
 
                     </div>
 
+                    
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="border:0px solid #e5e5e5;">
+                      <div class="x_title">
+                        <h2>Map</h2>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div id = "map" style = "width:100%; height:300px;"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Reviews</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Questions</a>
+                        </li>
+                      </ul>
+                      <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                          <div class="reviews">
+                            <div class="review-list2">
+                              <!-- reviews2 added here by JS -->
+                            </div>
+                          </div>
+                          <div id="map">
+                            <!-- map added here by JS -->
+                          </div>
+                          <hr/>
+                          <div>
+                            <p><strong>Overall rating:</strong> <span id="rating"></span></p>
+                            <a class="btn btn-success pull-left" href="https://search.google.com/local/writereview?placeid={{ place_id }}" id="open-review-box" target="_blank">Leave a Review</a>
+                          </div>
+                        </div>
+
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                          <p>Questions/Answers to be populated here by Teagan.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g&libraries=places&callback=loadMap"></script>
                     <!-- MAP & REVIEWS -->           
                     <script>
-                     function loadMap() {
+                    function loadMap() {
                       var locationLatLng = {lat: {{ lat }}, lng: {{ lng }}};
 
                       var mapOptions = {
@@ -114,22 +159,22 @@
                       title: '{{ name }}'
                     });
 
-                    var contentString = '<div id="content">'+
-                      '<div id="siteNotice">'+
-                      '</div>'+
-                      '<h2>{{ name }}</h2>'+
-                      '<div id="bodyContent">'+
-                      '<p>Insert the description from Foursquare.</p>'+
-                      '</div>'+
-                      '</div>';
+                     var contentString = '<div id="content">'+
+                     '<div id="siteNotice">'+
+                     '</div>'+
+                     '<h2>{{ name }}</h2>'+
+                     '<div id="bodyContent">'+
+                     '<p>Insert the description from Foursquare.</p>'+
+                     '</div>'+
+                     '</div>';
 
                      var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                      });
+                      content: contentString
+                    });
 
                      marker.addListener('click', function() {
-                        infowindow.open(map, marker);
-                      });
+                      infowindow.open(map, marker);
+                    });
 
 
                      var request = {
@@ -142,104 +187,56 @@
 
                   function searchResult(results, status) {
                     if (status == google.maps.places.PlacesServiceStatus.OK) {
-                                  // show first result on map and request for details
-                                  var place = results[0];
+                        // show first result on map and request for details
+                        var place = results[0];
 
+                        service.getDetails({placeId: "{{ place_id }}"}, function(place, status) {
+                          if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            let rating = document.querySelector('#rating');
+                            let reviewEl2 = document.querySelector('.review-list2');
 
-                                  service.getDetails({placeId: "{{ place_id }}"}, function(place, status) {
-                                    if (status == google.maps.places.PlacesServiceStatus.OK) {
-                                      let rating = document.querySelector('#rating');
-                                      let reviewEl = document.querySelector('.review-list');
-                                      let reviewEl2 = document.querySelector('.review-list2');
-                                      
-                                      rating.innerHTML = place.rating;
+                            rating.innerHTML = place.rating;
 
-                                      for (let review of place.reviews){
-                                        let div = document.createElement('div');
-                                        div.innerHTML = 
-                                        `<div class="row">
-                                        <div class="review-block">
-                                        <div class="col-sm-2">
-                                          <img src="${review.profile_photo_url}" class="img-rounded">
-                                          <div class="review-block-name"><a href="${review.author_url}" target="_blank">${review.author_name}</a></div>
-                                          
-                                          <div>Rating: ${review.rating}</div>
-                                          <div class="review-block-date">${review.relative_time_description}</div>
+                            for (let review of place.reviews){
+                              let div = document.createElement('div');
+                              div.innerHTML = 
+                              `<div class="row">
+                              <div class="review-block">
+                              <div class="col-sm-2">
+                              <img src="${review.profile_photo_url}" class="img-rounded" width="90" height="90">
+                              <div class="review-block-name"><a href="${review.author_url}" target="_blank">${review.author_name}</a></div>
 
-                                        </div>
+                              <div>Rating: ${review.rating}</div>
+                              <div class="review-block-date">${review.relative_time_description}</div>
 
-                                        <div class="col-sm-10">
-                                          <div class="review-block-description">
-                                            ${review.text}
-                                          </div>
-                                        </div>
-                                        <hr/>
-                                      </div>
-                                      </div>`;
-
-                                        reviewEl2.appendChild(div);
-                                      }
-
-                                    }
-                                  });
-                                }
-                              }
-                            </script>
-
-                            <div class="col-md-12 col-sm-12 col-xs-12" style="border:0px solid #e5e5e5;">
-                              <div class="x_title">
-                                <h2>Map</h2>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div id = "map" style = "width:100%; height:300px;"></div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-12">
-                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                              <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Reviews</a>
-                                </li>
-                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Questions</a>
-                                </li>
-                              </ul>
-                              <div id="myTabContent" class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                  <div class="reviews">
-                                    <div class="review-list2">
-                                      <!-- reviews2 added here by JS -->
-                                    </div>
-                                  </div>
-                                  <div id="map">
-                                    <!-- map added here by JS -->
-                                  </div>
-                                  <hr/>
-                                  <div>
-                                    <p><strong>Overall rating:</strong> <span id="rating"></span></p>
-                                    <a class="btn btn-success pull-left" href="https://search.google.com/local/writereview?placeid={{ place_id }}" id="open-review-box" target="_blank">Leave a Review</a>
-                                  </div>
-                                </div>
-                                  
-
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                                      <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                                      booth letterpress, commodo enim craft beer mlkshk aliquip</p>
-                                    </div>
-                                </div>
                               </div>
 
-                              <script async defer
-                              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g&libraries=places&callback=loadMap"></script>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                              <div class="col-sm-10">
+                              <div class="review-block-description">
+                              ${review.text}
+                              </div>
+                              </div>
+                              <hr/>
+                              </div>
+                              </div>`;
+
+                              reviewEl2.appendChild(div);
+                            }
+                          }
+                        });
+                      }
+                    }
+                    </script>
                   </div>
-                  <!-- /page content -->
-
                 </div>
               </div>
-              {% endblock %}
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+      </div>
+    </div>
+    {% endblock %}
 
 
