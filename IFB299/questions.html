@@ -1,0 +1,68 @@
+   {% extends 'IFB299app/base.html' %}
+
+    <title>{% block title %}Questions{% endblock %}</title>
+
+    {% block content %}
+    <div>
+      <div class="login_wrapper">
+        <div class="animate form questions_form">
+          <section class="questions">
+            <h1>Questions</h1>
+                <form action="." method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                    
+                    {{ Questions_form.as_p }}
+                    
+                    <button type = 'Submit' class ="save btn btn-default">Post Question</button>
+                </form>
+              <div class="clearfix"></div>
+
+              <div class="separator">
+        
+                <div class="clearfix"></div>
+                <br />
+                <div class="vote-buttons">
+                    {% ifequal thisUserUpVote 0 %}
+                    <img class="vote-up" src = "images/vote-up-off.png" title="Vote this Question UP. (click again to undo)" />
+                    {% else %}
+                    <img class="vote-up selected" src = "images/vote-up-on.png" title="Vote this Question UP. (click again to undo)" />
+                    {% endifequal %}
+                    {% ifequal thisUserDownVote 0 %}
+                    <img class="vote-down" src = "images/vote-down-off.png" title="Vote this Question DOWN if it is innapropriate or incorrect. (click again to undo)" />
+                    {% else %}
+                    <img class="vote-down selected" src = "images/vote-down-on.png" title="Vote this Question DOWN if it is innapropriate or incorrect. (click again to undo)" />
+                    {% endifequal %}
+                    </div> <!-- .votebuttons -->
+                <div>
+                  <h1><i class="fa fa-globe"></i> You Are Here!</h1>
+                  <p>©2017 All Rights Reserved. You Are Here!</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+        {% endif %}
+    </span>
+</div>
+    </div> 
+
+
+    {% endblock %}
+
+
+
+
