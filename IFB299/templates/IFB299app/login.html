@@ -15,6 +15,10 @@
                 <button class="btn btn-default submit" type="submit">Login</button>
                 <a class="reset_pass" href="/IFB299app/password_reset/">Lost your password?</a>
               </div>
+              <br><p><strong>-- OR --</strong></p>
+              <a class="btn btn-block btn-social btn-github" href="{% url 'social:begin' 'github' %}"><span class="fa fa-github"></span>Login with GitHub</a><br>
+              <a class="btn btn-block btn-social btn-google" href="{% url 'social:begin' 'google-oauth2' %}"><span class="fa fa-google"></span>Login with Google</a><br>
+              <!--<a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}"><span class="fa fa-facebook"></span> Login with Facebook</a> -->
 
               <div class="clearfix"></div>
 
