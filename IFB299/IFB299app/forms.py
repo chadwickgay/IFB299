@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 # If you don't do this you cannot use Bootstrap CSS
 class LoginForm(AuthenticationForm):
@@ -22,10 +24,6 @@ class RegisterForm(UserCreationForm):
     last_name = forms.CharField(
     	max_length=30, required=False, 
     	widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'last_name', 'placeholder': 'Last Name'}))
-
-    phone_number = forms.CharField(
-        max_length=30, required=False, 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'phone_number', 'placeholder': 'Phone Number'}))
     
     email = forms.EmailField(max_length=254, 
     	widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'email', 'placeholder': 'Email'}))
@@ -43,12 +41,12 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'phone_number','email', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name','email', 'password1', 'password2', )
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('user_type', 'user_interests')
+        fields = ('user_type', 'user_interests', 'phone_number')
 
 
 

@@ -27,13 +27,11 @@ USER_INTERESTS = (
     ('Malls', 'Malls'),
 )
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    bio = models.TextField(max_length=500, blank=True)
-    # add address
+    bio = models.TextField(max_length=500, blank=True) 
+    raw_address = models.CharField(max_length=255, help_text="Enter an address (e.g. 742 Evergreen Terrace Springfield)")
     phone_number = PhoneNumberField()
-    # add in photo
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
 
@@ -114,15 +112,12 @@ class City(models.Model):
         """
         return self.name
 
+
 class Location(models.Model):
     """
     Model representing a location
     """
     name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255, help_text="Enter the street address (e.g. 123 Evergreen Tce)")
-    ## Lat/Long
-    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     ## Slug
     slug = models.SlugField()
     ## FK
