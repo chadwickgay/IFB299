@@ -51,28 +51,28 @@
                           <img class="img-responsive avatar-view" src="../../static/img/download.jpeg" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      <h3>{{ request.user.username }}</h3>
+                      <h3> username: {{ request.user.username }}</h3>
 
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-envelope user-profile-icon"></i> {{ request.user.email }}
+                        <li><i class="fa fa-envelope user-profile-icon"></i> email:  {{ request.user.email }}
                         </li>
                           
                           <li>
-                          <i class="fa fa-user user-profile-icon"></i> {{ request.user.ifb299app_profile.first_name }}  {{ request.profile.last_name }}
+                          <i class="fa fa-user user-profile-icon"></i> name:  {{ request.user.first_name }}  {{ request.user.last_name }}
                         </li>
 
                         <li>
-                          <i class="fa fa-suitcase user-profile-icon"></i> {{ request.profile.user_type }}
+                          <i class="fa fa-suitcase user-profile-icon"></i> user type:  {{ request.user.profile.user_type }}
                         </li>
 
                         <li class="m-top-xs">
-                          <i class="fa fa-external-link user-profile-icon"></i>
-                          {{ request.profile.user_interests }}
+                          <i class="fa fa-plane user-profile-icon"></i> user interests: 
+                          {{ request.user.profile.user_interests }}
                         </li>
                           
                         <li class="m-top-xs">
-                          <i class="fa fa-phone user-profile-icon"></i>
-                          {{ request.profile.phone_number }}
+                          <i class="fa fa-phone user-profile-icon"></i> phone number: 
+                          {{ request.user.profile.phone_number }}
                         </li>
                       </ul>
 
@@ -94,6 +94,7 @@
             <form method="post">
               <h1>Update Preferences</h1>
               {% csrf_token %}
+                
             {{ profile_form.as_p }}
               <div>
                 <button class="btn btn-default submit" type="submit">Update</button>
