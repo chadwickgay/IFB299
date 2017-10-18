@@ -113,6 +113,8 @@
                         </li>
                         <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Questions</a>
                         </li>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Events</a>
+                        </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
@@ -134,6 +136,65 @@
 
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                           <p>Questions/Answers to be populated here by Teagan.</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                           <div class="row">  
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Event</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="container">
+<!--                                    <div class="info">-->
+                                        <div class="title">
+                                            <a href="/IFB299app/location/southbank-parklands/"><h1>{{ Ename }}</h1></a>
+                                        </div>
+                                        <div class="desc"><b>Description:</b> {{ Edescription }}</div>
+                                        <div class="desc"><b>URL:</b> {{Eurl}}</div>
+                                        <div class="desc"><b>Start Date</b> {{startDate}} <b> End Date </b> {{ endDate }}</div>
+<!--                                    </div>-->
+<!--
+                                    <div class="bottom">
+                                        <button class="btn btn-success" style="float:left">Like</button>
+                                        <button class="btn btn-danger" style="float:right">Dislike</button>
+                                    </div>
+-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>College</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="container">
+                                <div class="card hovercard">
+                                    <img class="img-responsive" src="https://cms.qut.edu.au/__data/assets/image/0007/275965/science-engineering-centre.jpg" alt="" style="width: 100%;"/>
+                                    <div class="info">
+                                        <div class="title">
+                                            <a href="/IFB299app/location/qut/"><h1>QUT</h1></a>
+                                        </div>
+                                        <div class="desc"><b>Description:</b> Queensland University of Technology, the university for the real world...</div>
+                                        <div class="desc"><b>Location:</b> Brisbane City</div>
+                                        <div class="desc"><b>Price:</b> Visitors Free</div>
+                                    </div>
+                                    <div class="bottom">
+                                        <button class="btn btn-success" style="float:left">Like</button>
+                                        <button class="btn btn-danger" style="float:right">Dislike</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
                         </div>
                       </div>
                     </div>

@@ -55,6 +55,9 @@ def location(request, location_name_slug):
     response = requests.get(url) 
     file = response.json() 
     
+    url2 = "https://www.eventbriteapi.com/v3/events/search/?q=" + location_name_slug + "&sort_by=best&token=A3ZOHEB5SAUML5XT5GGK"
+    response2 = requests.get(url2) 
+    file2 = response2.json() 
     #print(file)
 
     context_dict['name'] = file['result']['name'] 
@@ -104,8 +107,21 @@ def location(request, location_name_slug):
     except KeyError:
         pass
     
+    # EVENTS INFORMATION
+    
+    context_dict['Ename'] = file2['events'][0]['name']['text']
+    context_dict['Edescription'] = file2['events'][0]['description']['text']
+    context_dict['Eurl'] = file2['events'][0]['url']
+    context_dict['startDate'] = file2['events'][0]['start']['utc']
+    context_dict['endDate'] = file2['events'][0]['end']['utc']
+    context_dict['Ephoto'] = file2['events'][0]['logo']['original']['url']
+    
+    
+    
     return render(request, 'IFB299app/location.html', context_dict)
 
+
+        
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
