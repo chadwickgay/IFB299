@@ -25,9 +25,15 @@ def dashboard(request):
 
     current_user = request.user
     user_interests = current_user.profile.user_interests
-
-    print(user_interests[0])
-    print(user_interests[1])
+    user_interest=list(user_interests)
+    
+    output= []
+    for interest in user_interests:
+        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest
+        response = requests.get(url)
+        file = response.json()
+        output.append(file)
+    print (output)
 
     if request.POST:
         if '_like' in request.POST:
