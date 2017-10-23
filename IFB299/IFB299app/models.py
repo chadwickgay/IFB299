@@ -11,6 +11,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
 
+
 # Create your models here.
 
 USER_TYPES = (
@@ -31,13 +32,16 @@ USER_INTERESTS = (
     ('Malls', 'Malls'),
 )
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    bio = models.TextField(max_length=500, blank=True) 
-    raw_address = models.CharField(max_length=255, help_text="Enter an address (e.g. 742 Evergreen Terrace Springfield)")
+    bio = models.TextField(max_length=500, blank=True)
+    # add address
     phone_number = PhoneNumberField()
+    # add in photo
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
+#    image = models.ImageField(upload_to='profile_image', blank=True)
 
 
 @receiver(post_save, sender=User)
@@ -116,12 +120,15 @@ class City(models.Model):
         """
         return self.name
 
-
 class Location(models.Model):
     """
     Model representing a location
     """
     name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, help_text="Enter the street address (e.g. 123 Evergreen Tce)")
+    ## Lat/Long
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     ## Slug
     slug = models.SlugField()
     ## FK
@@ -157,6 +164,8 @@ class Event(models.Model):
         """
         return self.name
     
+
+
 class Questions(models.Model):
     user        = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -184,4 +193,5 @@ class Thread(models.Model):
     # ...
     userUpVotes = models.ManyToManyField(User, blank=True, related_name='threadUpVotes')
     userDownVotes = models.ManyToManyField(User, blank=True, related_name='threadDownVotes')
+    
     

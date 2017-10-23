@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm
+from .forms import RegisterForm, ProfileForm, QuestionsForm, EditProfileForm, EditProfileForm2
+#, PasswordChangeForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 import requests
@@ -13,8 +14,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import timezone
-from .forms import RegisterForm, ProfileForm, QuestionsForm
-
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -47,8 +47,11 @@ def get_place_id(location_name):
 def savedlocations(request):
 	return render(request, 'IFB299app/savedlocations.html')
 
-def editprofile(request):
-	return render(request, 'IFB299app/editprofile.html')
+def profile(request):
+	return render(request, 'IFB299app/profile.html')
+
+
+
     
 
 @login_required
@@ -141,6 +144,23 @@ def register(request):
         'profile_form': profile_form
         })
 
+def editprofile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm2(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('IFB299app/profile'))
+    else:
+        form = EditProfileForm(instance=request.user)
+        profile_form = EditProfileForm2(instance=request.user.profile)
+        args = {'form': form,
+               'profile_form': profile_form}
+        
+    return render(request, 'IFB299app/editprofile.html', args)
+    
+
 def add_question(request):
     if not request.user.is_staff or not request.user.is_superuser:
         form = QuestionsForm(request.POST or None)
@@ -224,3 +244,20 @@ def vote(request):
    num_votes = thread.userUpVotes.count() - thread.userDownVotes.count()
 
    return HttpResponse(num_votes)
+
+
+    #def change_password(request):
+#    if request.method == 'POST':
+#        form = PasswordChangeForm(data=request.POST, user=request.user)
+#
+#        if form.is_valid():
+#            form.save()
+#            update_session_auth_hash(request, form.user)
+#            return redirect(reverse('accounts:view_profile'))
+#        else:
+#            return redirect(reverse('accounts:change_password'))
+#    else:
+#        form = PasswordChangeForm(user=request.user)
+#
+#        args = {'form': form}
+#        return render(request, 'accounts/change_password.html', args)
