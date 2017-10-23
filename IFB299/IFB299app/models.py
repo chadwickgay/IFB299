@@ -152,3 +152,18 @@ class Event(models.Model):
         String for representing the Model object.
         """
         return self.name
+    
+class FeedbackRecommendations(models.Model):
+    """Model storing the liked and disliked locations of a system"""
+    
+    placeID = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    response = models.BooleanField()
+    ##Foreign Key for userID 
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        """
+        String for representing the FeedbackModel object.
+        """
+        return '%s (%s)' % (self.name, self.placeID)
