@@ -3,26 +3,49 @@ from django.http import HttpResponse
 from .forms import RegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 import requests
 from django.contrib.auth.decorators import login_required
-from IFB299app.models import Location
+from IFB299app.models import Location, FeedbackRecommendations
 
 # Create your views here.
 def index(request):
-	return render(request, 'IFB299app/index.html')
+    return render(request, 'IFB299app/index.html')
 
 
 def createaccount(request):
-	return render(request, 'IFB299app/createaccount.html')
+    return render(request, 'IFB299app/createaccount.html')
 
 
 def login_view(request):
-	return render(request, 'IFB299app/login.html')
+    return render(request, 'IFB299app/login.html')
 
 @login_required
 def dashboard(request):
+
+    current_user = request.user
+    user_interests = current_user.profile.user_interests
+
+    print(user_interests[0])
+    print(user_interests[1])
+
+    if request.POST:
+        if '_like' in request.POST:
+             print("like")
+
+             f = FeedbackRecommendations(name="TestTrue", response=True, user=current_user)
+             f.save()
+
+        elif '_dislike' in request.POST:
+             print("dislike")
+
+             f = FeedbackRecommendations(name="TestFalse", response=False, user=current_user)
+             f.save()
+
     location_list = Location.objects.all
-    context_dict = {'locations': location_list}
+    context_dict = {'locations': location_list,
+                    'user_interests': user_interests}
+
     return render(request, 'IFB299app/dashboard.html', context_dict)
 
 
@@ -36,10 +59,10 @@ def get_place_id(location_name):
     return place_id
 
 def savedlocations(request):
-	return render(request, 'IFB299app/savedlocations.html')
+    return render(request, 'IFB299app/savedlocations.html')
 
 def editprofile(request):
-	return render(request, 'IFB299app/editprofile.html')
+    return render(request, 'IFB299app/editprofile.html')
     
 
 @login_required
@@ -131,3 +154,5 @@ def register(request):
         'form': form,
         'profile_form': profile_form
         })
+
+    

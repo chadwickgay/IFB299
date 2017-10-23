@@ -160,7 +160,7 @@ class FeedbackRecommendations(models.Model):
     name = models.CharField(max_length=255)
     response = models.BooleanField()
     ##Foreign Key for userID 
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     
     def __str__(self):
         """
