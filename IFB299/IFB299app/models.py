@@ -6,6 +6,11 @@ from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
 from phonenumber_field.modelfields import PhoneNumberField
+from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+
+
 
 # Create your models here.
 
@@ -36,6 +41,7 @@ class Profile(models.Model):
     # add in photo
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
+#    image = models.ImageField(upload_to='profile_image', blank=True)
 
 
 @receiver(post_save, sender=User)
@@ -158,17 +164,34 @@ class Event(models.Model):
         """
         return self.name
     
+
+
 class Questions(models.Model):
-    post = models.ForeignKey(User)
-    user = models.CharField(max_length = 250)
-    email = models.EmailField()
-    body = models.TextField()
-    created = models.DateTimeField(auto_now_add = True)
+    user        = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
     approved = models.BooleanField(default = False)
-    
+    content     = models.TextField()
+    timestamp   = models.DateTimeField(auto_now_add=True)
+
+
+
+    class Meta:
+        ordering = ['-timestamp']
+        verbose_name = "Questions"
+
+
     def __str__(self):
-        return self.body
-    
+        return str(self.user.username)
+
     def approved(self):
         self.approved = True
         self.save()
+
+class Thread(models.Model):
+    # ...
+    userUpVotes = models.ManyToManyField(User, blank=True, related_name='threadUpVotes')
+    userDownVotes = models.ManyToManyField(User, blank=True, related_name='threadDownVotes')
+    
+    

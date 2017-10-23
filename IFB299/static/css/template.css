@@ -271,17 +271,17 @@ html , body{
     padding: 4px
 }
 .profile_info {
-    padding: 10px;
+    padding: 15px;
     width: 65%;
     float: left
 }
 .profile_info span {
-    font-size: 13px;
-    line-height: 30px;
+    font-size: 15px;
+    line-height: 40px;
     color: #BAB8B8
 }
 .profile_info h2 {
-    font-size: 14px;
+    font-size: 15px;
     color: #ECF0F1;
     margin: 0;
     font-weight: 300
@@ -297,7 +297,7 @@ html , body{
     margin: 10px 0 0
 }
 .profile.img_2 .profile_info {
-    padding: 15px 10px 0;
+    padding: 15px 15px 0;
     width: 100%;
     margin-bottom: 10px;
     float: left
@@ -494,7 +494,7 @@ body {
     color: #73879C;
     background: #2A3F54;
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.471
 }
