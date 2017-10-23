@@ -129,7 +129,7 @@
                           <hr/>
                           <div>
                             <p><strong>Overall rating:</strong> <span id="rating"></span></p>
-                            <a class="btn btn-success pull-left" href="https://search.google.com/local/writereview?placeid={{ place_id }}" id="open-review-box" target="_blank">Leave a Review</a>
+                            <a class="btn btn-succsess pull-left" href="https://search.google.com/local/writereview?placeid={{ place_id }}" id="open-review-box" target="_blank">Leave a Review</a>
                           </div>
                         </div>
 
@@ -142,51 +142,40 @@
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Event</h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <div class="container">
-<!--                                    <div class="info">-->
-                                        <div class="title">
-                                            <a href="/IFB299app/location/southbank-parklands/"><h1>{{ Ename }}</h1></a>
-                                        </div>
-                                        <div class="desc"><b>Description:</b> {{ Edescription }}</div>
-                                        <div class="desc"><b>URL:</b> {{Eurl}}</div>
-                                        <div class="desc"><b>Start Date</b> {{startDate}} <b> End Date </b> {{ endDate }}</div>
-<!--                                    </div>-->
-<!--
-                                    <div class="bottom">
-                                        <button class="btn btn-success" style="float:left">Like</button>
-                                        <button class="btn btn-danger" style="float:right">Dislike</button>
-                                    </div>
--->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>College</h2>
+                        <a href={{Eurl}}><h2>{{ Ename}}</h2></a>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <div class="container">
                                 <div class="card hovercard">
-                                    <img class="img-responsive" src="https://cms.qut.edu.au/__data/assets/image/0007/275965/science-engineering-centre.jpg" alt="" style="width: 100%;"/>
+                                        <img class="img-responsive" src ={{Ephoto}} alt"" style="width:100%;">
+                                        <div class="info">
+                                        <div class="desc"><b>Description:</b> {{ Edescription }}</div>
+                                            <div class="desc"><b>URL: </b><a href={{Eurl}}>{{ Eurl }}</a></div>
+                                        <div class="desc"><b>Start Date</b> {{startDate}} <b> End Date </b> {{ endDate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                               </div>
+                
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>{{Ename1}}</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="container">
+                                <div class="card hovercard">
+                                    <img class="img-responsive" src="{{Ephoto1}}" alt="" style="width: 100%;"/>
                                     <div class="info">
-                                        <div class="title">
-                                            <a href="/IFB299app/location/qut/"><h1>QUT</h1></a>
-                                        </div>
-                                        <div class="desc"><b>Description:</b> Queensland University of Technology, the university for the real world...</div>
-                                        <div class="desc"><b>Location:</b> Brisbane City</div>
-                                        <div class="desc"><b>Price:</b> Visitors Free</div>
+                                        <div class="desc"><b>Description:</b>{{Edescription1}}</div>
+                                        <div class="desc"><b>Start Date:</b><time>{{startDate1}}</time></div>
+                                        <div class="desc"><b>End Date:</b>{{endDate1}}</div>
                                     </div>
-                                    <div class="bottom">
-                                        <button class="btn btn-success" style="float:left">Like</button>
-                                        <button class="btn btn-danger" style="float:right">Dislike</button>
+                                    <div class="desc"> <h4><b>For more information on this event, visit </b></h4> </div> <div class="desc"><a href={{Eurl1}}><u>{{Eurl1}}</u></a>
                                     </div>
                                 </div>
                             </div>

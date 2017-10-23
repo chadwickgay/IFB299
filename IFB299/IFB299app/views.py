@@ -55,8 +55,8 @@ def location(request, location_name_slug):
     response = requests.get(url) 
     file = response.json() 
     
-    url2 = "https://www.eventbriteapi.com/v3/events/search/?q=" + location_name_slug + "&sort_by=best&token=A3ZOHEB5SAUML5XT5GGK"
-    response2 = requests.get(url2) 
+    urlEvents = "https://www.eventbriteapi.com/v3/events/search/?q=" + location_name_slug + "&sort_by=date&token=A3ZOHEB5SAUML5XT5GGK"
+    response2 = requests.get(urlEvents) 
     file2 = response2.json() 
     #print(file)
 
@@ -106,15 +106,25 @@ def location(request, location_name_slug):
         context_dict['lng'] = file['result']['geometry']['location']['lng']
     except KeyError:
         pass
-    
+
     # EVENTS INFORMATION
-    
+    # Event One  
     context_dict['Ename'] = file2['events'][0]['name']['text']
     context_dict['Edescription'] = file2['events'][0]['description']['text']
     context_dict['Eurl'] = file2['events'][0]['url']
-    context_dict['startDate'] = file2['events'][0]['start']['utc']
+    context_dict['startDate']= file2['events'][0]['start']['utc']
     context_dict['endDate'] = file2['events'][0]['end']['utc']
     context_dict['Ephoto'] = file2['events'][0]['logo']['original']['url']
+    
+    #Event Two
+    
+    context_dict['Ename1'] = file2['events'][2]['name']['text']
+    context_dict['Edescription1'] = file2['events'][2]['description']['text']
+    context_dict['Eurl1'] = file2['events'][2]['url']
+    context_dict['startDate1']= file2['events'][2]['start']['utc']
+    context_dict['endDate1'] = file2['events'][2]['end']['utc']
+    context_dict['Ephoto1'] = file2['events'][2]['logo']['original']['url']
+    
     
     
     
