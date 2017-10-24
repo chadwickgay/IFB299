@@ -3,57 +3,27 @@ from django.http import HttpResponse
 from .forms import RegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 import requests
 from django.contrib.auth.decorators import login_required
-from IFB299app.models import Location
-from IFB299app.models import User
+from IFB299app.models import Location, User, FeedbackRecommendations
+from django.utils.text import slugify
 
 # Create your views here.
 def index(request):
-    return render(request, 'IFB299app/index.html')
+	return render(request, 'IFB299app/index.html')
 
 
 def createaccount(request):
-    return render(request, 'IFB299app/createaccount.html')
-
+	return render(request, 'IFB299app/createaccount.html')
 
 
 def login_view(request):
-    return render(request, 'IFB299app/login.html')
+	return render(request, 'IFB299app/login.html')
 
 @login_required
 def dashboard(request):
-
-    current_user = request.user
-    user_interests = current_user.profile.user_interests
-    user_interest=list(user_interests)
-    
-    output= []
-    for interest in user_interests:
-        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest
-        response = requests.get(url)
-        file = response.json()
-        output.append(file)
-    print (output)
-
-    if request.POST:
-        if '_like' in request.POST:
-             print("like")
-
-             f = FeedbackRecommendations(name="TestTrue", response=True, user=current_user)
-             f.save()
-
-        elif '_dislike' in request.POST:
-             print("dislike")
-
-             f = FeedbackRecommendations(name="TestFalse", response=False, user=current_user)
-             f.save()
-
     location_list = Location.objects.all
-    context_dict = {'locations': location_list,
-                    'user_interests': user_interests}
-
+    context_dict = {'locations': location_list}
     return render(request, 'IFB299app/dashboard.html', context_dict)
 
 
@@ -66,11 +36,41 @@ def get_place_id(location_name):
     #print(place_id)
     return place_id
 
-def savedlocations(request):
-    return render(request, 'IFB299app/savedlocations.html')
+@login_required
+def likedlocations(request):
+    placeID_list = FeedbackRecommendations.objects.filter(user=request.user)
+    #print(placeID_list)
 
+    file = []
+    names = []
+    addresses = []
+    location_types = []
+    ratings = []
+    slugs = []
+
+    for placeID in placeID_list:
+        #print(placeID.placeID)
+
+        #Search for the location using the place_id
+        url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID.placeID + "&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
+        response = requests.get(url) 
+        file.append(response.json())
+
+    for i in range(len(placeID_list)):
+        names.append(file[i]['result']['name'])
+        slugs.append(slugify(file[i]['result']['name']))
+        addresses.append(file[i]['result']['formatted_address'])
+        #location_types[i] = 
+        ratings.append(file[i]['result']['rating'])
+    
+    context = {}
+    context['location_data'] = zip(names, slugs, addresses, ratings)
+    
+    return render(request, 'IFB299app/likedlocations.html', context)
+
+@login_required
 def editprofile(request):
-    return render(request, 'IFB299app/editprofile.html')
+	return render(request, 'IFB299app/editprofile.html')
     
 
 @login_required

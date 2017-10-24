@@ -195,10 +195,14 @@ class FeedbackRecommendations(models.Model):
     name = models.CharField(max_length=255)
     response = models.BooleanField()
     ##Foreign Key for userID 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'FeedbackRecommendations'
     
     def __str__(self):
         """
         String for representing the FeedbackModel object.
         """
-        return '%s (%s)' % (self.name, self.placeID)
+        #return '%s (%s)' % (self.name, self.placeID)
+        return self.placeID
