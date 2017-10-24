@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm
+from .forms import RegisterForm, ProfileForm, ProfileForm1
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 import requests
@@ -111,10 +111,16 @@ def location(request, location_name_slug):
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        profile_form = ProfileForm(request.POST)
-        if form.is_valid():
+        profile_form1 = ProfileForm1(request.POST)
+        if form.is_valid() and profile_form1.is_valid():
             new_user = form.save()
+            profile = profile_form1.save(commit=False)
+            
+            if profile.user_id is None:
+                profile.user_id = new_user.id
 
+            profile_form1.save()
+            
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -122,8 +128,10 @@ def register(request):
             return redirect('/IFB299app/register2/')
     else:
         form = RegisterForm()
+        profile_form1 = ProfileForm1()
     return render(request, 'IFB299app/register.html', {
         'form': form,
+        'profile_form1': profile_form1,
         })
 
 def register2(request):
@@ -131,12 +139,14 @@ def register2(request):
         profile_form = ProfileForm(request.POST)
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
-
+            user_type = request.user_type
+            profile.user_interests.choices = user_type
             if profile.user_id is None:
                 profile.user_id = request.user
 
             profile_form.save()
             return redirect('/IFB299app/dashboard/')
+
     else:
         profile_form = ProfileForm()
     return render(request, 'IFB299app/register2.html', {

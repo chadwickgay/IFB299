@@ -12,6 +12,7 @@
               <h1>Register</h1>
               {% csrf_token %}
               {{ form.as_p }}
+                {{profile_form1.as_p}}
               <div>
                 <button class="btn btn-default submit" type="submit">Next</button>
               </div>

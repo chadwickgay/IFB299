@@ -16,15 +16,15 @@ USER_TYPES = (
 )
 
 USER_INTERESTS = (
-    ('Colleges', 'Colleges'),
-    ('Libraries', 'Libraries'),
-    ('Industries', 'Industries'),
     ('Hotels', 'Hotels'),
     ('Parks', 'Parks'),
     ('Zoos', 'Zoos'),
     ('Museums', 'Museums'),
     ('Restaurants', 'Restaurants'),
     ('Malls', 'Malls'),
+    ("Industry", "Industry"),
+    ("Library", "Library"),
+    ("Colleges", "Colleges")
 )
 
 PRICE_LEVELS=(
@@ -67,7 +67,7 @@ class Profile(models.Model):
     min_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
     max_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
     cuisine = MultiSelectField(choices=CUISINES, max_length=500)
-    industry = models.CharField(max_length=50, help_text="Please enter the industry you are looking for (e.g. Finance)")
+    industry = models.CharField(help_text="Please enter the industry you are looking for (e.g. Finance)", max_length=50 )
     suburb = models.CharField(max_length=100, help_text="Please enter the suburb you are wanting to visit")
     radius = models.CharField(max_length =100, choices=RADIUS )
 

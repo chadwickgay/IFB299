@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from .models import Profile
 from phonenumber_field.modelfields import PhoneNumberField
 
-
 # If you don't do this you cannot use Bootstrap CSS
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30, 
@@ -43,11 +42,13 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name','email', 'password1', 'password2')
 
+class ProfileForm1(forms.ModelForm):
+    class Meta: 
+        model = Profile 
+        fields=('user_type',)
+
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('user_type', 'user_interests', 'min_price', 'max_price', 'cuisine', 'industry', 'suburb', 'radius')
-
-
-
-
+        fields = ('user_interests', 'min_price', 'max_price', 'cuisine', 'industry', 'suburb', 'radius')

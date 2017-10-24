@@ -146,3 +146,4 @@ IFB299/templates/IFB299app/content.html
 *.iml
 
 *.xml
+IFB299/templates/IFB299app/register.html
