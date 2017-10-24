@@ -27,13 +27,49 @@ USER_INTERESTS = (
     ('Malls', 'Malls'),
 )
 
+PRICE_LEVELS=(
+('NA', "No preference"),
+('0', '$'),
+('1', '$$'), 
+('2', '$$$'), 
+('3', '$$$$'),
+('4', '$$$$$')
+)
+
+CUISINES=(
+("NA", "No preference"),
+("Chinese", "Chinese"), 
+("Japanese", "Japanese"), 
+("Thai", "Thai"),
+("Italian", "Italian"), 
+("Pizza", "Pizza"), 
+("FastFood", "FastFood"), 
+("Burgers", "Burger Joint"), 
+("Pub", "Pub Meal"),
+("Mexican", "Mexican"), 
+("Seafood", "Seafood"),
+("Vegetarian", "Vegetarian"), 
+("Greek", "Greek"))
+
+RADIUS = (
+("10", "No preference"),
+("5", "5km"), 
+("10", "10km"), 
+("15", "15km"), 
+("20", "20km"), 
+("30", "30km")
+)
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    bio = models.TextField(max_length=500, blank=True) 
-    raw_address = models.CharField(max_length=255, help_text="Enter an address (e.g. 742 Evergreen Terrace Springfield)")
-    phone_number = PhoneNumberField()
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
+    min_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
+    max_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
+    cuisine = MultiSelectField(choices=CUISINES, max_length=500)
+    industry = models.CharField(max_length=50, help_text="Please enter the industry you are looking for (e.g. Finance)")
+    suburb = models.CharField(max_length=100, help_text="Please enter the suburb you are wanting to visit")
+    radius = models.CharField(max_length =100, choices=RADIUS )
 
 
 @receiver(post_save, sender=User)

@@ -18,6 +18,7 @@ urlpatterns = [
 	url(r'^logout/$', auth_views.logout, {'next_page': '/IFB299app/'}, name='logout'),
 	url(r'^register/$', views.register, name='register'),
   url(r'^editprofile/$', views.editprofile, name='editprofile'),
+  url(r'^register2/$', views.register2, name='register2'),
 	
 
 	## Password recovery

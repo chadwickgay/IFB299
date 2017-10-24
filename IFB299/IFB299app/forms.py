@@ -41,12 +41,13 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name','email', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name','email', 'password1', 'password2')
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('user_type', 'user_interests', 'phone_number')
+        fields = ('user_type', 'user_interests', 'min_price', 'max_price', 'cuisine', 'industry', 'suburb', 'radius')
+
 
 
 

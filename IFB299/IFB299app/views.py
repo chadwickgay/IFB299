@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 import requests
 from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location
+from IFB299app.models import User
 
 # Create your views here.
 def index(request):
@@ -14,6 +15,7 @@ def index(request):
 
 def createaccount(request):
 	return render(request, 'IFB299app/createaccount.html')
+
 
 
 def login_view(request):
@@ -110,24 +112,36 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         profile_form = ProfileForm(request.POST)
-        if form.is_valid() and profile_form.is_valid():
+        if form.is_valid():
             new_user = form.save()
-            profile = profile_form.save(commit=False)
-
-            if profile.user_id is None:
-                profile.user_id = new_user.id
-
-            profile_form.save()
 
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/IFB299app/dashboard/')
+            return redirect('/IFB299app/register2/')
     else:
         form = RegisterForm()
-        profile_form = ProfileForm()
     return render(request, 'IFB299app/register.html', {
         'form': form,
-        'profile_form': profile_form
         })
+
+def register2(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+
+            if profile.user_id is None:
+                profile.user_id = request.user
+
+            profile_form.save()
+            return redirect('/IFB299app/dashboard/')
+    else:
+        profile_form = ProfileForm()
+    return render(request, 'IFB299app/register2.html', {
+        'profile_form': profile_form,
+        })
+
+
+
