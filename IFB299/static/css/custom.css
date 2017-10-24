@@ -24,3 +24,7 @@
 	margin: 0;
 
 }
+
+select, textarea {
+	width: 85%;
+}
