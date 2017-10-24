@@ -18,3 +18,9 @@
 	height: 300px;
 }
 
+#id_user_interests {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+
+}
