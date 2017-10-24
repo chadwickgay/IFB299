@@ -46,7 +46,7 @@ class RegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('user_type', 'user_interests', 'phone_number','min_price', 'max_price', 'cuisine', 'industry', 'suburb', 'radius')
+        fields = ('user_type', 'user_interests', 'min_price', 'max_price', 'cuisine', 'industry', 'suburb', 'radius')
 
 
 

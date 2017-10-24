@@ -111,14 +111,8 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         profile_form = ProfileForm(request.POST)
-        if form.is_valid() and profile_form.is_valid():
+        if form.is_valid():
             new_user = form.save()
-            profile = profile_form.save(commit=False)
-
-            if profile.user_id is None:
-                profile.user_id = new_user.id
-
-            profile_form.save()
 
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -127,7 +121,6 @@ def register(request):
             return redirect('/IFB299app/register2/')
     else:
         form = RegisterForm()
-        profile_form = ProfileForm()
     return render(request, 'IFB299app/register.html', {
         'form': form,
         })
@@ -137,14 +130,17 @@ def register2(request):
         profile_form = ProfileForm(request.POST)
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
+
             if profile.user_id is None:
                 profile.user_id = new_user.id
+
             profile_form.save()
             return redirect('/IFB299app/dashboard/')
     else:
-        form = RegisterForm()
         profile_form = ProfileForm()
-    return render(request, 'IFB299app/register.html', {
-        'profile_form': profile_form
+    return render(request, 'IFB299app/register2.html', {
+        'profile_form': profile_form,
         })
+
+
 
