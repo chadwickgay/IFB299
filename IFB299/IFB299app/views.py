@@ -16,6 +16,7 @@ def createaccount(request):
 	return render(request, 'IFB299app/createaccount.html')
 
 
+
 def login_view(request):
 	return render(request, 'IFB299app/login.html')
 
@@ -123,11 +124,27 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/IFB299app/dashboard/')
+            return redirect('/IFB299app/register2/')
     else:
         form = RegisterForm()
         profile_form = ProfileForm()
     return render(request, 'IFB299app/register.html', {
         'form': form,
+        })
+
+def register2(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            if profile.user_id is None:
+                profile.user_id = new_user.id
+            profile_form.save()
+            return redirect('/IFB299app/dashboard/')
+    else:
+        form = RegisterForm()
+        profile_form = ProfileForm()
+    return render(request, 'IFB299app/register.html', {
         'profile_form': profile_form
         })
+
