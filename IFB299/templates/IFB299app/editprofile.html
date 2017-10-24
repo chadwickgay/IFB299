@@ -1,8 +1,101 @@
-<html lang="en">
+ {% extends 'IFB299app/base.html' %}
 
-  <head>
-  </head>
-  <body> 
-      <h1> edit profile </h1>
-  </body> 
-</html>
+<title>{% block title %}Edit Profile{% endblock %}</title>
+
+    {% block content %}
+
+<div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-globe"></i> <span>You Are Here!</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            {% include "IFB299app/side-menu.html"%}
+            <!-- sidebar menu -->
+          </div>
+        </div>
+          
+        <!-- top navigation -->
+        {% include "IFB299app/top-menu.html"%}
+        <!-- /top navigation -->
+          <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+            <div class="page-title">
+              <div class="title">
+                <h3>User Profile</h3>
+
+
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Edit Profile</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                <div class="x_content">
+                    <div class="col-md-6 col-sm-6 col-xs-6 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img class="img-responsive avatar-view" src="../../static/img/download.jpeg" alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                      
+                      <form action="." method="post" enctype="multipart/form-data">
+              <h1>Update</h1>
+              {% csrf_token %}
+            {% if user.userprofile.image %}
+    <img src="{{ user.profile.image.url }}" width="240">
+    {% endif %}
+                {{profile_form.image}} <br>
+                Email Address: {{form.email}} <br> <br>
+                First Name:  {{form.first_name}} <br> <br>
+                Last Name: {{form.last_name}} <br> <br>
+                Password: {{form.password}} <br>
+                User Type: {{profile_form.user_type}} <br> <br>
+                User Interests: {{profile_form.user_interests}} <br> <br>
+                Minimum Price: {{profile_form.min_price}} <br> <br>
+                Maximum Price: {{profile_form.max_price}} <br> <br>
+                Cuisine: {{profile_form.cuisine}} <br> <br>
+                Industry: {{profile_form.industry}} Please enter the industry you are looking for (e.g. Finance) <br> <br>
+                Suburb: {{profile_form.suburb}} Please enter the suburb you are wanting to visit <br> <br>
+                Radius: {{profile_form.radius}} <br> <br>
+                
+              <div>
+                <button class="btn btn-default submit" type="submit">Update Profile</button>
+                <br>
+                        
+                         </div>
+                        </form>
+                  
+                        
+             
+    
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                          </div>
+                        </div>   
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+            
+    {% endblock %}
