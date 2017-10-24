@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
-from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -188,3 +187,18 @@ class Event(models.Model):
         String for representing the Model object.
         """
         return self.name
+    
+class FeedbackRecommendations(models.Model):
+    """Model storing the liked and disliked locations of a system"""
+    
+    placeID = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    response = models.BooleanField()
+    ##Foreign Key for userID 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    
+    def __str__(self):
+        """
+        String for representing the FeedbackModel object.
+        """
+        return '%s (%s)' % (self.name, self.placeID)
