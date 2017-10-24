@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 import requests
 from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location
+from IFB299app.models import User
 
 # Create your views here.
 def index(request):
@@ -132,7 +133,7 @@ def register2(request):
             profile = profile_form.save(commit=False)
 
             if profile.user_id is None:
-                profile.user_id = new_user.id
+                profile.user_id = request.user
 
             profile_form.save()
             return redirect('/IFB299app/dashboard/')
