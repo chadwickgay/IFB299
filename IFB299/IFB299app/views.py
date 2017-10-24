@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm
+from .forms import RegisterForm, ProfileForm, EditProfileForm, EditProfileForm2
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -17,6 +17,8 @@ def index(request):
 def createaccount(request):
     return render(request, 'IFB299app/createaccount.html')
 
+def profile(request):
+	return render(request, 'IFB299app/profile.html')
 
 
 def login_view(request):
@@ -173,4 +175,19 @@ def register2(request):
         })
 
 
+def editprofile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm2(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/IFB299app/profile/')
+    else:
+        form = EditProfileForm(instance=request.user)
+        profile_form = EditProfileForm2(instance=request.user.profile)
+        args = {'form': form,
+               'profile_form': profile_form}
+        
+    return render(request, 'IFB299app/editprofile.html', args)
 

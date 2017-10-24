@@ -5,6 +5,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
+from phonenumber_field.modelfields import PhoneNumberField
+from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
+
+
 
 # Create your models here.
 
@@ -69,6 +75,7 @@ class Profile(models.Model):
     industry = models.CharField(max_length=50, help_text="Please enter the industry you are looking for (e.g. Finance)")
     suburb = models.CharField(max_length=100, help_text="Please enter the suburb you are wanting to visit")
     radius = models.CharField(max_length =100, choices=RADIUS )
+    image = models.ImageField(upload_to='profile_image', blank=True)
 
 
 @receiver(post_save, sender=User)
