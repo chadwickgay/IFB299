@@ -37,10 +37,11 @@ def get_place_id(location_name):
     return place_id
 
 @login_required
-def likedlocations(request):
+def likedlocations(request):   
+    # pull saved placeIDs form the db
     placeID_list = FeedbackRecommendations.objects.filter(user=request.user)
-    #print(placeID_list)
 
+    # lists to store API information
     file = []
     names = []
     addresses = []
@@ -48,14 +49,15 @@ def likedlocations(request):
     ratings = []
     slugs = []
 
+    # get the API results for each of the placeIDs
     for placeID in placeID_list:
-        #print(placeID.placeID)
 
-        #Search for the location using the place_id
+        # search for the location using the place_id
         url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID.placeID + "&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
         response = requests.get(url) 
         file.append(response.json())
 
+    # store API results for each location in lists
     for i in range(len(placeID_list)):
         names.append(file[i]['result']['name'])
         slugs.append(slugify(file[i]['result']['name']))
@@ -63,9 +65,11 @@ def likedlocations(request):
         #location_types[i] = 
         ratings.append(file[i]['result']['rating'])
     
+    # zip lists to pass into the context_dict
     context = {}
     context['location_data'] = zip(names, slugs, addresses, ratings)
     
+    # render page with context_dict
     return render(request, 'IFB299app/likedlocations.html', context)
 
 @login_required
@@ -77,17 +81,17 @@ def editprofile(request):
 def location(request, location_name_slug):
     context_dict = {}
 
-    #Get the place_id based on the name of the location
+    # get the place_id based on the name of the location
     place_id = get_place_id(location_name_slug)
 
-
-    #Search for the location using the place_id
+    # search for the location using the place_id
     url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
     response = requests.get(url) 
     file = response.json() 
     
     #print(file)
 
+    # it is beter to ask for forgiveness than permission in python/django
     context_dict['name'] = file['result']['name'] 
     context_dict['place_id'] = file['result']['place_id'] 
     try:
