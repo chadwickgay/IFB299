@@ -48,9 +48,12 @@ class RegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('image', 'user_type', 'user_interests', 'min_price', 'max_price', 'cuisine', 'industry', 'suburb', 'radius')
+        fields = ( 'user_type', 'user_interests', 'min_price', 'max_price', 'cuisine', 'industry', 'suburb', 'radius')
 
-
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('image',)
         
 class EditProfileForm(UserChangeForm):
     template_name='/something/else'

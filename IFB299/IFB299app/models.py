@@ -65,6 +65,9 @@ RADIUS = (
 ("30", "30km")
 )
 
+"""
+Model showing the profile fields that are to be selected when signing up and updating the profile
+"""
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     user_type = models.CharField(max_length=50, choices=USER_TYPES)

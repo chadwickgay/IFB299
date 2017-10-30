@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm, EditProfileForm, EditProfileForm2
+from .forms import RegisterForm, ProfileForm, EditProfileForm, EditProfileForm2, ImageForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -73,6 +73,10 @@ def savedlocations(request):
 
 def editprofile(request):
     return render(request, 'IFB299app/editprofile.html')
+
+def error_404(request):
+        data = {}
+        return render(request,'IFB299app/error_404.html', data)
     
 
 @login_required
@@ -175,14 +179,28 @@ def register2(request):
         })
 
 
+@property
+def image_url(self):
+    if self.image and hasattr(self.image, 'url'):
+        return self.image.url
+
 def editprofile(request):
     if request.method == 'POST':
+        image_form = ImageForm(request.POST, instance = request.user.profile)
         form = EditProfileForm(request.POST, instance=request.user)
-        profile_form = EditProfileForm2(request.POST, instance=request.user)
+        profile_form = EditProfileForm2(request.POST, instance=request.user.profile)
+        
+        if image_form.is_valid():
+            profile.image = image_form.cleaned_data["image"]
+            image_form.save()
+            return redirect('/IFB299app/profile/')
 
         if form.is_valid():
             form.save()
             return redirect('/IFB299app/profile/')
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect ('/IFB299app/profile/')
     else:
         form = EditProfileForm(instance=request.user)
         profile_form = EditProfileForm2(instance=request.user.profile)

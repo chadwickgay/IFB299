@@ -6,9 +6,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm
+from django.conf.urls import handler404
 
 
 urlpatterns = [
+    ## 404
+    ##handler404 = views.error_404
+    
 	## Home page
 	url(r'^$', views.index, name='index'),
 	
@@ -42,4 +46,6 @@ urlpatterns = [
 	## Admin
 	#url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 	url(r'^admin/', admin.site.urls),
+    
+    
 ]
