@@ -48,16 +48,15 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="../../static/img/download.jpeg" alt="Avatar" title="Change the avatar">
+                            
+                          <img class="img-responsive avatar-view" src="{{user.profile.image_url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
                         </div>
                       </div>
                       
                       <form action="." method="post" enctype="multipart/form-data">
               <h1>Update</h1>
               {% csrf_token %}
-            {% if user.userprofile.image %}
-    <img src="{{ user.profile.image.url }}" width="240">
-    {% endif %}
+           
                 {{profile_form.image}} <br>
                 Email Address: {{form.email}} <br> <br>
                 First Name:  {{form.first_name}} <br> <br>
@@ -73,7 +72,7 @@
                 Radius: {{profile_form.radius}} <br> <br>
                 
               <div>
-                <button class="btn btn-default submit" type="submit">Update Profile</button>
+                <button class="btn btn-default submit" type="submit">Update Profile</button><br> <br>
                 <br>
                         
                          </div>

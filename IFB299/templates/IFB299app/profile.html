@@ -48,12 +48,13 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                            <img class="img-responsive avatar-view" src="../../static/img/download.jpeg" alt="Avatar" title="Change the avatar">
+                            <img class="img-responsive avatar-view" src="{{user.profile.image_url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
                           {% if user.userprofile.image %}
                             <img src="{{ user.profile.image.url }}">
                         {% endif %}
                         </div>
                       </div>
+                        
                       <h3> username: {{ request.user.username }}</h3>
 
                       <ul class="list-unstyled user_data">
