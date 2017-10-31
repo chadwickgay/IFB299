@@ -23,8 +23,7 @@ urlpatterns = [
 	url(r'^register/$', views.register, name='register'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^editprofile/$', views.editprofile, name='editprofile'),
-
-  url(r'^interests/$', views.interests, name='interests'),
+	url(r'^interests/$', views.interests, name='interests'),
 	
 
 	## Password recovery

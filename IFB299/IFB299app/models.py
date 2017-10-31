@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
-from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -75,7 +74,7 @@ class Profile(models.Model):
     cuisine = MultiSelectField(choices=CUISINES, max_length=500)
     industry = models.CharField(max_length=50, help_text="Please enter the industry you are looking for (e.g. Finance)")
     radius = models.CharField(max_length =100, choices=RADIUS )
-    image = models.ImageField(upload_to='profile_image', blank=True)
+    #image = models.ImageField(upload_to='profile_image', blank=True)
 
 class Category(models.Model):
     """

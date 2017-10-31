@@ -47,17 +47,18 @@ class RegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ( 'image', 'user_type', 'user_interests', 'max_price', 'cuisine', 'industry', 'radius')
+        fields = ( 'user_type', 'user_interests', 'max_price', 'cuisine', 'industry', 'radius')
         
 
-
+'''
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('image',)
+'''
         
 class EditProfileForm(UserChangeForm):
-    template_name='/something/else'
+    #template_name='/something/else'
 
     class Meta:
         model = User
@@ -71,12 +72,12 @@ class EditProfileForm(UserChangeForm):
         
         
 class EditProfileForm2(UserChangeForm):
-    template_name='/something/else'
+    #template_name='/something/else'
 
     class Meta:
         model = Profile
         fields = (
-            'image',
+            #'image',
             'user_type',
             'user_interests',
             'max_price',
