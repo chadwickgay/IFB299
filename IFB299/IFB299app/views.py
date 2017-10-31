@@ -218,11 +218,11 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['rating']  = file['result']['rating'] 
-    except KeyErrir:
+    except KeyError:
         pass
     try:
         context_dict['website']  = file['result']['website']
-    except IndexError:
+    except KeyError:
         pass
     try:
         context_dict['price_level']  = file['result']['price_level']
