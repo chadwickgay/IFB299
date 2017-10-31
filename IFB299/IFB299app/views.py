@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm
+from .forms import RegisterForm, ProfileForm, EditProfileForm, EditProfileForm2
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 import requests
@@ -12,7 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # render static index/homepage
 def index(request):
-	return render(request, 'IFB299app/index.html')
+    return render(request, 'IFB299app/index.html')
 
 @login_required
 ## Handles logic for primary user dashboard w/ recommendations
@@ -183,10 +183,6 @@ def likedlocations(request):
     
     # render page with context_dict
     return render(request, 'IFB299app/likedlocations.html', context)
-
-@login_required
-def editprofile(request):
-	return render(request, 'IFB299app/editprofile.html')
     
 
 @login_required
@@ -364,5 +360,33 @@ def interests(request):
         'profile_form': profile_form,
         })
 
+def profile(request):
+    return render(request, 'IFB299app/profile.html')
 
+@property
+def image_url(self):
+    if self.image and hasattr(self.image, 'url'):
+        return self.image.url
+
+def editprofile(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance = request.user.profile)
+        #image_form = ImageForm(request.POST, instance = request.user.profile)
+        form = EditProfileForm(request.POST, instance=request.user)
+        if profile_form.is_valid():
+            if form.is_valid():
+                    profile = profile_form.save(commit=False)
+            
+
+                    if profile.user_id is None:
+                        profile.user_id = request.user
+            form.save()
+            profile_form.save()
+            return redirect('/IFB299app/profile/')
+    else:
+        profile_form = ProfileForm(instance = request.user.profile)
+        form = EditProfileForm(instance=request.user)
+    return render(request, 'IFB299app/editprofile.html', {
+        'profile_form': profile_form, 'form': form, 
+        })  
 

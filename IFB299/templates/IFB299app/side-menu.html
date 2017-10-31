@@ -1,3 +1,18 @@
+<div class="clearfix">
+              <div class="profile_pic">
+                 {% if user.profile.image %} 
+                <img src="{{user.profile.image.url|default_if_none:'#'}}" alt="..." class="img-circle profile_img">
+                 {% endif %}
+                  
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>{{request.user.username}}</h2>
+              </div>
+            </div>
+<br>
+<br>
+
 <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
@@ -5,7 +20,7 @@
                 <ul class="nav side-menu">
                   <li><a href='/IFB299app/dashboard/'><i class="fa fa-home"></i> Home</a>
                   </li>
-                  <li><a href='/IFB299app/editprofile/'><i class="fa fa-user"></i> Edit Profile </a>
+                  <li><a href='/IFB299app/profile/'><i class="fa fa-user"></i> Profile </a>
                   </li>
                   <li><a href='/IFB299app/liked/'><i class="fa fa-location-arrow" aria-hidden="true"></i> Liked Locations </a>
                   </li>

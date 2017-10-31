@@ -43,7 +43,8 @@
 
           $("ul#id_cuisine").addClass( "list-group row" );
           $("ul#id_cuisine li").addClass( "list-group-item col-xs-6" );
-
+          if (document.title == "Interests"){
+          
           // Register (Interests page)
           $(document).ready(function(){
 
@@ -59,7 +60,6 @@
                 $("input[type=checkbox][value=Malls]").parent().parent().hide();
                 $("input[type=checkbox][value=Colleges]").parent().parent().hide();
                 $("input[type=checkbox][value=Libraries]").parent().parent().hide();
-
 
 
             $('input[type=checkbox][value=Industries]').change(function(){
@@ -140,6 +140,8 @@
               }
           });
         });
+        }
+        
 
     </script>
   </body>

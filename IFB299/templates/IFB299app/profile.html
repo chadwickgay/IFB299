@@ -1,0 +1,105 @@
+ {% extends 'IFB299app/base.html' %}
+
+<title>{% block title %}Profile{% endblock %}</title>
+
+    {% block content %}
+
+<div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-globe"></i> <span>You Are Here!</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            {% include "IFB299app/side-menu.html"%}
+            <!-- sidebar menu -->
+          </div>
+        </div>
+          
+        <!-- top navigation -->
+        {% include "IFB299app/top-menu.html"%}
+        <!-- /top navigation -->
+          <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+            <div class="page-title">
+              <div class="title">
+                <h3>User Profile</h3>
+
+
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Profile</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                <div class="x_content">
+                    <div class="col-md-6 col-sm-12 col-xs-12 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+
+                          {% if user.profile.image %}
+                            <img src="{{user.profile.image_url|default_if_none:'#'}}" width="240">
+                        {% endif %}
+                        </div>
+                      </div>
+                        
+                      <h3> username: {{ request.user.username }}</h3>
+
+                      <ul class="list-unstyled user_data">
+                        <li><i class="fa fa-envelope user-profile-icon"></i> email:  {{ request.user.email }}
+                        </li>
+                          
+                          <li>
+                          <i class="fa fa-user user-profile-icon"></i> name:  {{ request.user.first_name }}  {{ request.user.last_name }}
+                        </li>
+
+                        <li>
+                          <i class="fa fa-suitcase user-profile-icon"></i> user type:  {{ request.user.profile.user_type }}
+                        </li>
+
+                        <li class="m-top-xs">
+                          <i class="fa fa-plane user-profile-icon"></i> user interests: 
+                          {{ request.user.profile.user_interests }}
+                        </li>
+                        <li>
+                          <i class="fa fa-cutlery user-profile-icon"></i> cuisine:  {{ request.user.profile.cuisine }}
+                        </li>
+                        <li>
+                          <i class="fa fa-dollar user-profile-icon"></i> maximum price:  {{ request.user.profile.max_price }}
+                        </li>
+                        <li>
+                          <i class="fa fa-institution user-profile-icon"></i> industry:  {{ request.user.profile.industry }}
+                        </li>
+                        <li>
+                          <i class="fa fa-circle-o user-profile-icon"></i> radius:  {{ request.user.profile.radius }}
+                        </li>
+                        
+                        
+                      </ul>
+                        <a href="/IFB299app/editprofile/" class="btn btn-primary " role="button" aria-pressed="true">Edit Profile</a>
+<!--                        <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>-->
+                      
+                      <br />
+                        
+                         </div>
+                        </div>   
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+            
+    {% endblock %}
