@@ -214,11 +214,11 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['formatted_phone_number']  = file['result']['formatted_phone_number'] 
-    except IndexError:
+    except KeyError:
         pass
     try:
         context_dict['rating']  = file['result']['rating'] 
-    except IndexError:
+    except KeyErrir:
         pass
     try:
         context_dict['website']  = file['result']['website']
