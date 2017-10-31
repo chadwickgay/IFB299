@@ -103,7 +103,7 @@ class Region(models.Model):
         """
         String for representing the Model object.
         """
-        return '%s (%s)' % (self.name, self.code)
+        return (self.name)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
