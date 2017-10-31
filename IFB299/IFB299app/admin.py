@@ -6,7 +6,7 @@ class CityAdmin(admin.ModelAdmin):
     list_display = ('name', 'region_id', 'country_id', 'latitude', 'longitude')
 
 class RegionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code', 'country_id')
+    list_display = ('name', 'latitude','longitude', 'country_id')
 
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('name', 'code')
@@ -22,7 +22,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'location_id')
 
 class FeedbackRecommendationsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'placeID', 'name')
+    list_display = ('user', 'placeID', 'name', 'response')
 
 # Define an inline admin descriptor for User model
 # which acts a bit like a singleton

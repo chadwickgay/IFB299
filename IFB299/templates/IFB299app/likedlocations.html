@@ -54,7 +54,7 @@
                           <th>Address</th>
                           <th>Type</th>
                           <th>Rating</th>
-                          <th style="width: 20%">#Edit</th>
+                          <th style="width: 20%">Edit</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -63,8 +63,6 @@
                           <td>{{forloop.counter}}</td>
                           <td>
                             <a href="/IFB299app/location/{{slugs}}/">{{names}}</a>
-                            <br />
-                            <small>Created 01.01.2015</small>
                           </td>
                           <td>
                             {{addresses}}
@@ -79,7 +77,6 @@
                           </td>
                           <td>
                             <a href="/IFB299app/location/{{slugs}}/" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                         </tr>
                         {% endfor %}

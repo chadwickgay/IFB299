@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location, User, FeedbackRecommendations
 from django.utils.text import slugify
 import json as simplejson
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -24,33 +25,107 @@ def login_view(request):
 @login_required
 def dashboard(request):
     current_user = request.user 
-    user_interests = current_user.profile.user_interests 
-    user_interest=list(user_interests) 
-     
-    output= [] 
+    user_interests = current_user.profile.user_interests
+    industry = current_user.profile.industry
+    cuisines = current_user.profile.cuisine
+    max_price = current_user.profile.max_price
+    radius = current_user.profile.radius
+
+    user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
+    place_ID_set_list = []
+
+    for user_liked_location_placeID in user_liked_location_placeID_set:
+        place_ID_set_list.append(user_liked_location_placeID.placeID)
+        #print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
+        
+    user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
+    place_ID_set_list = []
+
+    for user_liked_location_placeID in user_liked_location_placeID_set:
+        place_ID_set_list.append(user_liked_location_placeID.placeID)
+        #print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
+
+    name = []
+    slugs = []
+    address = []
+    rating = []
+    photo = []
+    place_ID = []
+
     for interest in user_interests: 
-        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
+        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.4703410197085,153.0250768802915&query="
+        if interest == "Industries" and industry != None:
+            url = url + industry
+        elif interest == "Restaurants" and cuisines != None:
+            url = url + "restaurant%20" + cuisines
+        else:
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.4703410197085,153.0250768802915&query=" + interest 
+        
+        ## Add on Parameters
+        if max_price != None and interest == ("Restaurants" or "Hotels"):
+            url = url + "&maxprice=" + max_price
+        if radius != None:
+            url = url + "&radius=" + radius
+        else: 
+            url = url + "&radius=20"
+            
+        location = 0;
+
+        if interest == "Industries":
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + industry
+        elif interest == "Restaurants" and cuisines != None:
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + cuisines
+        else:
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
+        
+
         response = requests.get(url) 
         file = response.json() 
-        output.append(file) 
-    print (output) 
- 
-    if request.POST: 
-        if '_like' in request.POST: 
-             print("like") 
- 
-             f = FeedbackRecommendations(name="TestTrue", response=True, user=current_user) 
-             f.save() 
- 
-        elif '_dislike' in request.POST: 
-             print("dislike") 
- 
-             f = FeedbackRecommendations(name="TestFalse", response=False, user=current_user) 
-             f.save() 
+        
+        for i in range(len(file['results'])): 
+            if file['results'][location]['place_id'] in place_ID_set_list: 
+                location += 1
+                print ("Print found PlaceID")
+                print (place_ID_set_list[i])
+            else: 
+                break 
 
-    location_list = Location.objects.all
-    context_dict = {'locations': location_list,
-                    'user_interests': user_interests} 
+        place_ID.append(file['results'][location]['place_id'])
+        name.append(file['results'][location]['name'])
+        address.append(file['results'][location]['formatted_address'])
+        try:
+            rating.append(file['results'][location]['rating'])
+        except KeyError:
+            rating.append(None)
+        slugs.append(slugify(file['results'][location]['name']))
+        
+        try:
+            photo.append('https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + (file['results'][location]['photos'][0]['photo_reference']))
+        except KeyError:
+            photo.append('http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg')
+
+ 
+    if request.GET: 
+        input_name = request.GET.get("Name", "")
+        input_placeID = request.GET.get("PlaceID", "")
+        
+        if '_like' in request.GET:          
+             f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=True, user=current_user) 
+             f.save() 
+             print("like")
+
+             return redirect('/IFB299app/dashboard/')
+ 
+        elif '_dislike' in request.GET:  
+             f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=False, user=current_user) 
+             f.save() 
+             print("dislike")
+
+             return redirect('/IFB299app/dashboard/')
+
+    context_dict = { }
+    context_dict ['recommendation_data'] = zip(name, address, rating, place_ID, user_interests, slugs, photo)
+
     return render(request, 'IFB299app/dashboard.html', context_dict)
 
 
@@ -92,7 +167,10 @@ def likedlocations(request):
         slugs.append(slugify(file[i]['result']['name']))
         addresses.append(file[i]['result']['formatted_address'])
         location_types.append(file[i]['result']['types'][0])
-        ratings.append(file[i]['result']['rating'])
+        try:
+            ratings.append(file[i]['result']['rating'])
+        except KeyError:
+            ratings.append(None)
         lats.append(file[i]['result']['geometry']['location']['lat'])
         lngs.append(file[i]['result']['geometry']['location']['lng'])
 
@@ -115,6 +193,7 @@ def editprofile(request):
 @login_required
 def location(request, location_name_slug):
     context_dict = {}
+    current_user = request.user 
 
     # get the place_id based on the name of the location
     place_id = get_place_id(location_name_slug)
@@ -161,18 +240,53 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['Photo']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][0]['photo_reference']
+    except KeyError:
+        context_dict['Photo']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
+    try:
         context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
+    except KeyError:
+        context_dict['Photo2']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
+    try:
         context_dict['Photo3']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][2]['photo_reference']
+    except KeyError:
+        context_dict['Photo3']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
+    try:
         context_dict['Photo4']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][3]['photo_reference']
+    except KeyError:
+        context_dict['Photo4']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
+    try:
         context_dict['Photo5']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][4]['photo_reference']
     except KeyError:
-        pass
+        context_dict['Photo5']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
 
     try:
         context_dict['lat'] = file['result']['geometry']['location']['lat']
         context_dict['lng'] = file['result']['geometry']['location']['lng']
     except KeyError:
         pass
+
+    try:
+        feedback_made = FeedbackRecommendations.objects.get(placeID = place_id, user=current_user)
+        context_dict['feedback_made']  = feedback_made
+    except ObjectDoesNotExist:
+        print("No feedback made")    
+
+
+    ## Handle clicking of liked/disliked button (using hidden form elements)
+    if request.GET: 
+        input_name = request.GET.get("Name", "")
+        input_placeID = request.GET.get("PlaceID", "")
+    # Handle like/dislike selection
+        if '_like' in request.GET:
+            f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=True, user=current_user) 
+            f.save() 
+            return redirect('/IFB299app/dashboard/')
+     
+        elif '_dislike' in request.GET: 
+            f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=False, user=current_user) 
+            f.save() 
+
+            return redirect('/IFB299app/dashboard/')
     
     return render(request, 'IFB299app/location.html', context_dict)
 

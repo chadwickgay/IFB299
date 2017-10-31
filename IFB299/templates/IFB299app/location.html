@@ -68,7 +68,7 @@
                         <h2>Location Information</h2>
                         <p><i class="fa fa-address-card-o" aria-hidden="true"></i> <b>Address:</b> {{ formatted_address }}</p>
                         <p><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b> {{ formatted_phone_number }}</p>
-                        <p><i class="fa fa-globe" aria-hidden="true"></i> <b>Website: </b><a href="{{ place.website }}">{{ website }}</a></p>
+                        <p><i class="fa fa-globe" aria-hidden="true"></i> <b>Website: </b><a href="{{website}}">{{ website }}</a></p>
                         <p><i class="fa fa-signal" aria-hidden="true"></i> <b>Rating (from around the Web):</b>  {{ rating }} / 5</p>
                         {% if price_level %}
                         <p><i class="fa fa-usd" aria-hidden="true"></i> <b>Price Level:</b>  {{ price_level }}</p>
@@ -87,12 +87,17 @@
                         {% endif %}
                       </div>
                       <br />
-
+                      {% if not feedback_made %}
                       <div class="">
-                        <button type="button" class="btn btn-success btn-lg"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</button>
-                        <button type="button" class="btn btn-danger btn-lg"><i class="fa fa-thumbs-down" aria-hidden="true"></i> Dislike</button>
+                          <form action="" method="get">
+                              {% csrf_token %}
+                              <input type="hidden" name="PlaceID" value="{{ place_id }}">
+                              <input type="hidden" name="Name" value="{{name}}">
+                              <input class="btn btn-success" type="submit" value="Like" style="float:left" name="_like">
+                              <input class="btn btn-danger" type="submit" value="Dislike" style="float:right" name="_dislike">
+                      </form>
                       </div>
-
+                      {% endif %}
                     </div>
 
                     
