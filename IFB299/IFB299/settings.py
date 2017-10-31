@@ -94,12 +94,11 @@ except:
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'ifb299_db',
-        'USER': 'root',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ifb299group62$ifb299_db',
+        'USER': 'ifb299group62',
         'PASSWORD': 'ifb299pass',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'HOST': 'ifb299group62.mysql.pythonanywhere-services.com',
     }
 }
 
