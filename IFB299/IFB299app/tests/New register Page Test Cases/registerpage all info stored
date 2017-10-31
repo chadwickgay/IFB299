@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8000/IFB299app/register/" />
+<title>Create Another test account to ensure all information possible is stored</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Create Another test account to ensure all information possible is stored</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/IFB299app/register/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>Register</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>g3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td>Genevieve</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td>Richards</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>gen59647</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td>genevievecrichards@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>43k9ygy5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>43k9ygy5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>label=Businessman</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_max_price</td>
+	<td>label=$$$</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_cuisine</td>
+	<td>label=Pub Meal</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_industry</td>
+	<td>Finance</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_radius</td>
+	<td>label=30km</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Dashboard</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

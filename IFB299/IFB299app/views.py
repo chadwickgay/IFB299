@@ -210,19 +210,19 @@ def location(request, location_name_slug):
     context_dict['place_id'] = file['result']['place_id'] 
     try:
         context_dict['formatted_address']  = file['result']['formatted_address'] 
-    except IndexError:
+    except KeyError:
         pass
     try:
         context_dict['formatted_phone_number']  = file['result']['formatted_phone_number'] 
-    except IndexError:
+    except KeyError:
         pass
     try:
         context_dict['rating']  = file['result']['rating'] 
-    except IndexError:
+    except KeyError:
         pass
     try:
         context_dict['website']  = file['result']['website']
-    except IndexError:
+    except KeyError:
         pass
     try:
         context_dict['price_level']  = file['result']['price_level']
@@ -240,29 +240,29 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['Photo']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][0]['photo_reference']
-    except IndexError:
+    except KeyError:
         context_dict['Photo']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
-    except IndexError:
+    except KeyError:
         context_dict['Photo2']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo3']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][2]['photo_reference']
-    except IndexError:
+    except KeyError:
         context_dict['Photo3']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo4']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][3]['photo_reference']
-    except IndexError:
+    except KeyError:
         context_dict['Photo4']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo5']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][4]['photo_reference']
-    except IndexError:
+    except KeyError:
         context_dict['Photo5']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
 
     try:
         context_dict['lat'] = file['result']['geometry']['location']['lat']
         context_dict['lng'] = file['result']['geometry']['location']['lng']
-    except IndexError:
+    except KeyError:
         pass
 
     try:
