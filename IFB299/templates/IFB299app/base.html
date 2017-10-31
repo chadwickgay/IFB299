@@ -46,55 +46,97 @@
 
           // Register (Interests page)
           $(document).ready(function(){
+
+            $( "#id_industry" ).parent().hide();
+            $( "#id_cuisine" ).parent().hide();
+            $( "#id_max_price" ).parent().hide();
+            $("input[type=checkbox][value=Industries]").parent().parent().hide();
+                $("input[type=checkbox][value=Hotels]").parent().parent().hide();
+                $("input[type=checkbox][value=Parks]").parent().parent().hide();
+                $("input[type=checkbox][value=Zoos]").parent().parent().hide();
+                $("input[type=checkbox][value=Museums]").parent().parent().hide();
+                $("input[type=checkbox][value=Food]").parent().parent().hide();
+                $("input[type=checkbox][value=Malls]").parent().parent().hide();
+                $("input[type=checkbox][value=Colleges]").parent().parent().hide();
+                $("input[type=checkbox][value=Libraries]").parent().parent().hide();
+
+
+
+            $('input[type=checkbox][value=Industries]').change(function(){
+                if (this.checked){
+                  $( "#id_industry" ).parent().show();
+                } else {
+                  $( "#id_industry" ).parent().hide();
+                }
+            });
+
+            $('input[type=checkbox][value=Food]').change(function(){
+                if (this.checked){
+                  $( "#id_cuisine" ).parent().show();
+                  $( "#id_max_price" ).parent().show();    
+                } else {
+                  $( "#id_cuisine" ).parent().hide();
+                  $( "#id_max_price" ).parent().hide();
+                }
+            });
+
+            $('input[type=checkbox][value=Hotels]').change(function(){
+                if (this.checked){
+                  $( "#id_max_price" ).parent().show();    
+                } else {
+                  $( "#id_max_price" ).parent().hide();
+                }
+            });
+
             $('#id_user_type').on('change', function() {
-              if ( this.value == 'Tourist')
-              {
+              // Drop down selection
+              if ( this.value == 'Tourist'){
                   // Show
                   $("input[type=checkbox][value=Hotels]").parent().parent().show();
+                  $("input[type=checkbox][value=Parks]").parent().parent().show();
+                  $("input[type=checkbox][value=Zoos]").parent().parent().show();
+                  $("input[type=checkbox][value=Museums]").parent().parent().show();
+                  $("input[type=checkbox][value=Food]").parent().parent().show();
+                  $("input[type=checkbox][value=Malls]").parent().parent().show();
                   // Hide
                   $("input[type=checkbox][value=Colleges]").parent().parent().hide();
                   $("input[type=checkbox][value=Libraries]").parent().parent().hide();
                   $("input[type=checkbox][value=Industries]").parent().parent().hide();
-                  $("input[type=checkbox][value=Parks]").parent().parent().hide();
-                  $("input[type=checkbox][value=Zoos]").parent().parent().hide();
-                  $("input[type=checkbox][value=Museums]").parent().parent().hide();
-                  $("input[type=checkbox][value=Restaurants]").parent().parent().hide();
-                  $("input[type=checkbox][value=Malls]").parent().parent().hide();
               } 
               else if (this.value == 'Student'){
                   // Show
                   $("input[type=checkbox][value=Colleges]").parent().parent().show();
                   $("input[type=checkbox][value=Libraries]").parent().parent().show();
+                  $("input[type=checkbox][value=Parks]").parent().parent().show();
+                  $("input[type=checkbox][value=Zoos]").parent().parent().show();
+                  $("input[type=checkbox][value=Museums]").parent().parent().show();
+                  $("input[type=checkbox][value=Food]").parent().parent().show();
+                  $("input[type=checkbox][value=Malls]").parent().parent().show();
                    // Hide
                   $("input[type=checkbox][value=Industries]").parent().parent().hide();
-                  $("input[type=checkbox][value=Parks]").parent().parent().hide();
-                  $("input[type=checkbox][value=Zoos]").parent().parent().hide();
-                  $("input[type=checkbox][value=Museums]").parent().parent().hide();
-                  $("input[type=checkbox][value=Restaurants]").parent().parent().hide();
-                  $("input[type=checkbox][value=Malls]").parent().parent().hide();
                   $("input[type=checkbox][value=Hotels]").parent().parent().hide();
               } else if (this.value == 'Businessman'){
                   // Show
                   $("input[type=checkbox][value=Industries]").parent().parent().show();
                   $("input[type=checkbox][value=Hotels]").parent().parent().show();
+                  $("input[type=checkbox][value=Parks]").parent().parent().show();
+                  $("input[type=checkbox][value=Zoos]").parent().parent().show();
+                  $("input[type=checkbox][value=Museums]").parent().parent().show();
+                  $("input[type=checkbox][value=Food]").parent().parent().show();
+                  $("input[type=checkbox][value=Malls]").parent().parent().show();
                   //Hide
-                  $("input[type=checkbox][value=Parks]").parent().parent().hide();
-                  $("input[type=checkbox][value=Zoos]").parent().parent().hide();
-                  $("input[type=checkbox][value=Museums]").parent().parent().hide();
-                  $("input[type=checkbox][value=Restaurants]").parent().parent().hide();
-                  $("input[type=checkbox][value=Malls]").parent().parent().hide();
                   $("input[type=checkbox][value=Colleges]").parent().parent().hide();
                   $("input[type=checkbox][value=Libraries]").parent().parent().hide();
               } else {
-                $("input[type=checkbox][value=Industries]").parent().parent().show();
-                $("input[type=checkbox][value=Hotels]").parent().parent().show();
-                $("input[type=checkbox][value=Parks]").parent().parent().show();
-                $("input[type=checkbox][value=Zoos]").parent().parent().show();
-                $("input[type=checkbox][value=Museums]").parent().parent().show();
-                $("input[type=checkbox][value=Restaurants]").parent().parent().show();
-                $("input[type=checkbox][value=Malls]").parent().parent().show();
-                $("input[type=checkbox][value=Colleges]").parent().parent().show();
-                $("input[type=checkbox][value=Libraries]").parent().parent().show();
+                $("input[type=checkbox][value=Industries]").parent().parent().hide();
+                $("input[type=checkbox][value=Hotels]").parent().parent().hide();
+                $("input[type=checkbox][value=Parks]").parent().parent().hide();
+                $("input[type=checkbox][value=Zoos]").parent().parent().hide();
+                $("input[type=checkbox][value=Museums]").parent().parent().hide();
+                $("input[type=checkbox][value=Food]").parent().parent().hide();
+                $("input[type=checkbox][value=Malls]").parent().parent().hide();
+                $("input[type=checkbox][value=Colleges]").parent().parent().hide();
+                $("input[type=checkbox][value=Libraries]").parent().parent().hide();
               }
           });
         });

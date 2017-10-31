@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location, User, FeedbackRecommendations
 from django.utils.text import slugify
 import json as simplejson
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -108,17 +109,17 @@ def dashboard(request):
         input_name = request.GET.get("Name", "")
         input_placeID = request.GET.get("PlaceID", "")
         
-        if '_like' in request.GET: 
-            
+        if '_like' in request.GET:          
              f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=True, user=current_user) 
              f.save() 
+             print("like")
 
              return redirect('/IFB299app/dashboard/')
  
-        elif '_dislike' in request.GET: 
- 
+        elif '_dislike' in request.GET:  
              f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=False, user=current_user) 
              f.save() 
+             print("dislike")
 
              return redirect('/IFB299app/dashboard/')
 
@@ -192,6 +193,7 @@ def editprofile(request):
 @login_required
 def location(request, location_name_slug):
     context_dict = {}
+    current_user = request.user 
 
     # get the place_id based on the name of the location
     place_id = get_place_id(location_name_slug)
@@ -262,6 +264,29 @@ def location(request, location_name_slug):
         context_dict['lng'] = file['result']['geometry']['location']['lng']
     except KeyError:
         pass
+
+    try:
+        feedback_made = FeedbackRecommendations.objects.get(placeID = place_id, user=current_user)
+        context_dict['feedback_made']  = feedback_made
+    except ObjectDoesNotExist:
+        print("No feedback made")    
+
+
+    ## Handle clicking of liked/disliked button (using hidden form elements)
+    if request.GET: 
+        input_name = request.GET.get("Name", "")
+        input_placeID = request.GET.get("PlaceID", "")
+    # Handle like/dislike selection
+        if '_like' in request.GET:
+            f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=True, user=current_user) 
+            f.save() 
+            return redirect('/IFB299app/dashboard/')
+     
+        elif '_dislike' in request.GET: 
+            f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=False, user=current_user) 
+            f.save() 
+
+            return redirect('/IFB299app/dashboard/')
     
     return render(request, 'IFB299app/location.html', context_dict)
 

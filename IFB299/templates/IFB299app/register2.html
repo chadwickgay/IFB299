@@ -10,7 +10,8 @@
           <section class="login_content">
             <form method="post">
               <h1>Interests</h1>
-                <p><b>In order to provide more focused recommendations, please answer the following questions</b></p>
+                <p><b>So... tell us a little about yourself!</b></p>
+                <br>
               {% csrf_token %}
               {{ profile_form.as_p }}
               <div>
