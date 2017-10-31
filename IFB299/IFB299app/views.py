@@ -118,12 +118,12 @@ def location(request, location_name_slug):
     
     #Event Two
     
-    context_dict['Ename1'] = file2['events'][2]['name']['text']
-    context_dict['Edescription1'] = file2['events'][2]['description']['text']
-    context_dict['Eurl1'] = file2['events'][2]['url']
-    context_dict['startDate1']= file2['events'][2]['start']['utc']
-    context_dict['endDate1'] = file2['events'][2]['end']['utc']
-    context_dict['Ephoto1'] = file2['events'][2]['logo']['original']['url']
+    context_dict['Ename1'] = file2['events'][1]['name']['text']
+    context_dict['Edescription1'] = file2['events'][1]['description']['text']
+    context_dict['Eurl1'] = file2['events'][1]['url']
+    context_dict['startDate1']= file2['events'][1]['start']['utc']
+    context_dict['endDate1'] = file2['events'][1]['end']['utc']
+    context_dict['Ephoto1'] = file2['events'][1]['logo']['original']['url']
     
     
     
