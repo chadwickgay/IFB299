@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 import requests
 from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location
-from IFB299app.models import User
+from IFB299app.models import User, Profile
 
 # Create your views here.
 def index(request):
@@ -71,8 +71,7 @@ def get_place_id(location_name):
 def savedlocations(request):
     return render(request, 'IFB299app/savedlocations.html')
 
-def editprofile(request):
-    return render(request, 'IFB299app/editprofile.html')
+
 
 def error_404(request):
         data = {}
@@ -186,24 +185,29 @@ def image_url(self):
 
 def editprofile(request):
     if request.method == 'POST':
-        image_form = ImageForm(request.POST, instance = request.user.profile)
+#        image_form = ImageForm(request.POST, instance = request.user.profile)
         form = EditProfileForm(request.POST, instance=request.user)
-        profile_form = EditProfileForm2(request.POST, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST, instance = request.user.profile)
         
-        if image_form.is_valid():
-            profile.image = image_form.cleaned_data["image"]
-            image_form.save()
-            return redirect('/IFB299app/profile/')
+#        if image_form.is_valid():
+#            profile_image = image_form.cleaned_data["image"]
+#            image_form.save()
+#            return redirect('/IFB299app/profile/')
 
         if form.is_valid():
             form.save()
             return redirect('/IFB299app/profile/')
+        
         if profile_form.is_valid():
-            profile_form.save()
+            profile_form.save(commit = False)
+            if profile.user_id is None:
+                profile.user_id = request.user
+                profile_form.save()
             return redirect ('/IFB299app/profile/')
     else:
         form = EditProfileForm(instance=request.user)
-        profile_form = EditProfileForm2(instance=request.user.profile)
+        profile_form = ProfileForm(instance = request.user.profile)
+#        image_form = ImageForm(instance = request.user.profile)
         args = {'form': form,
                'profile_form': profile_form}
         
