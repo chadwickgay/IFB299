@@ -29,7 +29,8 @@ SECRET_KEY = 'si09zui6%_su_d#7^(2aqc*&7dx8=^m5x^(n_b596h9b3ct(&f'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-            'ifb299group62.pythonanywhere.com'],
+    'ifb299group62.pythonanywhere.com',
+]
 
 # Application definition
 
