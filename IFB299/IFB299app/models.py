@@ -65,10 +65,10 @@ class Profile(models.Model):
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
     min_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
     max_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
-    cuisine = MultiSelectField(choices=CUISINES, max_length=500)
-    industry = models.CharField(max_length=50, help_text="Please enter the industry you are looking for (e.g. Finance)")
-    suburb = models.CharField(max_length=100, help_text="Please enter the suburb you are wanting to visit")
+    cuisine = models.CharField(choices=CUISINES, max_length=500)
+    industry = models.CharField(max_length=50)
     radius = models.CharField(max_length =100, choices=RADIUS )
+    
 
 
 @receiver(post_save, sender=User)

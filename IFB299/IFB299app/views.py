@@ -25,6 +25,8 @@ def login_view(request):
 def dashboard(request):
     current_user = request.user 
     user_interests = current_user.profile.user_interests
+    industry = current_user.profile.industry
+    cuisines = current_user.profile.cuisine
 
     user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
     place_ID_set_list = []
@@ -44,25 +46,29 @@ def dashboard(request):
     place_ID = []
 
     for interest in user_interests: 
-        location = 0;
-        match = False;
+        if interest == "Industries":
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + industry
+        elif interest == "Restaurants" and cuisines != None:
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + cuisines
 
-        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
+
+        else:
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
         response = requests.get(url) 
-        file = response.json()
-
-        for i in range(len(file)):
-            if file['results'][location]['place_id'] in place_ID_set_list:
-                location += 1
-            else:
-                break
-
-        place_ID.append(file['results'][location]['place_id'])
-        name.append(file['results'][location]['name'])
-        address.append(file['results'][location]['formatted_address'])
-        rating.append(file['results'][0]['rating']) # error here - no rating
-        slugs.append(slugify(file['results'][location]['name']))
-        photo.append('https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + (file['results'][0]['photos'][0]['photo_reference']))
+        file = response.json() 
+        place_ID.append(file['results'][0]['place_id'])
+        name.append(file['results'][0]['name'])
+        address.append(file['results'][0]['formatted_address'])
+        try:
+            rating.append(file['results'][0]['rating'])
+        except KeyError:
+            rating.append(None)
+        slugs.append(slugify(file['results'][0]['name']))
+        
+        try:
+            photo.append('https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + (file['results'][0]['photos'][0]['photo_reference']))
+        except KeyError:
+            photo.append('../../static/img/No-image-available.jpg')
 
  
     if request.GET: 
@@ -197,12 +203,24 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['Photo']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][0]['photo_reference']
+    except KeyError:
+        context_dict['Photo']= '../../static/img/No-image-available.jpg'
+    try:
         context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
+    except KeyError:
+        context_dict['Photo2']= '../../static/img/No-image-available.jpg'
+    try:
         context_dict['Photo3']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][2]['photo_reference']
+    except KeyError:
+        context_dict['Photo3']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
+    try:
         context_dict['Photo4']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][3]['photo_reference']
+    except KeyError:
+        context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
+    try:
         context_dict['Photo5']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][4]['photo_reference']
     except KeyError:
-        pass
+        context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
 
     try:
         context_dict['lat'] = file['result']['geometry']['location']['lat']
