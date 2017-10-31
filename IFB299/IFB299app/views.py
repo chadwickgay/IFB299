@@ -24,7 +24,8 @@ def login_view(request):
 @login_required
 def dashboard(request):
     current_user = request.user 
-    user_interests = current_user.profile.user_interests 
+    user_interests = current_user.profile.user_interests
+    industry = current_user.profile.industry
 
      
     name = []
@@ -35,13 +36,20 @@ def dashboard(request):
     place_ID = []
 
     for interest in user_interests: 
-        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
+        if interest == "Industries":
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + industry
+ 
+        else:
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
         response = requests.get(url) 
         file = response.json() 
         place_ID.append(file['results'][0]['place_id'])
         name.append(file['results'][0]['name'])
         address.append(file['results'][0]['formatted_address'])
-        rating.append(file['results'][0]['rating'])
+        try:
+            rating.append(file['results'][0]['rating'])
+        except KeyError:
+            rating.append(None)
         slugs.append(slugify(file['results'][0]['name']))
         photo.append('https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + (file['results'][0]['photos'][0]['photo_reference']))
 
