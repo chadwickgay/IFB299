@@ -41,6 +41,8 @@
                   </div>
                   <div class="x_content">
 
+                    <div id = "map" style = "width:100%; height:300px;"></div>
+                    <br>
                     <p>All locations you have liked are listed below:</p>
 
                     <!-- start project list -->
@@ -56,11 +58,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for names, slugs, addresses, ratings in location_data %}
+                        {% for names, slugs, addresses, location_types, ratings in location_data %}
                         <tr>
                           <td>{{forloop.counter}}</td>
                           <td>
-                            <a>{{names}}</a>
+                            <a href="/IFB299app/location/{{slugs}}/">{{names}}</a>
                             <br />
                             <small>Created 01.01.2015</small>
                           </td>
@@ -69,7 +71,7 @@
                           </td>
                           <td>
                             <div>
-                              <!-- Type here -->
+                              {{location_types}}
                             </div>
                           </td>
                           <td>
@@ -85,7 +87,38 @@
                       </tbody>
                     </table>
                     <!-- end project list -->
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMoYgpM97Q7HW22iEZG3fpm9Padzjes3g&libraries=places&callback=loadMap"></script>
+                    <!-- MAP & REVIEWS -->           
+                    <script>
+                    function loadMap() {
+                      var locations = {{json_list|safe}};;
 
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 10,
+                          center: new google.maps.LatLng(-27.470125, 153.021072),
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                        });
+
+                        var infowindow = new google.maps.InfoWindow();
+
+                        var marker, i;
+
+                        for (i = 0; i < locations.length; i++) {  
+                          marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                            map: map
+                          });
+
+                          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                              infowindow.setContent(locations[i][0]);
+                              infowindow.open(map, marker);
+                            }
+                          })(marker, i));
+                        }  
+                    }
+                  </script>
                   </div>
                 </div>
               </div>

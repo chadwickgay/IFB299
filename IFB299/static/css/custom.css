@@ -3,6 +3,8 @@
 	margin-left: 40px;
 }
 
+/* END Location page */
+
 /* Dashboard page */
 
 .info{
@@ -28,3 +30,5 @@
 select, textarea {
 	width: 85%;
 }
+
+/* END Dashboard page */

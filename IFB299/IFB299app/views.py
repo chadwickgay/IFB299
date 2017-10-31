@@ -7,6 +7,7 @@ import requests
 from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location, User, FeedbackRecommendations
 from django.utils.text import slugify
+import json as simplejson
 
 # Create your views here.
 def index(request):
@@ -48,6 +49,8 @@ def likedlocations(request):
     location_types = []
     ratings = []
     slugs = []
+    lats = []
+    lngs = []
 
     # get the API results for each of the placeIDs
     for placeID in placeID_list:
@@ -62,12 +65,18 @@ def likedlocations(request):
         names.append(file[i]['result']['name'])
         slugs.append(slugify(file[i]['result']['name']))
         addresses.append(file[i]['result']['formatted_address'])
-        #location_types[i] = 
+        location_types.append(file[i]['result']['types'][0])
         ratings.append(file[i]['result']['rating'])
+        lats.append(file[i]['result']['geometry']['location']['lat'])
+        lngs.append(file[i]['result']['geometry']['location']['lng'])
+
+    # zip location data for map to pass to template
+    json_list = simplejson.dumps(zip(names, lats, lngs))
     
     # zip lists to pass into the context_dict
     context = {}
-    context['location_data'] = zip(names, slugs, addresses, ratings)
+    context['location_data'] = zip(names, slugs, addresses, location_types, ratings)
+    context['json_list'] = json_list
     
     # render page with context_dict
     return render(request, 'IFB299app/likedlocations.html', context)
@@ -88,10 +97,10 @@ def location(request, location_name_slug):
     url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
     response = requests.get(url) 
     file = response.json() 
-    
-    #print(file)
 
-    # it is beter to ask for forgiveness than permission in python/django
+    # store API results for each location in lists
+    # note - it is beter to ask for forgiveness than permission in python/django
+    # hence, try except used extensively
     context_dict['name'] = file['result']['name'] 
     context_dict['place_id'] = file['result']['place_id'] 
     try:
