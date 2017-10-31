@@ -3,57 +3,28 @@ from django.http import HttpResponse
 from .forms import RegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 import requests
 from django.contrib.auth.decorators import login_required
-from IFB299app.models import Location
-from IFB299app.models import User
+from IFB299app.models import Location, User, FeedbackRecommendations
+from django.utils.text import slugify
+import json as simplejson
 
 # Create your views here.
 def index(request):
-    return render(request, 'IFB299app/index.html')
+	return render(request, 'IFB299app/index.html')
 
 
 def createaccount(request):
-    return render(request, 'IFB299app/createaccount.html')
-
+	return render(request, 'IFB299app/createaccount.html')
 
 
 def login_view(request):
-    return render(request, 'IFB299app/login.html')
+	return render(request, 'IFB299app/login.html')
 
 @login_required
 def dashboard(request):
-
-    current_user = request.user
-    user_interests = current_user.profile.user_interests
-    user_interest=list(user_interests)
-    
-    output= []
-    for interest in user_interests:
-        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest
-        response = requests.get(url)
-        file = response.json()
-        output.append(file)
-    print (output)
-
-    if request.POST:
-        if '_like' in request.POST:
-             print("like")
-
-             f = FeedbackRecommendations(name="TestTrue", response=True, user=current_user)
-             f.save()
-
-        elif '_dislike' in request.POST:
-             print("dislike")
-
-             f = FeedbackRecommendations(name="TestFalse", response=False, user=current_user)
-             f.save()
-
     location_list = Location.objects.all
-    context_dict = {'locations': location_list,
-                    'user_interests': user_interests}
-
+    context_dict = {'locations': location_list}
     return render(request, 'IFB299app/dashboard.html', context_dict)
 
 
@@ -66,28 +37,70 @@ def get_place_id(location_name):
     #print(place_id)
     return place_id
 
-def savedlocations(request):
-    return render(request, 'IFB299app/savedlocations.html')
+@login_required
+def likedlocations(request):   
+    # pull saved placeIDs form the db
+    placeID_list = FeedbackRecommendations.objects.filter(user=request.user)
 
+    # lists to store API information
+    file = []
+    names = []
+    addresses = []
+    location_types = []
+    ratings = []
+    slugs = []
+    lats = []
+    lngs = []
+
+    # get the API results for each of the placeIDs
+    for placeID in placeID_list:
+
+        # search for the location using the place_id
+        url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID.placeID + "&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
+        response = requests.get(url) 
+        file.append(response.json())
+
+    # store API results for each location in lists
+    for i in range(len(placeID_list)):
+        names.append(file[i]['result']['name'])
+        slugs.append(slugify(file[i]['result']['name']))
+        addresses.append(file[i]['result']['formatted_address'])
+        location_types.append(file[i]['result']['types'][0])
+        ratings.append(file[i]['result']['rating'])
+        lats.append(file[i]['result']['geometry']['location']['lat'])
+        lngs.append(file[i]['result']['geometry']['location']['lng'])
+
+    # zip location data for map to pass to template
+    json_list = simplejson.dumps(zip(names, lats, lngs))
+    
+    # zip lists to pass into the context_dict
+    context = {}
+    context['location_data'] = zip(names, slugs, addresses, location_types, ratings)
+    context['json_list'] = json_list
+    
+    # render page with context_dict
+    return render(request, 'IFB299app/likedlocations.html', context)
+
+@login_required
 def editprofile(request):
-    return render(request, 'IFB299app/editprofile.html')
+	return render(request, 'IFB299app/editprofile.html')
     
 
 @login_required
 def location(request, location_name_slug):
     context_dict = {}
 
-    #Get the place_id based on the name of the location
+    # get the place_id based on the name of the location
     place_id = get_place_id(location_name_slug)
 
-
-    #Search for the location using the place_id
+    # search for the location using the place_id
     url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
     response = requests.get(url) 
     file = response.json() 
-    
-    #print(file)
 
+    # store API results for each location in lists
+    # note - it is beter to ask for forgiveness than permission in python/django
+    # hence, try except used extensively
     context_dict['name'] = file['result']['name'] 
     context_dict['place_id'] = file['result']['place_id'] 
     try:
