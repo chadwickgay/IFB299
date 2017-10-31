@@ -75,7 +75,7 @@ def dashboard(request):
         try:
             photo.append('https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + (file['results'][location]['photos'][0]['photo_reference']))
         except KeyError:
-            photo.append('../../static/img/No-image-available.jpg')
+            photo.append('http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg')
 
  
     if request.GET: 
