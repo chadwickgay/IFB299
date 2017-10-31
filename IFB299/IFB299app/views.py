@@ -24,9 +24,18 @@ def login_view(request):
 @login_required
 def dashboard(request):
     current_user = request.user 
-    user_interests = current_user.profile.user_interests 
+    user_interests = current_user.profile.user_interests
 
-     
+    user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
+    place_ID_set_list = []
+
+    for user_liked_location_placeID in user_liked_location_placeID_set:
+        place_ID_set_list.append(user_liked_location_placeID.placeID)
+        print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
+
+    for place_ID in place_ID_set_list:
+        print(place_ID_set_list)
+
     name = []
     slugs = []
     address = []
@@ -35,29 +44,45 @@ def dashboard(request):
     place_ID = []
 
     for interest in user_interests: 
+        location = 0;
+        match = False;
+
         url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
         response = requests.get(url) 
-        file = response.json() 
-        place_ID.append(file['results'][0]['place_id'])
-        name.append(file['results'][0]['name'])
-        address.append(file['results'][0]['formatted_address'])
-        rating.append(file['results'][0]['rating'])
-        slugs.append(slugify(file['results'][0]['name']))
+        file = response.json()
+
+        for i in range(len(file)):
+            if file['results'][location]['place_id'] in place_ID_set_list:
+                location += 1
+            else:
+                break
+
+        place_ID.append(file['results'][location]['place_id'])
+        name.append(file['results'][location]['name'])
+        address.append(file['results'][location]['formatted_address'])
+        rating.append(file['results'][0]['rating']) # error here - no rating
+        slugs.append(slugify(file['results'][location]['name']))
         photo.append('https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + (file['results'][0]['photos'][0]['photo_reference']))
 
  
-    if request.POST: 
-        if '_like' in request.POST: 
+    if request.GET: 
+        input_name = request.GET.get("Name", "")
+        input_placeID = request.GET.get("PlaceID", "")
+        if '_like' in request.GET: 
              print("like") 
- 
-             f = FeedbackRecommendations(name="TestTrue", response=True, user=current_user) 
+            
+             f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=True, user=current_user) 
              f.save() 
+
+             return redirect('/IFB299app/dashboard/')
  
-        elif '_dislike' in request.POST: 
+        elif '_dislike' in request.GET: 
              print("dislike") 
  
-             f = FeedbackRecommendations(name="TestFalse", response=False, user=current_user) 
+             f = FeedbackRecommendations(name=input_name, placeID = input_placeID, response=False, user=current_user) 
              f.save() 
+
+             return redirect('/IFB299app/dashboard/')
 
     context_dict = { }
     context_dict ['recommendation_data'] = zip(name, address, rating, place_ID, user_interests, slugs, photo)
