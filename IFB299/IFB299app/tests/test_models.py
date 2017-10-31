@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 from IFB299app.forms import LoginForm, RegisterForm, ProfileForm
 
-class ModelFinderTest(TestCase):
+class Modelcoverage(TestCase):
     
 #    def create_account (self, first_name="Gen", last_name="Richards", email="ggg@gmail.com", username="GBDPD" ):
 #        return User.objects.create(first_name=first_name, last_name=last_name, email=email, username=username)

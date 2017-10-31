@@ -15,13 +15,6 @@ def index(request):
 	return render(request, 'IFB299app/index.html')
 
 
-def createaccount(request):
-	return render(request, 'IFB299app/createaccount.html')
-
-
-def login_view(request):
-	return render(request, 'IFB299app/login.html')
-
 @login_required
 def dashboard(request):
     current_user = request.user 
