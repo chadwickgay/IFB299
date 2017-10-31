@@ -56,14 +56,17 @@
                                         </div>
                                         <div class="desc"><b>Rating:</b> {{rating}}</div>
                                         <div class="desc"><b>Address:</b> {{address}}</div>
+                                        <div class="desc"><b>Place ID:</b> {{place_ID}}</div>
                                     </div>
                                     <div class="bottom">
                                         <!--
                                         <button class="btn btn-success" style="float:left">Like</button>
                                         <button class="btn btn-danger" style="float:right">Dislike</button>
                                     -->
-                                    <form action="" method="post">
+                                    <form action="" method="get">
                                         {% csrf_token %}
+                                        <input type="hidden" name="PlaceID" value="{{place_ID}}">
+                                        <input type="hidden" name="Name" value="{{name}}">
                                         <input class="btn btn-success" type="submit" value="Like" style="float:left" name="_like">
                                         <input class="btn btn-danger" type="submit" value="Dislike" style="float:right" name="_dislike">
                                     </form>
