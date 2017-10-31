@@ -202,6 +202,11 @@ def location(request, location_name_slug):
     url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw" 
     response = requests.get(url) 
     file = response.json() 
+    
+    urlEvents = "https://www.eventbriteapi.com/v3/events/search/?q=" + location_name_slug + "&sort_by=date&token=A3ZOHEB5SAUML5XT5GGK"
+    response2 = requests.get(urlEvents) 
+    file2 = response2.json() 
+    #print(file)
 
     # store API results for each location in lists
     # note - it is beter to ask for forgiveness than permission in python/django
@@ -287,9 +292,44 @@ def location(request, location_name_slug):
             f.save() 
 
             return redirect('/IFB299app/dashboard/')
+
+    # EVENTS INFORMATION
+    # Event One  
+    context_dict['Ename'] = file2['events'][0]['name']['text']
+    context_dict['Edescription'] = file2['events'][0]['description']['text']
+    context_dict['Eurl'] = file2['events'][0]['url']
+    # Date and Time Formatting
+    startdate= file2['events'][0]['start']['local']
+    context_dict['dateS1'] = startdate[:10]
+    context_dict['timeS1'] = startdate[11:16]
+    enddate = file2['events'][0]['end']['local']
+    context_dict['date1'] = enddate[:10]
+    context_dict['time1'] = enddate[11:16]
+    
+    context_dict['Ephoto'] = file2['events'][0]['logo']['original']['url']
+    
+    #Event Two
+    
+    context_dict['Ename1'] = file2['events'][1]['name']['text']
+    context_dict['Edescription1'] = file2['events'][1]['description']['text']
+    context_dict['Eurl1'] = file2['events'][1]['url']
+    # Date and Time Formatting
+    startdate= file2['events'][1]['start']['local']
+    context_dict['dateS2'] = startdate[:10]
+    context_dict['timeS2'] = startdate[11:16]
+    enddate = file2['events'][1]['end']['local']
+    context_dict['date2'] = enddate[:10]
+    context_dict['time2'] = enddate[11:16]
+
+    context_dict['Ephoto1'] = file2['events'][1]['logo']['original']['url']
+    
+    
+    
     
     return render(request, 'IFB299app/location.html', context_dict)
 
+
+        
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)

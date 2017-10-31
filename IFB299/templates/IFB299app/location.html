@@ -118,6 +118,8 @@
                         </li>
                         <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Questions</a>
                         </li>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Events</a>
+                        </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
@@ -132,13 +134,68 @@
                           <hr/>
                           <div>
                             <p><strong>Overall rating:</strong> <span id="rating"></span></p>
-                            <a class="btn btn-success pull-left" href="https://search.google.com/local/writereview?placeid={{ place_id }}" id="open-review-box" target="_blank">Leave a Review</a>
+                            <a class="btn btn-succsess pull-left" href="https://search.google.com/local/writereview?placeid={{ place_id }}" id="open-review-box" target="_blank">Leave a Review</a>
                           </div>
                         </div>
 
 
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                           <p>Questions/Answers to be populated here by Teagan.</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                           <div class="row">  
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                        <a href={{Eurl}} style = "overflow: hidden"><h2>{{Ename}}</h2></a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="container">
+                                <div class="card hovercard">
+                                        <img class="img-responsive" src ={{Ephoto}} alt"" style="width:100%;">
+                                        <div class="info">
+                                        <div class="desc" style= "text-overflow: ellipsis"><b>Description:</b> {{ Edescription }}</div>
+                                        <div class="desc"><b>Start Date:</b><time>{{dateS1}}</time></div>
+                                        <div class="desc"><b>Start Time:</b><time>{{timeS1}}</time></div>
+                                        <div class="desc"><b>End Date: </b>{{date1}}</div>
+                                        <div class="desc"><b>End Time: </b>{{time1}}</div>
+                                <div class="desc"> <h4><b>For more information on this event, visit </b></h4> </div> <div class="desc"><a href={{Eurl}}><u>{{Eurl}}</u></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                               </div>
+                
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>{{Ename1}}</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="container">
+                                <div class="card hovercard">
+                                    <img class="img-responsive" src="{{Ephoto1}}" alt="" style="width: 100%;"/>
+                                    <div class="info">
+                                        <div class="desc" style= "text-overflow: ellipsis"><b>Description:</b>{{Edescription1}}</div>
+                                        <div class="desc"><b>Start Date:</b><time>{{dateS2}}</time></div>
+                                        <div class="desc"><b>Start Time:</b><time>{{timeS2}}</time></div>
+                                        <div class="desc"><b>End Date: </b>{{date2}}</div>
+                                        <div class="desc"><b>End Time: </b>{{time2}}</div>
+                                    <div class="desc"> <h4><b>For more information on this event, visit </b></h4> </div> <div class="desc"><a href={{Eurl1}}><u>{{Eurl1}}</u></a>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
                         </div>
                       </div>
                     </div>
