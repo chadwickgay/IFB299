@@ -48,9 +48,9 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                            <img class="img-responsive avatar-view" src="{{user.profile.image_url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
-                          {% if user.userprofile.image %}
-                            <img src="{{ user.profile.image.url }}">
+<!--                            <img class="img-responsive avatar-view" src="{{user.profile.image.url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">-->
+                          {% if user.profile.image %}
+                            <img src="{{ user.profile.image.url }}" width="240">
                         {% endif %}
                         </div>
                       </div>

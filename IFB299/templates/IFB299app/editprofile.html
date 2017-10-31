@@ -33,6 +33,7 @@
                 <h3>User Profile</h3>
 
 
+                  
 
             <div class="clearfix"></div>
 
@@ -48,8 +49,11 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
+                            {% if user.profile.image %}
                             
-                          <img class="img-responsive avatar-view" src="{{user.profile.image_url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
+                       
+                          <img class="img-responsive avatar-view" src="{{user.profile.image.url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
+                             {% endif %}
                         </div>
                       </div>
                       
@@ -57,11 +61,11 @@
               <h1>Update</h1>
               {% csrf_token %}
            
+                          
                 {{profile_form.image}} <br>
                 Email Address: {{form.email}} <br> <br>
                 First Name:  {{form.first_name}} <br> <br>
                 Last Name: {{form.last_name}} <br> <br>
-                Password: {{form.password}} <br>
                 User Type: {{profile_form.user_type}} <br> <br>
                 User Interests: {{profile_form.user_interests}} <br> <br>
                 Minimum Price: {{profile_form.min_price}} <br> <br>
@@ -83,7 +87,7 @@
     
                                             </div>
 
-                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div>

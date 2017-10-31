@@ -1,7 +1,8 @@
 <div class="clearfix">
               <div class="profile_pic">
-                <img src="{{user.profile.image_url|default_if_none:'#'}}" alt="..." class="img-circle profile_img">
-
+                 {% if user.profile.image %} 
+                <img src="{{user.profile.image.url|default_if_none:'#'}}" alt="..." class="img-circle profile_img">
+                 {% endif %}
                   
               </div>
               <div class="profile_info">
