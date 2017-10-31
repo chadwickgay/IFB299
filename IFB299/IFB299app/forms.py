@@ -58,7 +58,7 @@ class ImageForm(forms.ModelForm):
 '''
         
 class EditProfileForm(UserChangeForm):
-    #template_name='/something/else'
+    template_name='/something/else'
 
     class Meta:
         model = User
@@ -72,7 +72,7 @@ class EditProfileForm(UserChangeForm):
         
         
 class EditProfileForm2(UserChangeForm):
-    #template_name='/something/else'
+    template_name='/something/else'
 
     class Meta:
         model = Profile

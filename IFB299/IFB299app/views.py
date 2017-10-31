@@ -388,5 +388,5 @@ def editprofile(request):
         form = EditProfileForm(instance=request.user)
     return render(request, 'IFB299app/editprofile.html', {
         'profile_form': profile_form, 'form': form, 
-        }) 
+        })  
 

@@ -22,7 +22,7 @@ urlpatterns = [
 	url(r'^logout/$', auth_views.logout, {'next_page': '/IFB299app/'}, name='logout'),
 	url(r'^register/$', views.register, name='register'),
     url(r'^profile/$', views.profile, name='profile'),
-    url(r'^editprofile/$', views.editprofile, name='editprofile'),
+    url(r'^editprofile/$', views.editprofile, name='editprofile'), 
 	url(r'^interests/$', views.interests, name='interests'),
 	
 
