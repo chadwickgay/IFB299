@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^editprofile/$', views.editprofile, name='editprofile'), 
 	url(r'^interests/$', views.interests, name='interests'),
 	
+	
 
 	## Password recovery
 	url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
