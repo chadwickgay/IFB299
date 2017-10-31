@@ -52,7 +52,7 @@
                             {% if user.profile.image %}
                             
                        
-                          <img class="img-responsive avatar-view" src="{{user.profile.image.url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
+                          <img class="img-responsive avatar-view" src="{{user.profile.image_url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
                              {% endif %}
                         </div>
                       </div>
@@ -68,11 +68,9 @@
                 Last Name: {{form.last_name}} <br> <br>
                 User Type: {{profile_form.user_type}} <br> <br>
                 User Interests: {{profile_form.user_interests}} <br> <br>
-                Minimum Price: {{profile_form.min_price}} <br> <br>
                 Maximum Price: {{profile_form.max_price}} <br> <br>
                 Cuisine: {{profile_form.cuisine}} <br> <br>
                 Industry: {{profile_form.industry}} Please enter the industry you are looking for (e.g. Finance) <br> <br>
-                Suburb: {{profile_form.suburb}} Please enter the suburb you are wanting to visit <br> <br>
                 Radius: {{profile_form.radius}} <br> <br>
                 
               <div>

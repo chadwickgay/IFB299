@@ -48,9 +48,9 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-<!--                            <img class="img-responsive avatar-view" src="{{user.profile.image.url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">-->
+
                           {% if user.profile.image %}
-                            <img src="{{ user.profile.image.url }}" width="240">
+                            <img src="{{user.profile.image_url|default_if_none:'#'}}" width="240">
                         {% endif %}
                         </div>
                       </div>
@@ -77,16 +77,10 @@
                           <i class="fa fa-cutlery user-profile-icon"></i> cuisine:  {{ request.user.profile.cuisine }}
                         </li>
                         <li>
-                          <i class="fa fa-dollar user-profile-icon"></i> minimum price:  {{ request.user.profile.min_price }}
-                        </li>
-                        <li>
                           <i class="fa fa-dollar user-profile-icon"></i> maximum price:  {{ request.user.profile.max_price }}
                         </li>
                         <li>
                           <i class="fa fa-institution user-profile-icon"></i> industry:  {{ request.user.profile.industry }}
-                        </li>
-                        <li>
-                          <i class="fa fa-location-arrow user-profile-icon"></i> suburb:  {{ request.user.profile.suburb }}
                         </li>
                         <li>
                           <i class="fa fa-circle-o user-profile-icon"></i> radius:  {{ request.user.profile.radius }}
