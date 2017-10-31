@@ -3,6 +3,8 @@
 	margin-left: 40px;
 }
 
+/* END Location page */
+
 /* Dashboard page */
 
 .info{
@@ -18,3 +20,15 @@
 	height: 300px;
 }
 
+#id_user_interests {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+
+}
+
+select, textarea {
+	width: 85%;
+}
+
+/* END Dashboard page */

@@ -18,6 +18,7 @@ urlpatterns = [
 	url(r'^logout/$', auth_views.logout, {'next_page': '/IFB299app/'}, name='logout'),
 	url(r'^register/$', views.register, name='register'),
   url(r'^editprofile/$', views.editprofile, name='editprofile'),
+  url(r'^register2/$', views.register2, name='register2'),
 	
 
 	## Password recovery
@@ -34,9 +35,9 @@ urlpatterns = [
 
 	## Location page
 	url(r'^location/(?P<location_name_slug>[\w\-]+)/$', views.location, name='location'),
-  url(r'^savedlocations/$', views.savedlocations, name='savedlocations'),
+  url(r'^liked/$', views.likedlocations, name='likedlocations'),
 
 	## Admin
 	#url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
-	url(r'^admin/', admin.site.urls),
+	#url(r'^admin/', admin.site.urls),
 ]

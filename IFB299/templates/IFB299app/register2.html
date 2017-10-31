@@ -1,6 +1,6 @@
     {% extends 'IFB299app/base.html' %}
 
-    <title>{% block title %}Register{% endblock %}</title>
+    <title>{% block title %}Register you Interests{% endblock %}</title>
 
     {% block content %}
     <div>
@@ -9,11 +9,12 @@
         <div class="animate form login_form">
           <section class="login_content">
             <form method="post">
-              <h1>Register</h1>
+              <h1>Interests</h1>
+                <p><b>In order to provide more focused recommendations, please answer the following questions</b></p>
               {% csrf_token %}
-              {{ form.as_p }}
+              {{ profile_form.as_p }}
               <div>
-                <button class="btn btn-default submit" type="submit">Next</button>
+                <button class="btn btn-default submit" type="submit">Register</button>
               </div>
 
               <div class="clearfix"></div>
@@ -33,8 +34,8 @@
               </div>
             </form>
           </section>
+
         </div>
       </div>
     </div>
     {% endblock %}
-
