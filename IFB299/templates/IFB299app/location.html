@@ -87,7 +87,7 @@
                         {% endif %}
                       </div>
                       <br />
-
+                      {% if not feedback_made %}
                       <div class="">
                           <form action="" method="get">
                               {% csrf_token %}
@@ -97,7 +97,7 @@
                               <input class="btn btn-danger" type="submit" value="Dislike" style="float:right" name="_dislike">
                       </form>
                       </div>
-
+                      {% endif %}
                     </div>
 
                     

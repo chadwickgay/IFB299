@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from IFB299app.models import Location, User, FeedbackRecommendations
 from django.utils.text import slugify
 import json as simplejson
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -264,6 +265,14 @@ def location(request, location_name_slug):
     except KeyError:
         pass
 
+    try:
+        feedback_made = FeedbackRecommendations.objects.get(placeID = place_id, user=current_user)
+        context_dict['feedback_made']  = feedback_made
+    except ObjectDoesNotExist:
+        print("No feedback made")    
+
+
+    ## Handle clicking of liked/disliked button (using hidden form elements)
     if request.GET: 
         input_name = request.GET.get("Name", "")
         input_placeID = request.GET.get("PlaceID", "")
