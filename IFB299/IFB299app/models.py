@@ -72,11 +72,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
-    min_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
     max_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
     cuisine = MultiSelectField(choices=CUISINES, max_length=500)
     industry = models.CharField(max_length=50, help_text="Please enter the industry you are looking for (e.g. Finance)")
-    suburb = models.CharField(max_length=100, help_text="Please enter the suburb you are wanting to visit")
     radius = models.CharField(max_length =100, choices=RADIUS )
     image = models.ImageField(upload_to='profile_image', blank=True)
 
