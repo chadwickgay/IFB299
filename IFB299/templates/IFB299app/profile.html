@@ -35,93 +35,101 @@
 
 
 
-<div class="clearfix"></div>
+                        <div class="clearfix"></div>
 
-                        
-<div class="row">
-<div class="col-md-12 col-sm-12 col-xs-12">
-<div class="x_panel">
-<div class="x_title">
-    <h2>Profile</h2>
-    <div class="clearfix"></div>
-</div>
 
-<div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Profile</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
 
-    <div class="profile_img">
-        <div id="crop-avatar">
-            <!-- Current avatar -->
-            <img class="img-responsive avatar-view" src="../../static/img/download.jpeg" alt="Avatar" title="Change the avatar">
-            {% if user.userprofile.image %}
-            <img src="{{ user.profile.image.url }}">
-            {% endif %}
+                                    <div class="x_content">
+
+                                        <div class="profile_img">
+                                            <div id="crop-avatar">
+                                                <!-- Current avatar -->
+                                                <img class="img-responsive avatar-view" src="../../static/img/download.jpeg" alt="Avatar" title="Change the avatar">
+                                                {% if user.userprofile.image %}
+                                                <img src="{{ user.profile.image.url }}">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                        <h3> Username: {{ request.user.username }}</h3>
+
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <p><i class="fa fa-envelope user-profile-icon"></i> Email:  {{ request.user.email }}
+                                            </p>
+
+                                            <p>
+                                                <i class="fa fa-user user-profile-icon"></i> Name:  {{ request.user.first_name }}  {{ request.user.last_name }}
+                                            </p>
+
+                                            <p>
+                                                <i class="fa fa-suitcase user-profile-icon"></i> User Type:  {{ request.user.profile.user_type }}
+                                            </p>
+
+                                            <p>
+                                                <i class="fa fa-plane user-profile-icon"></i> User Interests: 
+                                                {{ request.user.profile.user_interests }}
+                                            </p>
+
+                                            <p>
+                                                <i class="fa fa-cutlery user-profile-icon"></i> Cuisine:  {{ request.user.profile.cuisine }}
+                                            </p>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <p>
+                                                <i class="fa fa-dollar user-profile-icon"></i> Minimum Price:  {{ request.user.profile.min_price }}
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-dollar user-profile-icon"></i> Maximum Price:  {{ request.user.profile.max_price }}
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-institution user-profile-icon"></i> Industry:  {{ request.user.profile.industry }}
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-location-arrow user-profile-icon"></i> Suburb:  {{ request.user.profile.suburb }}
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-circle-o user-profile-icon"></i> Radius:  {{ request.user.profile.radius }}
+                                            </p>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-0">
+                                        </div>
+
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <a href="/IFB299app/editprofile/" class="btn btn-primary" role="button" aria-pressed="true">Edit Profile</a>
+                                            <!-- <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>-->
+                                        </div>
+                                        <br />
+
+                                        <div class="col-md-4 col-sm-4 col-xs-0">
+                                        </div>
+
+                                    </div>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
-    </div>
-    <h3 id="testing-top"> Username: {{ request.user.username }}</h3>
-     
-    
-    
-    <div class="col-md-6 col-sm-6 col-xs-6">
-            <p><i class="fa fa-envelope user-profile-icon"></i> email:  {{ request.user.email }}
-            </p>
 
-            <p>
-                <i class="fa fa-user user-profile-icon"></i> name:  {{ request.user.first_name }}  {{ request.user.last_name }}
-            </p>
-
-            <p>
-                <i class="fa fa-suitcase user-profile-icon"></i> user type:  {{ request.user.profile.user_type }}
-            </p>
-
-            <p>
-                <i class="fa fa-plane user-profile-icon"></i> user interests: 
-                {{ request.user.profile.user_interests }}
-            </p>
-        
-            <p>
-                <i class="fa fa-cutlery user-profile-icon"></i> cuisine:  {{ request.user.profile.cuisine }}
-            </p>
-        </div>
-        
-        <div class="col-md-6 col-sm-6 col-xs-6">
-            <p>
-                <i class="fa fa-dollar user-profile-icon"></i> minimum price:  {{ request.user.profile.min_price }}
-            </p>
-            <p>
-                <i class="fa fa-dollar user-profile-icon"></i> maximum price:  {{ request.user.profile.max_price }}
-            </p>
-            <p>
-                <i class="fa fa-institution user-profile-icon"></i> industry:  {{ request.user.profile.industry }}
-            </p>
-            <p>
-                <i class="fa fa-location-arrow user-profile-icon"></i> suburb:  {{ request.user.profile.suburb }}
-        </p>
-            <p>
-                <i class="fa fa-circle-o user-profile-icon"></i> radius:  {{ request.user.profile.radius }}
-            </p>
-    </div>
-
-
-        
-        <a href="/IFB299app/editprofile/" class="btn btn-primary " role="button" aria-pressed="true">Edit Profile</a>
-        <!-- <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>-->
-
-        <br />
+        {% endblock %}
 
     </div>
-</div>   
 </div>
-</div>
-</div>
-                        
-                        
-</div>
-</div>
-</div>
-
-            {% endblock %}
-
-        </div>
-    </div>
 
 
