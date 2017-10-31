@@ -371,7 +371,7 @@ def image_url(self):
 def editprofile(request):
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance = request.user.profile)
-        image_form = ImageForm(request.POST, instance = request.user.profile)
+        #image_form = ImageForm(request.POST, instance = request.user.profile)
         form = EditProfileForm(request.POST, instance=request.user)
         if profile_form.is_valid():
             if form.is_valid():
