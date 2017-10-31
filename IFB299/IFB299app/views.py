@@ -48,9 +48,7 @@ def dashboard(request):
              f = FeedbackRecommendations(name="TestFalse", response=False, user=current_user) 
              f.save() 
 
-    location_list = Location.objects.all
-    context_dict = {'locations': location_list,
-                    'user_interests': user_interests} 
+    context_dict = {'user_interests': user_interests} 
     return render(request, 'IFB299app/dashboard.html', context_dict)
 
 
