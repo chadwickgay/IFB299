@@ -22,12 +22,11 @@ USER_INTERESTS = (
     ('Parks', 'Parks'),
     ('Zoos', 'Zoos'),
     ('Museums', 'Museums'),
-    ('Restaurants', 'Restaurants'),
+    ('Food', 'Restaurants'),
     ('Malls', 'Malls'),
 )
 
 PRICE_LEVELS=(
-('NA', "No preference"),
 ('0', '$'),
 ('1', '$$'), 
 ('2', '$$$'), 
@@ -36,7 +35,6 @@ PRICE_LEVELS=(
 )
 
 CUISINES=(
-("NA", "No preference"),
 ("Chinese", "Chinese"), 
 ("Japanese", "Japanese"), 
 ("Thai", "Thai"),
@@ -58,28 +56,6 @@ RADIUS = (
 ("20", "20km"), 
 ("30", "30km")
 )
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    user_type = models.CharField(max_length=50, choices=USER_TYPES)
-    user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
-    min_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
-    max_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
-    cuisine = models.CharField(choices=CUISINES, max_length=500)
-    industry = models.CharField(max_length=50)
-    radius = models.CharField(max_length =100, choices=RADIUS )
-    
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
 
 
 class Category(models.Model):
@@ -115,10 +91,11 @@ class Country(models.Model):
 
 class Region(models.Model):
     """
-    Model representing a region (regions/provinces/states).
+    Model representing a suburb in the area.
     """
     name = models.CharField(max_length=255, help_text="Enter a region (region/province/state)")
-    code = models.CharField(max_length=10, help_text="Enter a region code (e.g. QLD, NSW, VIC etc.)")
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     country_id = models.ForeignKey(Country, on_delete=models.CASCADE)
 
 
@@ -127,6 +104,27 @@ class Region(models.Model):
         String for representing the Model object.
         """
         return '%s (%s)' % (self.name, self.code)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user_type = models.CharField(max_length=50, choices=USER_TYPES)
+    user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
+    max_price = models.CharField(choices=PRICE_LEVELS, max_length=500, null=True, blank=True)
+    cuisine = models.CharField(choices=CUISINES, max_length=500, null=True, blank=True)
+    industry = models.CharField(max_length=50, blank=True, null = True)
+    radius = models.CharField(max_length =100, choices=RADIUS, null=True, blank=True, help_text="Distance away from the City Centre")
+
+    
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 class City(models.Model):
     """

@@ -27,7 +27,16 @@ def dashboard(request):
     user_interests = current_user.profile.user_interests
     industry = current_user.profile.industry
     cuisines = current_user.profile.cuisine
+    max_price = current_user.profile.max_price
+    radius = current_user.profile.radius
 
+    user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
+    place_ID_set_list = []
+
+    for user_liked_location_placeID in user_liked_location_placeID_set:
+        place_ID_set_list.append(user_liked_location_placeID.placeID)
+        #print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
+        
     user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
     place_ID_set_list = []
 
@@ -43,6 +52,22 @@ def dashboard(request):
     place_ID = []
 
     for interest in user_interests: 
+        url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.4703410197085,153.0250768802915&query="
+        if interest == "Industries" and industry != None:
+            url = url + industry
+        elif interest == "Restaurants" and cuisines != None:
+            url = url + "restaurant%20" + cuisines
+        else:
+            url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.4703410197085,153.0250768802915&query=" + interest 
+        
+        ## Add on Parameters
+        if max_price != None and interest == ("Restaurants" or "Hotels"):
+            url = url + "&maxprice=" + max_price
+        if radius != None:
+            url = url + "&radius=" + radius
+        else: 
+            url = url + "&radius=20"
+            
         location = 0;
 
         if interest == "Industries":
@@ -52,6 +77,7 @@ def dashboard(request):
         else:
             url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
         
+
         response = requests.get(url) 
         file = response.json() 
         

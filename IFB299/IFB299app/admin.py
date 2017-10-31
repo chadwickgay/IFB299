@@ -6,7 +6,7 @@ class CityAdmin(admin.ModelAdmin):
     list_display = ('name', 'region_id', 'country_id', 'latitude', 'longitude')
 
 class RegionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code', 'country_id')
+    list_display = ('name', 'latitude','longitude', 'country_id')
 
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('name', 'code')
