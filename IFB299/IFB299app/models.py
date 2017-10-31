@@ -5,6 +5,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
+from phonenumber_field.modelfields import PhoneNumberField
+from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 # pre-defined user user types
 USER_TYPES = (
@@ -60,6 +64,18 @@ RADIUS = (
 ("30", "30km")
 )
 
+"""
+Model showing the profile fields that are to be selected when signing up and updating the profile
+"""
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user_type = models.CharField(max_length=50, choices=USER_TYPES)
+    user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
+    max_price = models.CharField(choices=PRICE_LEVELS, max_length=500)
+    cuisine = MultiSelectField(choices=CUISINES, max_length=500)
+    industry = models.CharField(max_length=50, help_text="Please enter the industry you are looking for (e.g. Finance)")
+    radius = models.CharField(max_length =100, choices=RADIUS )
+    image = models.ImageField(upload_to='profile_image', blank=True)
 
 class Category(models.Model):
     """
