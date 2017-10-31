@@ -240,23 +240,23 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['Photo']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][0]['photo_reference']
-    except KeyError:
+    except:
         context_dict['Photo']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
-    except KeyError:
+    except:
         context_dict['Photo2']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo3']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][2]['photo_reference']
-    except KeyError:
+    except:
         context_dict['Photo3']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo4']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][3]['photo_reference']
-    except KeyError:
+    except:
         context_dict['Photo4']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo5']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][4]['photo_reference']
-    except KeyError:
+    except:
         context_dict['Photo5']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
 
     try:
@@ -290,32 +290,45 @@ def location(request, location_name_slug):
 
     # EVENTS INFORMATION
     # Event One  
-    context_dict['Ename'] = file2['events'][0]['name']['text']
-    context_dict['Edescription'] = file2['events'][0]['description']['text']
-    context_dict['Eurl'] = file2['events'][0]['url']
-    # Date and Time Formatting
-    startdate= file2['events'][0]['start']['local']
-    context_dict['dateS1'] = startdate[:10]
-    context_dict['timeS1'] = startdate[11:16]
-    enddate = file2['events'][0]['end']['local']
-    context_dict['date1'] = enddate[:10]
-    context_dict['time1'] = enddate[11:16]
-    
-    context_dict['Ephoto'] = file2['events'][0]['logo']['original']['url']
-    
-    #Event Two 
-    context_dict['Ename1'] = file2['events'][1]['name']['text']
-    context_dict['Edescription1'] = file2['events'][1]['description']['text']
-    context_dict['Eurl1'] = file2['events'][1]['url']
-    # Date and Time Formatting
-    startdate= file2['events'][1]['start']['local']
-    context_dict['dateS2'] = startdate[:10]
-    context_dict['timeS2'] = startdate[11:16]
-    enddate = file2['events'][1]['end']['local']
-    context_dict['date2'] = enddate[:10]
-    context_dict['time2'] = enddate[11:16]
+    try:
+        try:
+            context_dict['Ename'] = file2['events'][0]['name']['text']
+        except:
+            pass
+            
+        context_dict['Edescription'] = file2['events'][0]['description']['text']
+        context_dict['Eurl'] = file2['events'][0]['url']
+        # Date and Time Formatting
+        startdate= file2['events'][0]['start']['local']
+        context_dict['dateS1'] = startdate[:10]
+        context_dict['timeS1'] = startdate[11:16]
+        enddate = file2['events'][0]['end']['local']
+        context_dict['date1'] = enddate[:10]
+        context_dict['time1'] = enddate[11:16]
 
-    context_dict['Ephoto1'] = file2['events'][1]['logo']['original']['url']
+        context_dict['Ephoto'] = file2['events'][0]['logo']['original']['url']
+    except:
+        pass
+        
+    
+    try:
+
+        context_dict['Ename1'] = file2['events'][1]['name']['text']
+
+        context_dict['Edescription1'] = file2['events'][1]['description']['text']
+        context_dict['Eurl1'] = file2['events'][1]['url']
+        # Date and Time Formatting
+        startdate= file2['events'][1]['start']['local']
+        context_dict['dateS2'] = startdate[:10]
+        context_dict['timeS2'] = startdate[11:16]
+        enddate = file2['events'][1]['end']['local']
+        context_dict['date2'] = enddate[:10]
+        context_dict['time2'] = enddate[11:16]
+
+        context_dict['Ephoto1'] = file2['events'][1]['logo']['original']['url']
+    except:
+        pass
+        
     
     # render page   
     return render(request, 'IFB299app/location.html', context_dict)

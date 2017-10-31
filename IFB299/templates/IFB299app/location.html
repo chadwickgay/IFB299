@@ -143,7 +143,8 @@
                           <p>Questions/Answers to be populated here by Teagan.</p>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                           <div class="row">  
+                           <div class="row">
+                {% if Ename %}
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
@@ -167,8 +168,10 @@
                 </div>
             </div>
         </div>
+        {% endif %}
+
                                </div>
-                
+                {% if Ename1 %}
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
@@ -195,6 +198,9 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
+                            
+        
                 <div class="col-md-6 col-sm-6 col-xs-12">
                         </div>
                       </div>
