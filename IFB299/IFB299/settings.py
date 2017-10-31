@@ -88,7 +88,7 @@ TEMPLATES = [
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
+    #'social_core.backends.facebook.FacebookOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -168,8 +168,8 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/IFB299app/dashboard/'
 
 ## GITHUB LOGIN
-SOCIAL_AUTH_GITHUB_KEY = 'e3a28b90930ee6dafb09'
-SOCIAL_AUTH_GITHUB_SECRET = '4e3818d78fd39bf270bcfbb8dfcfa2e7b9e869a3'
+SOCIAL_AUTH_GITHUB_KEY = 'eb543159b9c08644cc76'
+SOCIAL_AUTH_GITHUB_SECRET = '90fad5e7dcd725f346f30e37471dfcad1c743556'
 
 # GOOGLE LOGIN
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '618374100609-tnm2prmps9r31i7es4ehs0nv8p8lpf2s.apps.googleusercontent.com'
