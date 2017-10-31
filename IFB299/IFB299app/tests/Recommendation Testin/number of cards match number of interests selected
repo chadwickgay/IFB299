@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8000/" />
+<title>Verifying interests selected only show selected interest, testing location page link and buttons </title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Verifying interests selected only show selected interest, testing location page link and buttons </td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>T4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_first_name</td>
+	<td>Genevieve</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_last_name</td>
+	<td>Richards</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>gen59647</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_email</td>
+	<td>genevievecrichards@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password1</td>
+	<td>43k9ygy5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password2</td>
+	<td>43k9ygy5</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_user_type</td>
+	<td>label=Businessman</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=id_user_interests_7</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_max_price</td>
+	<td>label=$$$$</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_cuisine</td>
+	<td>label=Seafood</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_industry</td>
+	<td>Childcare</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=id_radius</td>
+	<td>label=30km</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.x_title &gt; h2</td>
+	<td>Industries</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div/div/div/h2</td>
+	<td>Food</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>Smarter Kids on George</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>New Shanghai, Takeaway, Myer Food Court</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>name=_like</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>name=_dislike</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>xpath=(//input[@name='_like'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>xpath=(//input[@name='_dislike'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.x_title &gt; h2</td>
+	<td>Smarter Kids on George</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=_like</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=_dislike</td>
+	<td>Dislike</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=_like</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>Goodstart Early Learning Brisbane Adelaide Street</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.title_left &gt; h3</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_dislike'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>City Mall Inn Chinese Food</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.x_title &gt; h2</td>
+	<td>City Mall Inn Chinese Food</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Events</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=profile-tab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=home-tab</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=_dislike</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=_dislike</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=strong</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>You Are Here</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
