@@ -6,14 +6,14 @@ from django.dispatch import receiver
 from multiselectfield import MultiSelectField
 from django.template.defaultfilters import slugify
 
-# Create your models here.
-
+# pre-defined user user types
 USER_TYPES = (
     ('Tourist', 'Tourist'),
     ('Student', 'Student'),
     ('Businessman', 'Businessman'),
 )
 
+# pre-defined user interests
 USER_INTERESTS = (
     ('Colleges', 'Colleges'),
     ('Libraries', 'Libraries'),
@@ -26,6 +26,7 @@ USER_INTERESTS = (
     ('Malls', 'Malls'),
 )
 
+# pre-defined display for price levels
 PRICE_LEVELS=(
 ('0', '$'),
 ('1', '$$'), 
@@ -34,6 +35,7 @@ PRICE_LEVELS=(
 ('4', '$$$$$')
 )
 
+# pre-defined cuisines (used for tailored recommendations)
 CUISINES=(
 ("Chinese", "Chinese"), 
 ("Japanese", "Japanese"), 
@@ -48,6 +50,7 @@ CUISINES=(
 ("Vegetarian", "Vegetarian"), 
 ("Greek", "Greek"))
 
+# pre-defined human-readable distance measures
 RADIUS = (
 ("10", "No preference"),
 ("5", "5km"), 
@@ -106,6 +109,9 @@ class Region(models.Model):
         return '%s (%s)' % (self.name, self.code)
 
 class Profile(models.Model):
+    """
+    Model representing exntesions to django auth user.
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     user_type = models.CharField(max_length=50, choices=USER_TYPES)
     user_interests = MultiSelectField(choices=USER_INTERESTS, max_length=500)
@@ -113,8 +119,6 @@ class Profile(models.Model):
     cuisine = models.CharField(choices=CUISINES, max_length=500, null=True, blank=True)
     industry = models.CharField(max_length=50, blank=True, null = True)
     radius = models.CharField(max_length =100, choices=RADIUS, null=True, blank=True, help_text="Distance away from the City Centre")
-
-    
 
 
 @receiver(post_save, sender=User)

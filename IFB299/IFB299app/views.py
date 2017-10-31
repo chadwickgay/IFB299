@@ -10,19 +10,12 @@ from django.utils.text import slugify
 import json as simplejson
 from django.core.exceptions import ObjectDoesNotExist
 
-# Create your views here.
+# render static index/homepage
 def index(request):
 	return render(request, 'IFB299app/index.html')
 
-
-def createaccount(request):
-	return render(request, 'IFB299app/createaccount.html')
-
-
-def login_view(request):
-	return render(request, 'IFB299app/login.html')
-
 @login_required
+## Handles logic for primary user dashboard w/ recommendations
 def dashboard(request):
     current_user = request.user 
     user_interests = current_user.profile.user_interests
@@ -33,17 +26,14 @@ def dashboard(request):
 
     user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
     place_ID_set_list = []
-
-    for user_liked_location_placeID in user_liked_location_placeID_set:
-        place_ID_set_list.append(user_liked_location_placeID.placeID)
-        #print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
         
+    # extract all liked/disliked locations for user from db
     user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
     place_ID_set_list = []
 
+    # extract placeIDs from query set 
     for user_liked_location_placeID in user_liked_location_placeID_set:
         place_ID_set_list.append(user_liked_location_placeID.placeID)
-        #print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
 
     name = []
     slugs = []
@@ -52,8 +42,12 @@ def dashboard(request):
     photo = []
     place_ID = []
 
+    # loop through users interests to perform Google Places API lookup for each reccomendation
     for interest in user_interests: 
+        # URL endpoint for Google Places API
         url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.4703410197085,153.0250768802915&query="
+        
+        # URL customisation to allow more specific search for instury & cuisine
         if interest == "Industries" and industry != None:
             url = url + industry
         elif interest == "Restaurants" and cuisines != None:
@@ -69,6 +63,8 @@ def dashboard(request):
         else: 
             url = url + "&radius=20"
             
+        # reset location for each user interest
+        # used to cycle thruogh Google API results 
         location = 0;
 
         if interest == "Industries":
@@ -78,10 +74,11 @@ def dashboard(request):
         else:
             url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
         
-
+        # process returned JSON object
         response = requests.get(url) 
         file = response.json() 
         
+        # ignore locations user has already provided feedback for 
         for i in range(len(file['results'])): 
             if file['results'][location]['place_id'] in place_ID_set_list: 
                 location += 1
@@ -90,6 +87,7 @@ def dashboard(request):
             else: 
                 break 
 
+        # prepare / store information in lists
         place_ID.append(file['results'][location]['place_id'])
         name.append(file['results'][location]['name'])
         address.append(file['results'][location]['formatted_address'])
@@ -104,7 +102,7 @@ def dashboard(request):
         except KeyError:
             photo.append('http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg')
 
- 
+    # handle user feedback with like/dislike buttons
     if request.GET: 
         input_name = request.GET.get("Name", "")
         input_placeID = request.GET.get("PlaceID", "")
@@ -123,6 +121,7 @@ def dashboard(request):
 
              return redirect('/IFB299app/dashboard/')
 
+    # zip lists extracted from API (for easier use in template)
     context_dict = { }
     context_dict ['recommendation_data'] = zip(name, address, rating, place_ID, user_interests, slugs, photo)
 
@@ -215,23 +214,23 @@ def location(request, location_name_slug):
     context_dict['place_id'] = file['result']['place_id'] 
     try:
         context_dict['formatted_address']  = file['result']['formatted_address'] 
-    except KeyError:
+    except IndexError:
         pass
     try:
         context_dict['formatted_phone_number']  = file['result']['formatted_phone_number'] 
-    except KeyError:
+    except IndexError:
         pass
     try:
         context_dict['rating']  = file['result']['rating'] 
-    except KeyError:
+    except IndexError:
         pass
     try:
         context_dict['website']  = file['result']['website']
-    except KeyError:
+    except IndexError:
         pass
     try:
         context_dict['price_level']  = file['result']['price_level']
-    except KeyError:
+    except IndexError:
         pass
     try:
         context_dict['Monday'] = file['result']['opening_hours']['weekday_text'][0]
@@ -245,29 +244,29 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['Photo']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][0]['photo_reference']
-    except KeyError:
+    except IndexError:
         context_dict['Photo']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo2']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][1]['photo_reference']
-    except KeyError:
+    except IndexError:
         context_dict['Photo2']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo3']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][2]['photo_reference']
-    except KeyError:
+    except IndexError:
         context_dict['Photo3']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo4']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][3]['photo_reference']
-    except KeyError:
+    except IndexError:
         context_dict['Photo4']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
     try:
         context_dict['Photo5']= 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + file['result']['photos'][4]['photo_reference']
-    except KeyError:
+    except IndexError:
         context_dict['Photo5']= 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
 
     try:
         context_dict['lat'] = file['result']['geometry']['location']['lat']
         context_dict['lng'] = file['result']['geometry']['location']['lng']
-    except KeyError:
+    except IndexError:
         pass
 
     try:
@@ -308,8 +307,7 @@ def location(request, location_name_slug):
     
     context_dict['Ephoto'] = file2['events'][0]['logo']['original']['url']
     
-    #Event Two
-    
+    #Event Two 
     context_dict['Ename1'] = file2['events'][1]['name']['text']
     context_dict['Edescription1'] = file2['events'][1]['description']['text']
     context_dict['Eurl1'] = file2['events'][1]['url']
@@ -323,13 +321,12 @@ def location(request, location_name_slug):
 
     context_dict['Ephoto1'] = file2['events'][1]['logo']['original']['url']
     
-    
-    
-    
+    # render page   
     return render(request, 'IFB299app/location.html', context_dict)
 
 
-        
+# handle user registeration / user creation
+# uses in built django authentication
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -348,7 +345,9 @@ def register(request):
         'form': form,
         })
 
-def register2(request):
+# handle user interest collection (to form basis of recommendations)
+# uses extension of django auth user via profile model
+def interests(request):
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST)
         if profile_form.is_valid():
@@ -361,7 +360,7 @@ def register2(request):
             return redirect('/IFB299app/dashboard/')
     else:
         profile_form = ProfileForm()
-    return render(request, 'IFB299app/register2.html', {
+    return render(request, 'IFB299app/interests.html', {
         'profile_form': profile_form,
         })
 
