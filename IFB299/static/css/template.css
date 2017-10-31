@@ -1,19 +1,19 @@
 
 html , body{
-	
- height:100%;
- 
+
+    height:100%;
+
 }
- 
+
 .full-width {
-	
- width:100%;
- 
- }
- 
+
+    width:100%;
+
+}
+
 .full-height{
- height:100%;
- }
+    height:100%;
+}
 
 .daterangepicker .ranges li {
     color: #73879C
@@ -284,7 +284,7 @@ html , body{
     font-size: 14px;
     color: #ECF0F1;
     margin: 0;
-    font-weight: 300
+    font-weight: 300;
 }
 .profile.img_2 {
     text-align: center
@@ -394,7 +394,7 @@ body .container.body .right_col {
 }
 @media (max-width: 1270px) and (min-width: 192px) {
     .x_title h2 small {
-        display: none
+        display: none;
     }
 }
 .left_col .mCSB_scrollTools {
@@ -648,7 +648,7 @@ h2,
 h3,
 .h3 {
     margin-top: 10px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 a {
     color: #5A738E;
@@ -767,7 +767,7 @@ a:focus {
     top: 0
 }
 .nav-md ul.nav.child_menu li:last-child::after {
-  bottom: 50%;
+    bottom: 50%;
 }
 .nav.side-menu>li>a,
 .nav.child_menu>li>a {
@@ -1008,7 +1008,7 @@ article.media {
 }
 h2 {
     font-size: 30px;
-    font-weight: 400
+    font-weight: 400;
 }
 #left,
 #right {
@@ -1073,7 +1073,7 @@ h2 {
 .x_title {
     border-bottom: 2px solid #E6E9ED;
     padding: 1px 5px 6px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 .x_title .filter {
     width: 40%;
@@ -1085,13 +1085,13 @@ h2 {
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap
+    white-space: nowrap;
 }
 .x_title h2 small {
     margin-left: 10px
 }
 .x_title span {
-    color: #BDBDBD
+    color: #BDBDBD;
 }
 .x_content {
     padding: 0 5px 6px;
@@ -1147,7 +1147,7 @@ legend {
     padding: 2px
 }
 .profile_details .profile_view h2 {
-    margin: 5px 0
+    margin: 5px 0;
 }
 .profile_details .profile_view .ratings {
     text-align: left;
@@ -1673,7 +1673,7 @@ span.right {
     position: fixed;
     width: 230px;
     background: #2A3F54;
-	z-index:999;
+    z-index:999;
 }
 .sidebar-footer a {
     padding: 7px 0 3px;
@@ -3227,12 +3227,12 @@ ul.project_files li a i {
 .input-group-btn .btn { margin-bottom:0; }
 
 /*!
- * bootstrap-vertical-tabs - v1.2.1
- * https://dbtek.github.io/bootstrap-vertical-tabs
- * 2014-11-07
- * Copyright (c) 2014 İsmail Demirbilek
- * License: MIT
- */
+* bootstrap-vertical-tabs - v1.2.1
+* https://dbtek.github.io/bootstrap-vertical-tabs
+* 2014-11-07
+* Copyright (c) 2014 İsmail Demirbilek
+* License: MIT
+*/
 
 .tabs-left,
 .tabs-right {
@@ -4166,7 +4166,7 @@ ul.notifications {
 
 /*
 .x_content {
-    direction: rtl;
+direction: rtl;
 }
 */
 
@@ -4186,7 +4186,7 @@ ul.notifications {
 
 
 @media (max-width: 767px) {
-   .dataTables_length { float:none; }
+    .dataTables_length { float:none; }
 }
 
 
@@ -4198,20 +4198,20 @@ ul.notifications {
 .checkbox-input:before { display:block;content:"";position:absolute;top:2px;left:0;height:20px;width:20px;background:red;border-radius:3px; }
 
 
- #input + label:after {
-    content: 'click my input';
-    color: blue;
-  }
+#input + label:after {
+content: 'click my input';
+color: blue;
+}
 
-  #input:focus + label:after {
-    content: 'not valid yet';
-    color: blue;
-  }
+#input:focus + label:after {
+content: 'not valid yet';
+color: blue;
+}
 
-  #input:valid + label:after {
-    content: 'looks good';
-    color: red;
-  }
+#input:valid + label:after {
+content: 'looks good';
+color: red;
+}
 
 /* CSS3 Checkbox - end */
 /*
@@ -4240,11 +4240,11 @@ ul.notifications {
 table thead .checkbox { margin-top:-7px;margin-top:-21px; }
 table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 */
-			
+
 .daterangepicker.xdisplay { width:228px; }
 
 .dataTables_wrapper > .row{
-  overflow:auto !important; /*prevent datatables overflowing its container*/
+    overflow:auto !important; /*prevent datatables overflowing its container*/
 }
 
 /** bootstrap-datetimepicker **/
@@ -4253,3 +4253,11 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
+
+
+
+#testing-top{
+    text-align: center !important;
+}
+
+
