@@ -22,7 +22,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'location_id')
 
 class FeedbackRecommendationsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'placeID', 'name')
+    list_display = ('user', 'placeID', 'name', 'response')
 
 # Define an inline admin descriptor for User model
 # which acts a bit like a singleton
