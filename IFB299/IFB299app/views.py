@@ -112,8 +112,14 @@ def location(request, location_name_slug):
     context_dict['Ename'] = file2['events'][0]['name']['text']
     context_dict['Edescription'] = file2['events'][0]['description']['text']
     context_dict['Eurl'] = file2['events'][0]['url']
-    context_dict['startDate']= file2['events'][0]['start']['utc']
-    context_dict['endDate'] = file2['events'][0]['end']['utc']
+    # Date and Time Formatting
+    startdate= file2['events'][0]['start']['local']
+    context_dict['dateS1'] = startdate[:10]
+    context_dict['timeS1'] = startdate[11:16]
+    enddate = file2['events'][0]['end']['local']
+    context_dict['date1'] = enddate[:10]
+    context_dict['time1'] = enddate[11:16]
+    
     context_dict['Ephoto'] = file2['events'][0]['logo']['original']['url']
     
     #Event Two
@@ -121,8 +127,14 @@ def location(request, location_name_slug):
     context_dict['Ename1'] = file2['events'][1]['name']['text']
     context_dict['Edescription1'] = file2['events'][1]['description']['text']
     context_dict['Eurl1'] = file2['events'][1]['url']
-    context_dict['startDate1']= file2['events'][1]['start']['utc']
-    context_dict['endDate1'] = file2['events'][1]['end']['utc']
+    # Date and Time Formatting
+    startdate= file2['events'][1]['start']['local']
+    context_dict['dateS2'] = startdate[:10]
+    context_dict['timeS2'] = startdate[11:16]
+    enddate = file2['events'][1]['end']['local']
+    context_dict['date2'] = enddate[:10]
+    context_dict['time2'] = enddate[11:16]
+
     context_dict['Ephoto1'] = file2['events'][1]['logo']['original']['url']
     
     
