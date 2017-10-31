@@ -230,7 +230,7 @@ def location(request, location_name_slug):
         pass
     try:
         context_dict['price_level']  = file['result']['price_level']
-    except IndexError:
+    except KeyError:
         pass
     try:
         context_dict['Monday'] = file['result']['opening_hours']['weekday_text'][0]
