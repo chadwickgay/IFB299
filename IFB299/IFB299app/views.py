@@ -338,7 +338,7 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/IFB299app/register2/')
+            return redirect('/IFB299app/interests/')
     else:
         form = RegisterForm()
     return render(request, 'IFB299app/register.html', {
