@@ -36,9 +36,7 @@ def dashboard(request):
     for user_liked_location_placeID in user_liked_location_placeID_set:
         place_ID_set_list.append(user_liked_location_placeID.placeID)
         #print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
-
-<<<<<<< HEAD
-=======
+        
     user_liked_location_placeID_set = FeedbackRecommendations.objects.filter(user=current_user)
     place_ID_set_list = []
 
@@ -46,7 +44,6 @@ def dashboard(request):
         place_ID_set_list.append(user_liked_location_placeID.placeID)
         #print("user_liked_location_placeID: " + user_liked_location_placeID.placeID)
 
->>>>>>> b6e5d62700b09c9c982af7f212a98e3f25a7222f
     name = []
     slugs = []
     address = []
@@ -55,8 +52,6 @@ def dashboard(request):
     place_ID = []
 
     for interest in user_interests: 
-<<<<<<< HEAD
-<<<<<<< HEAD
         url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.4703410197085,153.0250768802915&query="
         if interest == "Industries" and industry != None:
             url = url + industry
@@ -73,9 +68,6 @@ def dashboard(request):
         else: 
             url = url + "&radius=20"
             
-=======
-=======
->>>>>>> b6e5d62700b09c9c982af7f212a98e3f25a7222f
         location = 0;
 
         if interest == "Industries":
@@ -85,10 +77,7 @@ def dashboard(request):
         else:
             url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
         
-<<<<<<< HEAD
->>>>>>> 2289ad8e584fc00b8a8e0bb2003640e2c41af738
-=======
->>>>>>> b6e5d62700b09c9c982af7f212a98e3f25a7222f
+
         response = requests.get(url) 
         file = response.json() 
         
@@ -104,15 +93,7 @@ def dashboard(request):
         name.append(file['results'][location]['name'])
         address.append(file['results'][location]['formatted_address'])
         try:
-<<<<<<< HEAD
-<<<<<<< HEAD
-            rating.append(file['results'][0]['rating']) 
-=======
             rating.append(file['results'][location]['rating'])
->>>>>>> 2289ad8e584fc00b8a8e0bb2003640e2c41af738
-=======
-            rating.append(file['results'][location]['rating'])
->>>>>>> b6e5d62700b09c9c982af7f212a98e3f25a7222f
         except KeyError:
             rating.append(None)
         slugs.append(slugify(file['results'][location]['name']))
