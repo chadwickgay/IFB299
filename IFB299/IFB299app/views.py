@@ -25,15 +25,26 @@ def login_view(request):
 def dashboard(request):
     current_user = request.user 
     user_interests = current_user.profile.user_interests 
-    user_interest=list(user_interests) 
+
      
-    output= [] 
+    name = []
+    slugs = []
+    address = []
+    rating = []
+    photo = []
+    place_ID = []
+
     for interest in user_interests: 
         url = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&location=-27.470125,153.021072&radius=20&query=" + interest 
         response = requests.get(url) 
         file = response.json() 
-        output.append(file) 
-    print (output) 
+        place_ID.append(file['results'][0]['place_id'])
+        name.append(file['results'][0]['name'])
+        address.append(file['results'][0]['formatted_address'])
+        rating.append(file['results'][0]['rating'])
+        slugs.append(slugify(file['results'][0]['name']))
+        photo.append('https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&maxheight=500&key=AIzaSyBvXpcHlbpL_ESnnNOm07nBCd1LhpZOSzw&photoreference=' + (file['results'][0]['photos'][0]['photo_reference']))
+
  
     if request.POST: 
         if '_like' in request.POST: 
@@ -48,7 +59,9 @@ def dashboard(request):
              f = FeedbackRecommendations(name="TestFalse", response=False, user=current_user) 
              f.save() 
 
-    context_dict = {'user_interests': user_interests} 
+    context_dict = { }
+    context_dict ['recommendation_data'] = zip(name, address, rating, place_ID, user_interests, slugs, photo)
+
     return render(request, 'IFB299app/dashboard.html', context_dict)
 
 

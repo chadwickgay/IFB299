@@ -38,25 +38,24 @@
                 <div class="clearfix"></div>
             </div>
 
-            {% for user_interest in user_interests %}
+            {% for name, address, rating, place_ID, user_interests, slugs, photo in recommendation_data %}
             <div class="row">  
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>{{user_interest}}</h2>
+                            <h2>{{user_interests}}</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <div class="container">
                                 <div class="card hovercard">
-                                    <img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/28_-_South_Bank_Parklands_%284741163759%29.jpg/1200px-28_-_South_Bank_Parklands_%284741163759%29.jpg" alt="" style="width: 100%;"/>
+                                    <img class="img-responsive" src={{photo}} alt="" style="width: 100%;"/>
                                     <div class="info">
                                         <div class="title">
-                                            <a href="/IFB299app/location/southbank-parklands/"><h1>Southbank Parklands</h1></a>
+                                            <a href="/IFB299app/location/{{slugs}}/"><h1>{{name}}</h1></a>
                                         </div>
-                                        <div class="desc"><b>Description:</b> A great place for a date night. Visit Brisbane's hottest tourist destinations...</div>
-                                        <div class="desc"><b>Location:</b> Southbank, Brisbane</div>
-                                        <div class="desc"><b>Price:</b> Free</div>
+                                        <div class="desc"><b>Rating:</b> {{rating}}</div>
+                                        <div class="desc"><b>Address:</b> {{address}}</div>
                                     </div>
                                     <div class="bottom">
                                         <!--
