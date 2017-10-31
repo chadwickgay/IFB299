@@ -49,20 +49,17 @@
                         <div class="x_content">
                             <div class="container">
                                 <div class="card hovercard">
-                                    <img class="img-responsive" src={{photo}} alt="" style="width: 100%;"/>
+                                    <a href="/IFB299app/location/{{slugs}}/"><img class="img-responsive" src={{photo}} alt="" style="width: 100%;"/></a>
                                     <div class="info">
                                         <div class="title">
-                                            <a href="/IFB299app/location/{{slugs}}/"><h1>{{name}}</h1></a>
+                                            <a href="/IFB299app/location/{{slugs}}/"><h1 style="font-size: 24px">{{name}}</h1></a>
                                         </div>
                                         <div class="desc"><b>Rating:</b> {{rating}}</div>
                                         <div class="desc"><b>Address:</b> {{address}}</div>
                                         <div class="desc"><b>Place ID:</b> {{place_ID}}</div>
                                     </div>
                                     <div class="bottom">
-                                        <!--
-                                        <button class="btn btn-success" style="float:left">Like</button>
-                                        <button class="btn btn-danger" style="float:right">Dislike</button>
-                                    -->
+     
                                     <form action="" method="get">
                                         {% csrf_token %}
                                         <input type="hidden" name="PlaceID" value="{{place_ID}}">
