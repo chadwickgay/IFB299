@@ -1,113 +1,178 @@
 {% extends 'IFB299app/base.html' %}
 
+
 <title>{% block title %}Edit Profile{% endblock %}</title>
+
 
 {% block content %}
 
+
 <div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-globe"></i> <span>You Are Here!</span></a>
-                </div>
 
-                <div class="clearfix"></div>
+  <div class="main_container">
 
-                <br />
+    <div class="col-md-3 left_col">
 
-                <!-- sidebar menu -->
-                {% include "IFB299app/side-menu.html"%}
-                <!-- sidebar menu -->
-            </div>
-        </div>
+      <div class="left_col scroll-view">
 
-        <!-- top navigation -->
-        {% include "IFB299app/top-menu.html"%}
-        <!-- /top navigation --> 
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="page-title">
-                    <div class="title">
-                        <h3>User Profile</h3>
+        <div class="navbar nav_title" style="border: 0;">
+
+          <a href="index.html" class="site_title"><i class="fa fa-globe"></i> <span>You Are Here!</span></a>
+
+      </div>
 
 
-
-                        <div class="clearfix"></div>
-
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2>Edit Profile</h2>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="x_content">
-                                        <div class="col-md-6 col-sm-6 col-xs-6 profile_left">
-                                            <div class="profile_img">
-                                                <div id="crop-avatar">
-                                                    <!-- Current avatar -->
-                                                    <img class="img-responsive avatar-view" src="../../static/img/download.jpeg" alt="Avatar" title="Change the avatar">
-                                                </div>
-                                            </div>
-
-                                            <form action="." method="post" enctype="multipart/form-data">
-                                                <h1>Update</h1>
-                                                {% csrf_token %}
-                                                {% if user.userprofile.image %}
-                                                <img src="{{ user.profile.image.url }}" width="240">
-                                                {% endif %}
-                                                {{profile_form.image}} <br>
-
-                                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                                    <i class="fa fa-envelope user-profile-icon"></i>Email Address: {{form.email}} <br> <br>
-                                                    <i class="fa fa-user user-profile-icon"></i>First Name:  {{form.first_name}} <br> <br>
-                                                    <i class="fa fa-users" aria-hidden="true"></i>Last Name: {{form.last_name}} <br> <br>
-
-                                                    <i class="fa fa-key" aria-hidden="true"></i>Password: {{form.password}} <br>
-                                                    <i class="fa fa-suitcase user-profile-icon"></i>User Type: {{profile_form.user_type}} <br> <br>
-                                                </div>
-
-                                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                                    <i class="fa fa-plane user-profile-icon"></i>User Interests: {{profile_form.user_interests}} <br> <br>
-                                                    <i class="fa fa-dollar user-profile-icon"></i>Minimum Price: {{profile_form.min_price}} <br> <br>
-                                                    <i class="fa fa-dollar user-profile-icon"></i>Maximum Price: {{profile_form.max_price}} <br> <br>
-                                                    <i class="fa fa-cutlery user-profile-icon"></i>Cuisine: {{profile_form.cuisine}} <br> <br>
-                                                    <i class="fa fa-institution user-profile-icon"></i>Industry: {{profile_form.industry}} Please enter the industry you are looking for (e.g. Finance) <br>
-                                                </div>
-                                                <br>
-                                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                                    <i class="fa fa-location-arrow user-profile-icon"></i>Suburb: {{profile_form.suburb}} Please enter the suburb you are wanting to visit <br> <br>
-                                                    <i class="fa fa-circle-o user-profile-icon"></i>Radius: {{profile_form.radius}} <br> <br>
-                                                </div>
+      <div class="clearfix"></div>
 
 
-
-                                                <div class="col-md-6 col-sm-6 col-xs-6" id="asdf">
-
-                                                    <button class="btn btn-default submit" type="submit">Update Profile</button>
-                                                    <br>
-
-                                                </div>
-
-                                            </form>
+      <br />
 
 
+      <!-- sidebar menu -->
 
+      {% include "IFB299app/side-menu.html"%}
 
-                                        </div>
+      <!-- sidebar menu -->
 
-                                    </div>
-                                </div>
-                            </div>
+  </div>
 
-                        </div>
-                    </div>   
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+
+
+<!-- top navigation -->
+
+{% include "IFB299app/top-menu.html"%}
+
+<!-- /top navigation -->
+
+<!-- page content -->
+
+<div class="right_col" role="main">
+
+    <div class="">
+
+        <div class="page-title">
+
+          <div class="title">
+
+            <h3>User Profile</h3>
+
+
+
+
+
+
+            <div class="clearfix"></div>
+
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="x_panel">
+
+                  <div class="x_title">
+
+                    <h2>Edit Profile</h2>
+
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="x_content">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12 profile_left">
+
+                      <div class="profile_img">
+
+                        <div id="crop-avatar">
+
+                          <!-- Current avatar -->
+
+                          {% if user.profile.image %}
+
+
+
+
+
+                          <img class="img-responsive avatar-view" src="{{user.profile.image_url|default_if_none:'#'}}" alt="Avatar" title="Change the avatar" width="240">
+
+                          {% endif %}
+
+                      </div>
+
+                  </div>
+
+
+
+                  <form action="." method="post" enctype="multipart/form-data">
+
+                      {% csrf_token %}
+
+                      <p>Email Address: <br> {{form.email}} </p>
+
+                      <p>First Name: <br>  {{form.first_name}} </p>
+
+                      <p>Last Name: <br> {{form.last_name}} </p>
+
+                      <p>User Type: <br> {{profile_form.user_type}} </p>
+
+                      <p>User Interests: <br> {{profile_form.user_interests}} </p>
+
+                      <p>Maximum Price:<br>  {{profile_form.max_price}} </p>
+
+                      <p>Cuisine:<br>  {{profile_form.cuisine}} </p>
+
+                      <p>Industry: <br> {{profile_form.industry}} </p>
+
+                      <p>Please enter the industry you are looking for (e.g. Finance) </p>
+
+                      <p>Radius: <br> {{profile_form.radius}} </p>
+
+                      <div>
+
+                        <button class="btn btn-primary submit" type="submit">Update Profile</button>
+                    </div>
+
+                </form>
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>   
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
 
 {% endblock %}
