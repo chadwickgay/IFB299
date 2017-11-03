@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8000/" />
+<title>Checking that each card refereshes if liked or disliked (also checking card type shown)</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Checking that each card refereshes if liked or disliked (also checking card type shown)</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/IFB299app/login/?next=/IFB299app/dashboard/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_password</td>
+	<td>43k9ygy5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=id_username</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Dashboard</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.x_title &gt; h2</td>
+	<td>Colleges</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div/div/div/h2</td>
+	<td>Libraries</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div/div/div/h2</td>
+	<td>Zoos</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div/h2</td>
+	<td>Museums</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div/h2</td>
+	<td>Food</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div/h2</td>
+	<td>Malls</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>Vibe College</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=_like</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>Nuvocca Beauty Brisbane</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=_dislike</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h1</td>
+	<td>CSU Programs at Martin College</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Brisbane Square Library</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_like'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>State Library of Queensland</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_dislike'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Norman Park Dog Park</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_like'])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Lone Pine Koala Sanctuary</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_dislike'])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Museum of Brisbane</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_like'])[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Queensland Art Gallery</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>New Shanghai, Takeaway, Myer Food Court</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_like'])[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Felix For Goodness</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_dislike'])[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Queen Street Mall</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_like'])[7]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div/div/div/a/h1</td>
+	<td>Wintergarden</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='_dislike'])[7]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

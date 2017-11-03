@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:8000/" />
+<title>Checking that all liked and disliked recommendations have been saved and deleting them to run tests again</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Checking that all liked and disliked recommendations have been saved and deleting them to run tests again</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Change')])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=n9665544</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Home</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Change')])[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=n9665544</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=td.field-name</td>
+	<td>Wintergarden</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;False&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row2 &gt; th.field-user.nowrap &gt; a</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row2 &gt; td.field-name</td>
+	<td>Queen Street Mall</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=img[alt=&quot;True&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[3]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[3]/td[3]</td>
+	<td>Felix For Goodness</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//img[@alt='False'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[4]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[4]/td[3]</td>
+	<td>New Shanghai, Takeaway, Myer Food Court</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[5]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[5]/td[2]</td>
+	<td>ChIJPbZTLX9akWsRB3KZOZSp5gg</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[5]/td[3]</td>
+	<td>Museum of Brisbane</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row1 &gt; td.field-response &gt; img[alt=&quot;True&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[6]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[6]/td[3]</td>
+	<td>Lone Pine Koala Sanctuary</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=tr.row2 &gt; td.field-response &gt; img[alt=&quot;False&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[7]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[7]/td[3]</td>
+	<td>Norman Park Dog Park</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//img[@alt='True'])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[8]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[8]/td[3]</td>
+	<td>State Library of Queensland</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//img[@alt='False'])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[9]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[9]/td[3]</td>
+	<td>Brisbane Square Library</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//img[@alt='True'])[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[10]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[10]/td[3]</td>
+	<td>Nuvocca Beauty Brisbane</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//img[@alt='False'])[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//a[contains(text(),'n9665544')])[11]</td>
+	<td>n9665544</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//table[@id='result_list']/tbody/tr[11]/td[3]</td>
+	<td>Vibe College</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//img[@alt='True'])[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>xpath=(//img[@alt='True'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=action-toggle</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=action</td>
+	<td>label=Delete selected FeedbackRecommendations</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=index</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-danger</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

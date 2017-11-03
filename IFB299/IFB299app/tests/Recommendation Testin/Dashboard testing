@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="Card referesh">Checking that each card refereshes if liked or disliked (also checking card type shown)</a></td></tr>
+<tr><td><a href="storing feedback">Checking that all liked and disliked recommendations have been saved and deleting them to run tests again</a></td></tr>
+<tr><td><a href="number of cards match number of interests selected">Verifying interests selected only show selected interest, testing location page link and buttons </a></td></tr>
+</tbody></table>
+</body>
+</html>

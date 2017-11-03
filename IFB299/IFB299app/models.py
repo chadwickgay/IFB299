@@ -121,7 +121,7 @@ class Region(models.Model):
         """
         String for representing the Model object.
         """
-        return '%s (%s)' % (self.name, self.code)
+        return (self.name)
 
 class Profile(models.Model):
     """
